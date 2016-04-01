@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "66B81CD12EDDA256D27207B2EBB87D09F3BB05D4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "66B81CD12EDDA256D27207B2EBB87D09F3BB05D4" : 0,
+    "DF56C219146910AC2C4F330E09C5A7017C7C1910" : 0,
+    "9BE9D417DFF2C108330E2C3DFD9D454205A39188" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "61297460-BCDF-49FE-8685-251B819E2D4B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "66B81CD12EDDA256D27207B2EBB87D09F3BB05D4" : "Roomba%20Wizard\/",
+    "DF56C219146910AC2C4F330E09C5A7017C7C1910" : "Projects\/Roomba\/API-Qt\/",
+    "9BE9D417DFF2C108330E2C3DFD9D454205A39188" : "Projects\/Roomba\/SwiftSocket\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Roomba Wizard",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Roomba Wizard.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/granborg\/Roomba-Wizard.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "66B81CD12EDDA256D27207B2EBB87D09F3BB05D4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/swiftsocket\/SwiftSocket.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9BE9D417DFF2C108330E2C3DFD9D454205A39188"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/roowifi\/API-Qt.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DF56C219146910AC2C4F330E09C5A7017C7C1910"
+    }
+  ]
+}

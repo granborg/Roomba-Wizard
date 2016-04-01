@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DABC63301CAF1A6A00235750 /* ysocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC632D1CAF1A6A00235750 /* ysocket.swift */; };
+		DABC63311CAF1A6A00235750 /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = DABC632E1CAF1A6A00235750 /* ytcpsocket.c */; };
+		DABC63321CAF1A6A00235750 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC632F1CAF1A6A00235750 /* ytcpsocket.swift */; };
+		DABC63341CAF1AAF00235750 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC63331CAF1AAF00235750 /* main.swift */; };
 		DAE860AB1CAF10FB00408344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE860AA1CAF10FB00408344 /* AppDelegate.swift */; };
 		DAE860AD1CAF10FB00408344 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE860AC1CAF10FB00408344 /* ViewController.swift */; };
 		DAE860B01CAF10FB00408344 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAE860AE1CAF10FB00408344 /* Main.storyboard */; };
@@ -34,6 +38,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DABC632C1CAF1A6900235750 /* Roomba Wizard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Roomba Wizard-Bridging-Header.h"; sourceTree = "<group>"; };
+		DABC632D1CAF1A6A00235750 /* ysocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ysocket.swift; path = ../../Projects/Roomba/SwiftSocket/SwiftSocket/ysocket/ysocket.swift; sourceTree = "<group>"; };
+		DABC632E1CAF1A6A00235750 /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ytcpsocket.c; path = ../../Projects/Roomba/SwiftSocket/SwiftSocket/ysocket/ytcpsocket.c; sourceTree = "<group>"; };
+		DABC632F1CAF1A6A00235750 /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ytcpsocket.swift; path = ../../Projects/Roomba/SwiftSocket/SwiftSocket/ysocket/ytcpsocket.swift; sourceTree = "<group>"; };
+		DABC63331CAF1AAF00235750 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = ../../Projects/Roomba/SwiftSocket/SwiftSocket/main.swift; sourceTree = "<group>"; };
 		DAE860A71CAF10FB00408344 /* Roomba Wizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Roomba Wizard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAE860AA1CAF10FB00408344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAE860AC1CAF10FB00408344 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +90,7 @@
 				DAE860BE1CAF10FB00408344 /* Roomba WizardTests */,
 				DAE860C91CAF10FB00408344 /* Roomba WizardUITests */,
 				DAE860A81CAF10FB00408344 /* Products */,
+				DABC632C1CAF1A6900235750 /* Roomba Wizard-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +107,10 @@
 		DAE860A91CAF10FB00408344 /* Roomba Wizard */ = {
 			isa = PBXGroup;
 			children = (
+				DABC632D1CAF1A6A00235750 /* ysocket.swift */,
+				DABC632E1CAF1A6A00235750 /* ytcpsocket.c */,
+				DABC632F1CAF1A6A00235750 /* ytcpsocket.swift */,
+				DABC63331CAF1AAF00235750 /* main.swift */,
 				DAE860AA1CAF10FB00408344 /* AppDelegate.swift */,
 				DAE860AC1CAF10FB00408344 /* ViewController.swift */,
 				DAE860AE1CAF10FB00408344 /* Main.storyboard */,
@@ -259,8 +273,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DABC63301CAF1A6A00235750 /* ysocket.swift in Sources */,
 				DAE860AD1CAF10FB00408344 /* ViewController.swift in Sources */,
+				DABC63341CAF1AAF00235750 /* main.swift in Sources */,
+				DABC63311CAF1A6A00235750 /* ytcpsocket.c in Sources */,
 				DAE860AB1CAF10FB00408344 /* AppDelegate.swift in Sources */,
+				DABC63321CAF1A6A00235750 /* ytcpsocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,10 +422,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Roomba Wizard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SSU.Roomba-Wizard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Roomba Wizard-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -415,10 +436,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Roomba Wizard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SSU.Roomba-Wizard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Roomba Wizard-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -487,6 +510,7 @@
 				DAE860D11CAF10FB00408344 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DAE860D21CAF10FB00408344 /* Build configuration list for PBXNativeTarget "Roomba WizardTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +519,7 @@
 				DAE860D41CAF10FB00408344 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DAE860D51CAF10FB00408344 /* Build configuration list for PBXNativeTarget "Roomba WizardUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +528,7 @@
 				DAE860D71CAF10FB00408344 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
