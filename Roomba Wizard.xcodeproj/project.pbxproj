@@ -1,0 +1,510 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DAE860AB1CAF10FB00408344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE860AA1CAF10FB00408344 /* AppDelegate.swift */; };
+		DAE860AD1CAF10FB00408344 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE860AC1CAF10FB00408344 /* ViewController.swift */; };
+		DAE860B01CAF10FB00408344 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAE860AE1CAF10FB00408344 /* Main.storyboard */; };
+		DAE860B21CAF10FB00408344 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAE860B11CAF10FB00408344 /* Assets.xcassets */; };
+		DAE860B51CAF10FB00408344 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAE860B31CAF10FB00408344 /* LaunchScreen.storyboard */; };
+		DAE860C01CAF10FB00408344 /* Roomba_WizardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE860BF1CAF10FB00408344 /* Roomba_WizardTests.swift */; };
+		DAE860CB1CAF10FB00408344 /* Roomba_WizardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE860CA1CAF10FB00408344 /* Roomba_WizardUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DAE860BC1CAF10FB00408344 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DAE8609F1CAF10FB00408344 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DAE860A61CAF10FB00408344;
+			remoteInfo = "Roomba Wizard";
+		};
+		DAE860C71CAF10FB00408344 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DAE8609F1CAF10FB00408344 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DAE860A61CAF10FB00408344;
+			remoteInfo = "Roomba Wizard";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DAE860A71CAF10FB00408344 /* Roomba Wizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Roomba Wizard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAE860AA1CAF10FB00408344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DAE860AC1CAF10FB00408344 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DAE860AF1CAF10FB00408344 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DAE860B11CAF10FB00408344 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DAE860B41CAF10FB00408344 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DAE860B61CAF10FB00408344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAE860BB1CAF10FB00408344 /* Roomba WizardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Roomba WizardTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAE860BF1CAF10FB00408344 /* Roomba_WizardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roomba_WizardTests.swift; sourceTree = "<group>"; };
+		DAE860C11CAF10FB00408344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAE860C61CAF10FB00408344 /* Roomba WizardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Roomba WizardUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAE860CA1CAF10FB00408344 /* Roomba_WizardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roomba_WizardUITests.swift; sourceTree = "<group>"; };
+		DAE860CC1CAF10FB00408344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DAE860A41CAF10FB00408344 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAE860B81CAF10FB00408344 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAE860C31CAF10FB00408344 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DAE8609E1CAF10FB00408344 = {
+			isa = PBXGroup;
+			children = (
+				DAE860A91CAF10FB00408344 /* Roomba Wizard */,
+				DAE860BE1CAF10FB00408344 /* Roomba WizardTests */,
+				DAE860C91CAF10FB00408344 /* Roomba WizardUITests */,
+				DAE860A81CAF10FB00408344 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DAE860A81CAF10FB00408344 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DAE860A71CAF10FB00408344 /* Roomba Wizard.app */,
+				DAE860BB1CAF10FB00408344 /* Roomba WizardTests.xctest */,
+				DAE860C61CAF10FB00408344 /* Roomba WizardUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DAE860A91CAF10FB00408344 /* Roomba Wizard */ = {
+			isa = PBXGroup;
+			children = (
+				DAE860AA1CAF10FB00408344 /* AppDelegate.swift */,
+				DAE860AC1CAF10FB00408344 /* ViewController.swift */,
+				DAE860AE1CAF10FB00408344 /* Main.storyboard */,
+				DAE860B11CAF10FB00408344 /* Assets.xcassets */,
+				DAE860B31CAF10FB00408344 /* LaunchScreen.storyboard */,
+				DAE860B61CAF10FB00408344 /* Info.plist */,
+			);
+			path = "Roomba Wizard";
+			sourceTree = "<group>";
+		};
+		DAE860BE1CAF10FB00408344 /* Roomba WizardTests */ = {
+			isa = PBXGroup;
+			children = (
+				DAE860BF1CAF10FB00408344 /* Roomba_WizardTests.swift */,
+				DAE860C11CAF10FB00408344 /* Info.plist */,
+			);
+			path = "Roomba WizardTests";
+			sourceTree = "<group>";
+		};
+		DAE860C91CAF10FB00408344 /* Roomba WizardUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DAE860CA1CAF10FB00408344 /* Roomba_WizardUITests.swift */,
+				DAE860CC1CAF10FB00408344 /* Info.plist */,
+			);
+			path = "Roomba WizardUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DAE860A61CAF10FB00408344 /* Roomba Wizard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAE860CF1CAF10FB00408344 /* Build configuration list for PBXNativeTarget "Roomba Wizard" */;
+			buildPhases = (
+				DAE860A31CAF10FB00408344 /* Sources */,
+				DAE860A41CAF10FB00408344 /* Frameworks */,
+				DAE860A51CAF10FB00408344 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Roomba Wizard";
+			productName = "Roomba Wizard";
+			productReference = DAE860A71CAF10FB00408344 /* Roomba Wizard.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DAE860BA1CAF10FB00408344 /* Roomba WizardTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAE860D21CAF10FB00408344 /* Build configuration list for PBXNativeTarget "Roomba WizardTests" */;
+			buildPhases = (
+				DAE860B71CAF10FB00408344 /* Sources */,
+				DAE860B81CAF10FB00408344 /* Frameworks */,
+				DAE860B91CAF10FB00408344 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DAE860BD1CAF10FB00408344 /* PBXTargetDependency */,
+			);
+			name = "Roomba WizardTests";
+			productName = "Roomba WizardTests";
+			productReference = DAE860BB1CAF10FB00408344 /* Roomba WizardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DAE860C51CAF10FB00408344 /* Roomba WizardUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAE860D51CAF10FB00408344 /* Build configuration list for PBXNativeTarget "Roomba WizardUITests" */;
+			buildPhases = (
+				DAE860C21CAF10FB00408344 /* Sources */,
+				DAE860C31CAF10FB00408344 /* Frameworks */,
+				DAE860C41CAF10FB00408344 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DAE860C81CAF10FB00408344 /* PBXTargetDependency */,
+			);
+			name = "Roomba WizardUITests";
+			productName = "Roomba WizardUITests";
+			productReference = DAE860C61CAF10FB00408344 /* Roomba WizardUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DAE8609F1CAF10FB00408344 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Brett Granborg";
+				TargetAttributes = {
+					DAE860A61CAF10FB00408344 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 2EYXMMY9PE;
+					};
+					DAE860BA1CAF10FB00408344 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 2EYXMMY9PE;
+						TestTargetID = DAE860A61CAF10FB00408344;
+					};
+					DAE860C51CAF10FB00408344 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 2EYXMMY9PE;
+						TestTargetID = DAE860A61CAF10FB00408344;
+					};
+				};
+			};
+			buildConfigurationList = DAE860A21CAF10FB00408344 /* Build configuration list for PBXProject "Roomba Wizard" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DAE8609E1CAF10FB00408344;
+			productRefGroup = DAE860A81CAF10FB00408344 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DAE860A61CAF10FB00408344 /* Roomba Wizard */,
+				DAE860BA1CAF10FB00408344 /* Roomba WizardTests */,
+				DAE860C51CAF10FB00408344 /* Roomba WizardUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DAE860A51CAF10FB00408344 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAE860B51CAF10FB00408344 /* LaunchScreen.storyboard in Resources */,
+				DAE860B21CAF10FB00408344 /* Assets.xcassets in Resources */,
+				DAE860B01CAF10FB00408344 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAE860B91CAF10FB00408344 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAE860C41CAF10FB00408344 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DAE860A31CAF10FB00408344 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAE860AD1CAF10FB00408344 /* ViewController.swift in Sources */,
+				DAE860AB1CAF10FB00408344 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAE860B71CAF10FB00408344 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAE860C01CAF10FB00408344 /* Roomba_WizardTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAE860C21CAF10FB00408344 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAE860CB1CAF10FB00408344 /* Roomba_WizardUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DAE860BD1CAF10FB00408344 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DAE860A61CAF10FB00408344 /* Roomba Wizard */;
+			targetProxy = DAE860BC1CAF10FB00408344 /* PBXContainerItemProxy */;
+		};
+		DAE860C81CAF10FB00408344 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DAE860A61CAF10FB00408344 /* Roomba Wizard */;
+			targetProxy = DAE860C71CAF10FB00408344 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DAE860AE1CAF10FB00408344 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAE860AF1CAF10FB00408344 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DAE860B31CAF10FB00408344 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAE860B41CAF10FB00408344 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DAE860CD1CAF10FB00408344 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DAE860CE1CAF10FB00408344 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DAE860D01CAF10FB00408344 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Roomba Wizard/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SSU.Roomba-Wizard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DAE860D11CAF10FB00408344 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Roomba Wizard/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SSU.Roomba-Wizard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DAE860D31CAF10FB00408344 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Roomba WizardTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SSU.Roomba-WizardTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Roomba Wizard.app/Roomba Wizard";
+			};
+			name = Debug;
+		};
+		DAE860D41CAF10FB00408344 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Roomba WizardTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SSU.Roomba-WizardTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Roomba Wizard.app/Roomba Wizard";
+			};
+			name = Release;
+		};
+		DAE860D61CAF10FB00408344 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Roomba WizardUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SSU.Roomba-WizardUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Roomba Wizard";
+			};
+			name = Debug;
+		};
+		DAE860D71CAF10FB00408344 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Roomba WizardUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SSU.Roomba-WizardUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Roomba Wizard";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DAE860A21CAF10FB00408344 /* Build configuration list for PBXProject "Roomba Wizard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAE860CD1CAF10FB00408344 /* Debug */,
+				DAE860CE1CAF10FB00408344 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAE860CF1CAF10FB00408344 /* Build configuration list for PBXNativeTarget "Roomba Wizard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAE860D01CAF10FB00408344 /* Debug */,
+				DAE860D11CAF10FB00408344 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DAE860D21CAF10FB00408344 /* Build configuration list for PBXNativeTarget "Roomba WizardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAE860D31CAF10FB00408344 /* Debug */,
+				DAE860D41CAF10FB00408344 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DAE860D51CAF10FB00408344 /* Build configuration list for PBXNativeTarget "Roomba WizardUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAE860D61CAF10FB00408344 /* Debug */,
+				DAE860D71CAF10FB00408344 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DAE8609F1CAF10FB00408344 /* Project object */;
+}
