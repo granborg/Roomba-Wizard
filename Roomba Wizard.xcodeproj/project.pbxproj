@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DABC63301CAF1A6A00235750 /* ysocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC632D1CAF1A6A00235750 /* ysocket.swift */; };
-		DABC63311CAF1A6A00235750 /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = DABC632E1CAF1A6A00235750 /* ytcpsocket.c */; };
-		DABC63321CAF1A6A00235750 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC632F1CAF1A6A00235750 /* ytcpsocket.swift */; };
-		DABC63341CAF1AAF00235750 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC63331CAF1AAF00235750 /* main.swift */; };
+		DABC63371CAF1BDC00235750 /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = DABC63351CAF1BDC00235750 /* ytcpsocket.c */; };
+		DABC63381CAF1BDC00235750 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC63361CAF1BDC00235750 /* ytcpsocket.swift */; };
+		DABC633A1CAF1C1400235750 /* ysocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC63391CAF1C1400235750 /* ysocket.swift */; };
 		DAE860AB1CAF10FB00408344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE860AA1CAF10FB00408344 /* AppDelegate.swift */; };
 		DAE860AD1CAF10FB00408344 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE860AC1CAF10FB00408344 /* ViewController.swift */; };
 		DAE860B01CAF10FB00408344 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAE860AE1CAF10FB00408344 /* Main.storyboard */; };
@@ -39,10 +38,9 @@
 
 /* Begin PBXFileReference section */
 		DABC632C1CAF1A6900235750 /* Roomba Wizard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Roomba Wizard-Bridging-Header.h"; sourceTree = "<group>"; };
-		DABC632D1CAF1A6A00235750 /* ysocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ysocket.swift; path = ../../Projects/Roomba/SwiftSocket/SwiftSocket/ysocket/ysocket.swift; sourceTree = "<group>"; };
-		DABC632E1CAF1A6A00235750 /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ytcpsocket.c; path = ../../Projects/Roomba/SwiftSocket/SwiftSocket/ysocket/ytcpsocket.c; sourceTree = "<group>"; };
-		DABC632F1CAF1A6A00235750 /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ytcpsocket.swift; path = ../../Projects/Roomba/SwiftSocket/SwiftSocket/ysocket/ytcpsocket.swift; sourceTree = "<group>"; };
-		DABC63331CAF1AAF00235750 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = ../../Projects/Roomba/SwiftSocket/SwiftSocket/main.swift; sourceTree = "<group>"; };
+		DABC63351CAF1BDC00235750 /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ytcpsocket.c; path = ../ytcpsocket.c; sourceTree = "<group>"; };
+		DABC63361CAF1BDC00235750 /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ytcpsocket.swift; path = ../ytcpsocket.swift; sourceTree = "<group>"; };
+		DABC63391CAF1C1400235750 /* ysocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ysocket.swift; sourceTree = SOURCE_ROOT; };
 		DAE860A71CAF10FB00408344 /* Roomba Wizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Roomba Wizard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAE860AA1CAF10FB00408344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAE860AC1CAF10FB00408344 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,10 +105,9 @@
 		DAE860A91CAF10FB00408344 /* Roomba Wizard */ = {
 			isa = PBXGroup;
 			children = (
-				DABC632D1CAF1A6A00235750 /* ysocket.swift */,
-				DABC632E1CAF1A6A00235750 /* ytcpsocket.c */,
-				DABC632F1CAF1A6A00235750 /* ytcpsocket.swift */,
-				DABC63331CAF1AAF00235750 /* main.swift */,
+				DABC63391CAF1C1400235750 /* ysocket.swift */,
+				DABC63351CAF1BDC00235750 /* ytcpsocket.c */,
+				DABC63361CAF1BDC00235750 /* ytcpsocket.swift */,
 				DAE860AA1CAF10FB00408344 /* AppDelegate.swift */,
 				DAE860AC1CAF10FB00408344 /* ViewController.swift */,
 				DAE860AE1CAF10FB00408344 /* Main.storyboard */,
@@ -273,12 +270,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DABC63301CAF1A6A00235750 /* ysocket.swift in Sources */,
+				DABC63381CAF1BDC00235750 /* ytcpsocket.swift in Sources */,
 				DAE860AD1CAF10FB00408344 /* ViewController.swift in Sources */,
-				DABC63341CAF1AAF00235750 /* main.swift in Sources */,
-				DABC63311CAF1A6A00235750 /* ytcpsocket.c in Sources */,
+				DABC63371CAF1BDC00235750 /* ytcpsocket.c in Sources */,
+				DABC633A1CAF1C1400235750 /* ysocket.swift in Sources */,
 				DAE860AB1CAF10FB00408344 /* AppDelegate.swift in Sources */,
-				DABC63321CAF1A6A00235750 /* ytcpsocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
