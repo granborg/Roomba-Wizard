@@ -35,7 +35,7 @@ public class YSocket{
     var fd:Int32?
     init(){
         self.addr=""
-        self.port=0
+        self.port=80
     }
     public init(addr a:String,port p:Int){
         self.addr=a

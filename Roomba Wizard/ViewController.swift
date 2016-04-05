@@ -13,13 +13,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
+        rooWifi.FullMode()
+        rooWifi.Drive(0, radius: 255/2)
+        rooWifi.Dock()
+        rooWifi.SafeMode()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 
