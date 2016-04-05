@@ -68,7 +68,8 @@ let COMMAND_DOCK    = 143
 let LEDS_NUM_PARAMETERS         = 3
 
 //Song Notes
-
+ 
+*/
 //Note duration
 ///British names
 let NOTE_DURATION_SEMIQUAVER        = 16      //semicorchea
@@ -78,7 +79,8 @@ let NOTE_DURATION_CROTCHET          = 64      //negra
 let NOTE_DURATION_SIXTEENTH_NOTE    = NOTE_DURATION_SEMIQUAVER
 let NOTE_DURATION_EIGHTH_NOTE       = NOTE_DURATION_QUAVER
 let NOTE_DURATION_QUARTER_NOTE      = NOTE_DURATION_CROTCHET
-
+/*
+ 
 //Led Control MASKS
 let LED_CLEAN_ON                = 0x04
 let LED_CLEAN_OFF               = 0xFB
@@ -102,6 +104,7 @@ let MAIN_BRUSH_ON               = 0x04
 let MAIN_BRUSH_OFF              = 0xFB
 let ALL_CLEANING_MOTORS_ON      = 0xFF
 let ALL_CLEANING_MOTORS_OFF     = 0x00
+
 
 class RooWifi: NSObject {
 
@@ -202,6 +205,9 @@ class RooWifi: NSObject {
     }
 */
 
+
+typealias Song = [(frequency: Int, duration: Int)]
+
 func debug(s: String) -> Void {
     let debug = true
     if (debug) {
@@ -260,7 +266,24 @@ class RooWifi: NSObject {
         self.ExecuteCommand(COMMAND_DOCK)
     }
     
+    func StoreSong(songNumber: Int, notes: Song) {
+        self.ExecuteCommand(COMMAND_SONG, songNumber, notes.count)
+        
+        for note in notes {
+            self.ExecuteCommand(note.frequency, note.duration)
+        }
+        usleep(1000) // Allow time for storing song.
+    }
+    
+    func PlaySong(songNumber:Int) {
+        self.ExecuteCommand(COMMAND_PLAY, songNumber)
+    }
+    
     private func ExecuteCommand(commands: Int...) {
+        self.ExecuteCommand(commands)
+    }
+    
+    private func ExecuteCommand(commands: [Int]) {
         
         for command in commands {
             // We only send the first 8 bytes of each command and parameter.
@@ -268,7 +291,7 @@ class RooWifi: NSObject {
             let (success,errmsg) =
                 client.send(data: NSData(bytes: &commandToSend, length:sizeof(Int8)))
             if success {
-                debug("Successfully sent command: \(command)")
+                debug("Successfully sent command: \(commandToSend)")
             }
             else {
                 debug("Send Error: \(errmsg)")
