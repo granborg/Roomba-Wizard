@@ -49,6 +49,7 @@ let CHARGING_STATE_WAITING              = 4
 let CHARGING_STATE_CHARGING_ERROR       = 5
 */
 //Commands
+let COMMAND_START   = 128
 let COMMAND_SAFE    = 131
 let COMMAND_FULL    = 132
 let COMMAND_POWER   = 133
@@ -217,7 +218,6 @@ class RooWifi: NSObject {
         let (success,errmsg) = client.connect(timeout: 1)
         if success {
             debug("Established connection with Roomba")
-            sleep(5)
         }
         else {
             debug("Connect Error: \(errmsg)")
@@ -234,6 +234,11 @@ class RooWifi: NSObject {
         }
     }
     
+    func Start() {
+        self.ExecuteCommand(COMMAND_START)
+        
+    }
+    
     func FullMode() {
         self.ExecuteCommand(COMMAND_FULL)
     }
@@ -245,10 +250,10 @@ class RooWifi: NSObject {
     func Drive(velocity: Int, radius: Int) {
         self.ExecuteCommand(
             COMMAND_DRIVE,
-            velocity >> 8,
-            velocity,
-            radius >> 8,
-            radius)
+            (velocity >> 8) & 0xFF,
+            velocity & 0xFF,
+            (radius >> 8) & 0xFF,
+            radius & 0xFF)
     }
     
     func Dock() {
