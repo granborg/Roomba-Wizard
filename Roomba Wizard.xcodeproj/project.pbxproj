@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		018F4E251CB856FC0062B15F /* Screen Shot 2016-04-08 at 1.49.46 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = 018F4E241CB856FC0062B15F /* Screen Shot 2016-04-08 at 1.49.46 PM.png */; };
+		018F4E271CB865050062B15F /* PlayStation_Directional_button.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 018F4E261CB865050062B15F /* PlayStation_Directional_button.svg.png */; };
 		DABC63371CAF1BDC00235750 /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = DABC63351CAF1BDC00235750 /* ytcpsocket.c */; };
 		DABC63381CAF1BDC00235750 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC63361CAF1BDC00235750 /* ytcpsocket.swift */; };
 		DABC633A1CAF1C1400235750 /* ysocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC63391CAF1C1400235750 /* ysocket.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		018F4E241CB856FC0062B15F /* Screen Shot 2016-04-08 at 1.49.46 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screen Shot 2016-04-08 at 1.49.46 PM.png"; path = "../../Screen Shot 2016-04-08 at 1.49.46 PM.png"; sourceTree = "<group>"; };
+		018F4E261CB865050062B15F /* PlayStation_Directional_button.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayStation_Directional_button.svg.png; path = ../../PlayStation_Directional_button.svg.png; sourceTree = "<group>"; };
 		DABC632C1CAF1A6900235750 /* Roomba Wizard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Roomba Wizard-Bridging-Header.h"; sourceTree = "<group>"; };
 		DABC63351CAF1BDC00235750 /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ytcpsocket.c; path = ../ytcpsocket.c; sourceTree = "<group>"; };
 		DABC63361CAF1BDC00235750 /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ytcpsocket.swift; path = ../ytcpsocket.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 		DAE860A91CAF10FB00408344 /* Roomba Wizard */ = {
 			isa = PBXGroup;
 			children = (
+				018F4E261CB865050062B15F /* PlayStation_Directional_button.svg.png */,
+				018F4E241CB856FC0062B15F /* Screen Shot 2016-04-08 at 1.49.46 PM.png */,
 				DABC633F1CAF1F9D00235750 /* RooWifi.swift */,
 				DABC63391CAF1C1400235750 /* ysocket.swift */,
 				DABC63351CAF1BDC00235750 /* ytcpsocket.c */,
@@ -207,7 +213,7 @@
 				TargetAttributes = {
 					DAE860A61CAF10FB00408344 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 2EYXMMY9PE;
+						DevelopmentTeam = FSCZZ9QSQU;
 					};
 					DAE860BA1CAF10FB00408344 = {
 						CreatedOnToolsVersion = 7.3;
@@ -248,6 +254,8 @@
 			files = (
 				DAE860B51CAF10FB00408344 /* LaunchScreen.storyboard in Resources */,
 				DAE860B21CAF10FB00408344 /* Assets.xcassets in Resources */,
+				018F4E251CB856FC0062B15F /* Screen Shot 2016-04-08 at 1.49.46 PM.png in Resources */,
+				018F4E271CB865050062B15F /* PlayStation_Directional_button.svg.png in Resources */,
 				DAE860B01CAF10FB00408344 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,10 +431,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Roomba Wizard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SSU.Roomba-Wizard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Roomba Wizard-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -437,10 +448,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Roomba Wizard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SSU.Roomba-Wizard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Roomba Wizard-Bridging-Header.h";
 			};
 			name = Release;
