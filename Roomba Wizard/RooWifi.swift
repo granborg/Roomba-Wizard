@@ -119,6 +119,7 @@ func debug(s: String) -> Void {
 class RooWifi: NSObject {
     
     var client:TCPClient = TCPClient(addr: "", port: 80)
+    var motors:Int = 0
 
     init(ip: String, port: Int) {
         client = TCPClient(addr: ip, port: port)
@@ -135,6 +136,7 @@ class RooWifi: NSObject {
     }
     
     func Start() {
+        client.close();
         let (success,errmsg) = client.connect(timeout: 2)
         if success {
             debug("Established connection with Roomba")
@@ -166,6 +168,10 @@ class RooWifi: NSObject {
         self.ExecuteCommand(COMMAND_DOCK)
     }
     
+    func Spot() {
+        self.ExecuteCommand(COMMAND_SPOT)
+    }
+    
     func StoreSong(songNumber: Int, notes: Song) {
         self.ExecuteCommand(COMMAND_SONG, songNumber, notes.count)
         
@@ -178,6 +184,42 @@ class RooWifi: NSObject {
     func PlaySong(songNumber:Int) {
         self.ExecuteCommand(COMMAND_PLAY, songNumber)
     }
+    
+    func Vacuum_On() {
+        self.motors |= VACUUM_ON;
+        self.UpdateMotors();
+    }
+    
+    func Vacuum_Off() {
+        self.motors &= VACUUM_OFF;
+        self.UpdateMotors();
+    }
+    
+    func SideBrush_On() {
+        self.motors |= SIDE_BRUSH_ON;
+        self.UpdateMotors();
+    }
+
+    func SideBrush_Off() {
+        self.motors &= SIDE_BRUSH_OFF;
+        self.UpdateMotors();
+    }
+    
+    func AllCleaningMotors_On() {
+        self.motors |= ALL_CLEANING_MOTORS_ON;
+        self.UpdateMotors();
+    }
+    
+    func AllCleaningMotors_Off() {
+        self.motors &= ALL_CLEANING_MOTORS_OFF;
+        self.UpdateMotors();
+    }
+    
+    func UpdateMotors() {
+        self.ExecuteCommand(COMMAND_MOTORS, self.motors)
+    }
+    
+    
     
     private func ExecuteCommand(commands: Int...) {
         self.ExecuteCommand(commands)
