@@ -5,10 +5,12 @@
 //  Created by Brett Granborg on 4/1/16.
 //  Copyright © 2016 Brett Granborg. All rights reserved.
 //
+//  Useful links:
+//        http://www.irobot.com/filelibrary/pdfs/hrd/create/Create%20Open%20Interface_v2.pdf
 
 import UIKit
 import Foundation
-/*
+
 //Number of sensors in SCI specification
 let SCI_NUMBER_OF_SENSORS = 26
 
@@ -29,25 +31,25 @@ let DISTANCE_MSB_SENSOR         = 12
 let DISTANCE_LSB_SENSOR         = 13
 let ANGLE_MSB_SENSOR            = 14
 let ANGLE_LSB_SENSOR            = 15
-let CHARGING_STATE_SENSOR       = 16
+let StringGING_STATE_SENSOR     = 16
 let VOLTAGE_MSB_SENSOR          = 17
 let VOLTAGE_LSB_SENSOR          = 18
 let CURRENT_MSB_SENSOR          = 19
 let CURRENT_LSB_SENSOR          = 20
 let TEMPERATURE_SENSOR          = 21
-let CHARGE_MSB_SENSOR           = 22
-let CHARGE_LSB_SENSOR           = 23
+let StringGE_MSB_SENSOR         = 22
+let StringGE_LSB_SENSOR         = 23
 let CAPACITY_MSB_SENSOR         = 24
 let CAPACITY_LSB_SENSOR         = 25
 
-//Battery Charging States
-let CHARGING_STATE_NO_CHARGING          = 0
-let CHARGING_STATE_CHARGING_RECOVERY    = 1
-let CHARGING_STATE_CHARGING             = 2
-let CHARGING_STATE_TRICKLE_CHAGING      = 3
-let CHARGING_STATE_WAITING              = 4
-let CHARGING_STATE_CHARGING_ERROR       = 5
-*/
+//Battery Stringing States
+let StringGING_STATE_NO_StringGING          = 0
+let StringGING_STATE_StringGING_RECOVERY    = 1
+let StringGING_STATE_StringGING             = 2
+let StringGING_STATE_TRICKLE_CHAGING      = 3
+let StringGING_STATE_WAITING              = 4
+let StringGING_STATE_StringGING_ERROR       = 5
+
 //Commands
 let COMMAND_START   = 128
 let COMMAND_SAFE    = 131
@@ -63,13 +65,13 @@ let COMMAND_SONG    = 140
 let COMMAND_PLAY    = 141
 let COMMAND_SENSORS = 142
 let COMMAND_DOCK    = 143
-/*
+
 //Number of parameters of Led commands
 let LEDS_NUM_PARAMETERS         = 3
 
 //Song Notes
  
-*/
+
 //Note duration
 ///British names
 let NOTE_DURATION_SEMIQUAVER        = 16      //semicorchea
@@ -79,7 +81,7 @@ let NOTE_DURATION_CROTCHET          = 64      //negra
 let NOTE_DURATION_SIXTEENTH_NOTE    = NOTE_DURATION_SEMIQUAVER
 let NOTE_DURATION_EIGHTH_NOTE       = NOTE_DURATION_QUAVER
 let NOTE_DURATION_QUARTER_NOTE      = NOTE_DURATION_CROTCHET
-/*
+
  
 //Led Control MASKS
 let LED_CLEAN_ON                = 0x04
@@ -105,107 +107,6 @@ let MAIN_BRUSH_OFF              = 0xFB
 let ALL_CLEANING_MOTORS_ON      = 0xFF
 let ALL_CLEANING_MOTORS_OFF     = 0x00
 
-
-class RooWifi: NSObject {
-
-    class RoombaSensors {
-        var BumpsWheeldrops: Char?
-        var Wall: Char?
-        var CliffLeft: Char?
-        var CliffFrontLeft: Char?
-        var CliffFrontRight: Char?
-        var CliffRight: Char?
-        var VirtualWall: char?
-        var MotorOvercurrents?
-        var DirtDetectorLeft?
-        var DirtDetectorRight?
-        var RemoteOpcode?
-        var Buttons?
-        var Distance: CShort?
-        var Angle: CShort?
-        var ChargingState?
-        var Voltage?
-        var Current?
-        var Temperature?
-        unsigned short Charge?
-        unsigned short Capacity?
-        
-        func Init() {
-            
-        }
-    }
-    
-    ////////////////
-    //INIT FUNCTIONS
-    ////////////////
-    
-    //
-    // RooWifi::InitGatewayTCPIP
-    //
-    func InitGatewayTCPIP() -> void {
-    qstIP = DEFAULT_ROOWIFI_IP;
-    TCPPort = ROOWIFI_GATEWAY_PORT;
-    tcpSocket = new QTcpSocket ( this );
-    }
-    
-    //
-    // RooWifi::InitSensors
-    //
-    void RooWifi::InitSensors()
-    {
-    Sensors.BumpsWheeldrops = ZERO_BY_DEFAULT;
-    Sensors.Wall = ZERO_BY_DEFAULT;
-    Sensors.CliffLeft = ZERO_BY_DEFAULT;
-    Sensors.CliffFrontLeft = ZERO_BY_DEFAULT;
-    Sensors.CliffFrontRight = ZERO_BY_DEFAULT;
-    Sensors.CliffRight = ZERO_BY_DEFAULT;
-    Sensors.VirtualWall = ZERO_BY_DEFAULT;
-    Sensors.MotorOvercurrents = ZERO_BY_DEFAULT;
-    Sensors.DirtDetectorLeft = ZERO_BY_DEFAULT;
-    Sensors.DirtDetectorRight = ZERO_BY_DEFAULT;
-    Sensors.RemoteOpcode = ZERO_BY_DEFAULT;
-    Sensors.Buttons = ZERO_BY_DEFAULT;
-    Sensors.Distance = ZERO_BY_DEFAULT;
-    Sensors.Angle = ZERO_BY_DEFAULT;
-    Sensors.ChargingState = ZERO_BY_DEFAULT;
-    Sensors.Voltage = ZERO_BY_DEFAULT;
-    Sensors.Current = ZERO_BY_DEFAULT;
-    Sensors.Temperature = ZERO_BY_DEFAULT;
-    Sensors.Charge = ZERO_BY_DEFAULT;
-    Sensors.Capacity = ZERO_BY_DEFAULT;
-    }
-    
-    //
-    // RooWifi::InitLeds
-    //
-    void RooWifi::InitLeds()
-    {
-    int Counter;
-    
-    for( Counter = 0; Counter < LEDS_NUM_PARAMETERS; Counter++ )
-    Leds[Counter] = ZERO_BY_DEFAULT;
-    }
-    
-    //
-    // RooWifi::InitMotors
-    //
-    void RooWifi::InitMotors()
-    {
-    Motors = ZERO_BY_DEFAULT;
-    }
-    
-    //
-    // RooWifi::InitAutoCapture
-    //
-    void RooWifi::InitAutoCapture()
-    {
-    BatteryLevel = ZERO_BY_DEFAULT;
-    CaptureTime = AUTO_CAPTURE_DEFAULT_PERIOD;
-    AutoCaptureTimer = new QTimer( this );
-    }
-*/
-
-
 typealias Song = [(frequency: Int, duration: Int)]
 
 func debug(s: String) -> Void {
@@ -221,14 +122,7 @@ class RooWifi: NSObject {
 
     init(ip: String, port: Int) {
         client = TCPClient(addr: ip, port: port)
-        let (success,errmsg) = client.connect(timeout: 1)
-        if success {
-            debug("Established connection with Roomba")
         }
-        else {
-            debug("Connect Error: \(errmsg)")
-        }
-    }
     
     deinit {
         let (success,errmsg) = client.close()
@@ -241,8 +135,14 @@ class RooWifi: NSObject {
     }
     
     func Start() {
-        self.ExecuteCommand(COMMAND_START)
-        
+        let (success,errmsg) = client.connect(timeout: 2)
+        if success {
+            debug("Established connection with Roomba")
+            self.ExecuteCommand(COMMAND_START)
+        }
+        else {
+            debug("Connect Error: \(errmsg)")
+        }
     }
     
     func FullMode() {

@@ -6,18 +6,14 @@
 //  Copyright © 2016 Brett Granborg. All rights reserved.
 //
 
-//  Useful links: 
-//        http://www.irobot.com/filelibrary/pdfs/hrd/create/Create%20Open%20Interface_v2.pdf
-
 import UIKit
 
 class ViewController: UIViewController {
     
-    let rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
+    var rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
     var velocity = 0
     var radius = 0
     
-
     @IBAction func ForwardDown(sender: AnyObject) {
         velocity = 500
         rooWifi.Drive(velocity, radius: radius)
@@ -83,6 +79,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         rooWifi.Start()
         rooWifi.SafeMode()
         
@@ -105,14 +102,8 @@ class ViewController: UIViewController {
                  (frequency: 55, duration: NOTE_DURATION_SIXTEENTH_NOTE),
                  (frequency: 52, duration: NOTE_DURATION_QUARTER_NOTE)]
         
-        
-        
         rooWifi.StoreSong(0, notes: zelda)
         //rooWifi.PlaySong(0)
-        //sleep(3)
-        //
-        //sleep(3)
-        //
         //sleep(10)
     }
 
