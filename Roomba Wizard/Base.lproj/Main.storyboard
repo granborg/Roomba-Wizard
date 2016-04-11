@@ -18,42 +18,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YUL-sF-zua" userLabel="Analog" customClass="SKView">
-                                <rect key="frame" x="46" y="176" width="200" height="200"/>
+                                <rect key="frame" x="100" y="183" width="400" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcE-Ge-JPU">
-                                <rect key="frame" x="269" y="328" width="61" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcE-Ge-JPU">
+                                <rect key="frame" x="270" y="268" width="61" height="30"/>
                                 <state key="normal" title="Motors"/>
                                 <connections>
                                     <action selector="Motors:" destination="BYZ-38-t0r" eventType="touchUpInside" id="opN-WC-RhP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pP0-87-2uw">
-                                <rect key="frame" x="269" y="299" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pP0-87-2uw">
+                                <rect key="frame" x="217" y="268" width="46" height="30"/>
                                 <state key="normal" title="Clean"/>
                                 <connections>
                                     <action selector="Clean:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gVI-Ue-0on"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzf-fz-9oG">
-                                <rect key="frame" x="269" y="261" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzf-fz-9oG">
+                                <rect key="frame" x="163" y="268" width="46" height="30"/>
                                 <state key="normal" title="Spot"/>
                                 <connections>
                                     <action selector="Spot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kpm-ih-C8h"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUA-71-PnN">
-                                <rect key="frame" x="269" y="230" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUA-71-PnN">
+                                <rect key="frame" x="109" y="268" width="46" height="30"/>
                                 <state key="normal" title="Dock"/>
                                 <connections>
                                     <action selector="Dock:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c7v-CV-Tqd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gx2-Ft-6Fg">
-                                <rect key="frame" x="269" y="199" width="61" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="dX6-Ne-m0c"/>
-                                </constraints>
+                                <rect key="frame" x="109" y="391" width="72" height="30"/>
                                 <state key="normal" title="Connect"/>
                                 <connections>
                                     <action selector="Connect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bve-av-HjD"/>
@@ -62,15 +59,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Rzf-fz-9oG" firstAttribute="top" secondItem="bUA-71-PnN" secondAttribute="bottom" constant="1" id="0hy-2Z-hf6"/>
-                            <constraint firstItem="pP0-87-2uw" firstAttribute="top" secondItem="Rzf-fz-9oG" secondAttribute="bottom" constant="8" id="8JC-xI-ea5"/>
-                            <constraint firstItem="YUL-sF-zua" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AC6-Od-eyg"/>
-                            <constraint firstItem="bUA-71-PnN" firstAttribute="top" secondItem="gx2-Ft-6Fg" secondAttribute="bottom" constant="1" id="ANM-Re-BEt"/>
-                            <constraint firstItem="GcE-Ge-JPU" firstAttribute="top" secondItem="pP0-87-2uw" secondAttribute="bottom" constant="-1" id="Wcc-HX-oIO"/>
-                            <constraint firstItem="gx2-Ft-6Fg" firstAttribute="top" secondItem="YUL-sF-zua" secondAttribute="top" id="bnO-H7-Tcp"/>
-                            <constraint firstItem="gx2-Ft-6Fg" firstAttribute="leading" secondItem="YUL-sF-zua" secondAttribute="trailing" constant="23" id="ckn-VC-Ckj"/>
-                            <constraint firstItem="YUL-sF-zua" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="l3q-5h-kii"/>
-                            <constraint firstItem="Rzf-fz-9oG" firstAttribute="top" secondItem="bUA-71-PnN" secondAttribute="bottom" constant="1" id="zNe-nO-BhQ"/>
+                            <constraint firstItem="gx2-Ft-6Fg" firstAttribute="top" secondItem="YUL-sF-zua" secondAttribute="bottom" constant="8" id="16h-sm-KqE"/>
+                            <constraint firstItem="YUL-sF-zua" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NlC-Zq-nXr"/>
+                            <constraint firstItem="YUL-sF-zua" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tYr-3D-Uyf"/>
                         </constraints>
                     </view>
                     <connections>

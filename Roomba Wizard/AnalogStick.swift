@@ -10,11 +10,18 @@ import SpriteKit
 
 class AnalogStick: SKScene {
 
-    let base = SKSpriteNode(imageNamed: "Base")
-    let ball = SKSpriteNode(imageNamed: "Ball")
-    var rooWifi = RooWifi?()
+    let leftBase = SKSpriteNode(imageNamed: "Base")
+    let leftBall = SKSpriteNode(imageNamed: "Ball")
     
-    var stickActive = false
+    let rightBase = SKSpriteNode(imageNamed: "Base")
+    let rightBall = SKSpriteNode(imageNamed: "Ball")
+    
+    var rooWifi = RooWifi?()
+    var rightAngle:CGFloat = 0
+    var leftAngle:CGFloat = 0
+    
+    var leftStickActive = false
+    var rightStickActive = false
     
     convenience init(size: CGSize, inout rooWifi: RooWifi) {
         self.init(size: size)
@@ -25,11 +32,17 @@ class AnalogStick: SKScene {
         /* Setup your scene here */
         self.anchorPoint = CGPointMake(0.5, 0.5)
         
-        self.addChild(base)
-        self.position = base.position
+        self.addChild(leftBase)
+        leftBase.position = CGPointMake(-120, 50)
         
-        self.addChild(ball)
-        ball.position = base.position
+        self.addChild(leftBall)
+        leftBall.position = leftBase.position
+        
+        self.addChild(rightBase)
+        rightBase.position = CGPointMake(120, 50)
+        
+        self.addChild(rightBall)
+        rightBall.position = rightBase.position
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -37,10 +50,15 @@ class AnalogStick: SKScene {
     
         for touch in touches {
             let location = touch.locationInNode(self)
-            if (CGRectContainsPoint(base.frame, location)) {
-                self.stickActive = true
+            if (CGRectContainsPoint(leftBase.frame, location)) {
+                self.leftStickActive = true
             } else {
-                self.stickActive = false
+                self.leftStickActive = false
+            }
+            if (CGRectContainsPoint(rightBase.frame, location)) {
+                self.rightStickActive = true
+            } else {
+                self.rightStickActive = false
             }
         }
     }
@@ -48,73 +66,73 @@ class AnalogStick: SKScene {
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch in touches {
             let location = touch.locationInNode(self)
-            let v = CGVector(dx: location.x - base.position.x, dy: location.y - base.position.y)
-            let angle = atan2(v.dy, v.dx)
+            if (self.leftStickActive) {
+                let v = CGVector(dx: location.x - leftBase.position.x, dy: location.y - leftBase.position.y)
+                self.leftAngle = atan2(v.dy, v.dx)
             
-            let length:CGFloat = base.frame.size.height / 2
+                let length:CGFloat = leftBase.frame.size.height / 2
             
-            let xDist:CGFloat = sin(angle - 1.57079633) * length
-            let yDist:CGFloat = cos(angle - 1.57079633) * length
+                let xDist:CGFloat = sin(self.leftAngle - 1.57079633) * length
+                let yDist:CGFloat = cos(self.leftAngle - 1.57079633) * length
             
-            if (CGRectContainsPoint(base.frame, location)) {
-                ball.position = location
-            } else {
-                ball.position = CGPointMake(base.position.x - xDist, base.position.y + yDist)
+                if (CGRectContainsPoint(leftBase.frame, location)) {
+                    leftBall.position = location
+                } else {
+                    leftBall.position = CGPointMake(leftBase.position.x - xDist, leftBase.position.y + yDist)
+                }
             }
-            self.Drive(angle)
+            if (self.rightStickActive) {
+                let v = CGVector(dx: location.x - rightBase.position.x, dy: location.y - rightBase.position.y)
+                self.rightAngle = atan2(v.dy, v.dx)
+                
+                let length:CGFloat = rightBase.frame.size.height / 2
+                
+                let xDist:CGFloat = sin(self.rightAngle - 1.57079633) * length
+                let yDist:CGFloat = cos(self.rightAngle - 1.57079633) * length
+                
+                if (CGRectContainsPoint(rightBase.frame, location)) {
+                    rightBall.position = location
+                } else {
+                    rightBall.position = CGPointMake(rightBase.position.x - xDist, rightBase.position.y + yDist)
+                }
+
+            }
+            self.Drive()
         }
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if (self.stickActive) {
-            let move:SKAction = SKAction.moveTo(base.position, duration: 0.2)
+        if (self.leftStickActive) {
+            let move:SKAction = SKAction.moveTo(leftBase.position, duration: 0.2)
             move.timingMode = .EaseOut
-            ball.runAction(move)
+            leftBall.runAction(move)
+            self.leftStickActive = false
+        }
+        if (self.rightStickActive) {
+            let move:SKAction = SKAction.moveTo(rightBase.position, duration: 0.2)
+            move.timingMode = .EaseOut
+            rightBall.runAction(move)
+            self.rightStickActive = false
         }
         self.StopDriving()
     }
     
-    func Drive(angle:CGFloat) {
-        // Control the speed of the roowifi's wheels based on the angle.
-        // direction: Up = 3, Right = 2, Down = 1, Left = 0
-        let direction = ((angle * CGFloat(180 / M_PI) / 90) + 2.5) % 4
-        print(direction)
-        let speed = 500
-        if (1 < direction && direction < 2) {
-            // Analog stick pointed backward
-            self.rooWifi!.Drive(speed * -1, left: speed * -1)
-        } else if (2 < direction && direction < 3) {
-            // Analog stick pointed right
-            if (direction > (floor(direction) + 0.5)) {
-                // Right up
-                self.rooWifi!.Drive(
-                    speed * Int(abs(direction - floor(direction))),
-                    left: speed)
-            }
-            else {
-                // Right down
-                self.rooWifi!.Drive(
-                    speed * -1,
-                    left:speed * Int(abs(1 - direction - floor(direction))))
-            }
-        } else if (direction < 1) {
-            // Analog stick pointed left
-            if (direction > (floor(direction) + 0.5)) {
-                // Left down
-                self.rooWifi!.Drive(
-                   speed * Int(abs(1 - direction - floor(direction))),
-                   left: speed * -1)
-            }
-            else {
-                // Left up
-                self.rooWifi!.Drive(
-                    speed,
-                    left: speed * Int(abs(direction - floor(direction))))
-            }
-        } else {
-            self.rooWifi!.Drive(500, left: 500)
-        }
+    func Distance(p1: CGPoint, p2: CGPoint) -> CGFloat {
+        let xDist:CGFloat = p2.x - p1.x
+        let yDist:CGFloat = p2.y - p1.y
+        return sqrt((xDist * xDist) + (yDist * yDist));
     }
+    
+    func Drive() {
+        // Control the speed of the roowifi's wheels based on Analog stick input.
+        let rightDirection:CGFloat = (((self.rightAngle * CGFloat(180 / M_PI)) + 2.5) % 4 / 4) > 0 ? 1 : -1
+        let rightSpeed = Int(Distance(rightBall.position, p2: rightBase.position) / 100 * 500 * rightDirection)
+        
+        let leftDirection:CGFloat = (((self.leftAngle * CGFloat(180 / M_PI)) + 2.5) % 4 / 4) > 0 ? 1 : -1
+        let leftSpeed = Int(Distance(leftBall.position, p2: leftBase.position) / 100 * 500 * leftDirection)
+
+        self.rooWifi!.Drive(rightSpeed, left: leftSpeed)
+        }
     
     func StopDriving() {
         self.rooWifi!.Drive(0, radius: 0)
