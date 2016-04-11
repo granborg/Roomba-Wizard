@@ -87,69 +87,13 @@ class ViewController: UIViewController {
              (frequency: 55, duration: NOTE_DURATION_SIXTEENTH_NOTE),
              (frequency: 52, duration: NOTE_DURATION_QUARTER_NOTE)]
         
-        rooWifi.StoreSong(0, notes: zelda)
+        let start:Song =
+            [(frequency: 53, duration:NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE)]
+        
+        rooWifi.StoreSong(0, notes: start)
         rooWifi.PlaySong(0)
-    }
-    @IBAction func ForwardDown(sender: AnyObject) {
-        velocity = 300
-        rooWifi.Drive(velocity, radius: radius)
-    }
-    @IBAction func ForwardUp(sender: AnyObject) {
-        velocity = 0
-        rooWifi.Drive(velocity, radius: radius)
-    }
-    @IBAction func ForwardUpOutside(sender: AnyObject) {
-        velocity = 0
-        rooWifi.Drive(velocity, radius: radius)
-    }
-    
-    @IBAction func BackwardDown(sender: AnyObject) {
-        velocity = -300
-        rooWifi.Drive(velocity, radius: radius)
-    }
-    @IBAction func BackwardUp(sender: AnyObject) {
-        velocity = 0
-        rooWifi.Drive(velocity, radius: radius)
-    }
-    @IBAction func BackwardUpOutside(sender: AnyObject) {
-        velocity = 0
-        rooWifi.Drive(velocity, radius: radius)
-    }
-    
-    @IBAction func RightDown(sender: AnyObject) {
-        if (velocity == 0) {
-            rooWifi.Drive(0xFF38, radius: 0x0001) // spin right
-        } else {
-            radius = -2000
-            rooWifi.Drive(velocity, radius: radius)
-        }
-    }
-    @IBAction func RightUp(sender: AnyObject) {
-        radius = 0
-        rooWifi.Drive(velocity, radius: radius)
-    }
-    @IBAction func RightUpOutside(sender: AnyObject) {
-        radius = 0
-        rooWifi.Drive(velocity, radius: radius)
-    }
-
-    
-    
-    @IBAction func LeftDown(sender: AnyObject) {
-        if (velocity == 0) {
-            rooWifi.Drive(0xFF38, radius: 0xFFFF) // spin left
-        } else {
-            radius = 2000
-            rooWifi.Drive(velocity, radius: radius)
-        }
-    }
-    @IBAction func LeftUp(sender: AnyObject) {
-        radius = 0
-        rooWifi.Drive(velocity, radius: radius)
-    }
-    @IBAction func LeftUpOutside(sender: AnyObject) {
-        radius = 0
-        rooWifi.Drive(velocity, radius: radius)
     }
     
     override func viewDidLoad() {
@@ -159,7 +103,8 @@ class ViewController: UIViewController {
         skView.showsFPS = true
         skView.showsNodeCount = true
         skView.ignoresSiblingOrder = true
-        scene.scaleMode = .ResizeFill
+        scene.backgroundColor = UIColor(white: 255, alpha: 0.0)
+        scene.scaleMode = .AspectFill
         skView.presentScene(scene)
     }
 

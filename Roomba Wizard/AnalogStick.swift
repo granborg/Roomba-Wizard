@@ -51,7 +51,6 @@ class AnalogStick: SKScene {
             let v = CGVector(dx: location.x - base.position.x, dy: location.y - base.position.y)
             let angle = atan2(v.dy, v.dx)
             
-            print(angle)
             let length:CGFloat = base.frame.size.height / 2
             
             let xDist:CGFloat = sin(angle - 1.57079633) * length
@@ -62,7 +61,6 @@ class AnalogStick: SKScene {
             } else {
                 ball.position = CGPointMake(base.position.x - xDist, base.position.y + yDist)
             }
-            
             self.Drive(angle)
         }
     }
@@ -73,12 +71,48 @@ class AnalogStick: SKScene {
             move.timingMode = .EaseOut
             ball.runAction(move)
         }
+        self.StopDriving()
     }
     
     func Drive(angle:CGFloat) {
-        // TODO: Control the speed of the roowifi's wheels based on the angle.
-        if (0 < abs(angle) && abs(angle) < 1) {
-            self.rooWifi!.Drive(0xFF38, radius: 0x0001) // spin right
+        // Control the speed of the roowifi's wheels based on the angle.
+        // direction: Up = 3, Right = 2, Down = 1, Left = 0
+        let direction = ((angle * CGFloat(180 / M_PI) / 90) + 2.5) % 4
+        print(direction)
+        let speed = 500
+        if (1 < direction && direction < 2) {
+            // Analog stick pointed backward
+            self.rooWifi!.Drive(speed * -1, left: speed * -1)
+        } else if (2 < direction && direction < 3) {
+            // Analog stick pointed right
+            if (direction > (floor(direction) + 0.5)) {
+                // Right up
+                self.rooWifi!.Drive(
+                    speed * Int(abs(direction - floor(direction))),
+                    left: speed)
+            }
+            else {
+                // Right down
+                self.rooWifi!.Drive(
+                    speed * -1,
+                    left:speed * Int(abs(1 - direction - floor(direction))))
+            }
+        } else if (direction < 1) {
+            // Analog stick pointed left
+            if (direction > (floor(direction) + 0.5)) {
+                // Left down
+                self.rooWifi!.Drive(
+                   speed * Int(abs(1 - direction - floor(direction))),
+                   left: speed * -1)
+            }
+            else {
+                // Left up
+                self.rooWifi!.Drive(
+                    speed,
+                    left: speed * Int(abs(direction - floor(direction))))
+            }
+        } else {
+            self.rooWifi!.Drive(500, left: 500)
         }
     }
     
