@@ -65,6 +65,7 @@ let COMMAND_SONG    = 140
 let COMMAND_PLAY    = 141
 let COMMAND_SENSORS = 142
 let COMMAND_DOCK    = 143
+let COMMAND_WHEELS  = 145
 
 //Number of parameters of Led commands
 let LEDS_NUM_PARAMETERS         = 3
@@ -136,7 +137,7 @@ class RooWifi: NSObject {
     }
     
     func Start() {
-        client.close();
+        client.close()
         let (success,errmsg) = client.connect(timeout: 2)
         if success {
             debug("Established connection with Roomba")
@@ -164,13 +165,27 @@ class RooWifi: NSObject {
             radius & 0xFF)
     }
     
-    func Dock() {
-        self.ExecuteCommand(COMMAND_DOCK)
+    func Drive(right: Int, left: Int) {
+        self.ExecuteCommand(
+            COMMAND_WHEELS,
+            (right >> 8) & 0xFF,
+            right & 0xFF,
+            (left >> 8) & 0xFF,
+            left & 0xFF)
+    }
+    
+    func Clean() {
+        self.ExecuteCommand(COMMAND_CLEAN)
     }
     
     func Spot() {
         self.ExecuteCommand(COMMAND_SPOT)
     }
+    
+    func Dock() {
+        self.ExecuteCommand(COMMAND_DOCK)
+    }
+
     
     func StoreSong(songNumber: Int, notes: Song) {
         self.ExecuteCommand(COMMAND_SONG, songNumber, notes.count)
@@ -218,8 +233,6 @@ class RooWifi: NSObject {
     func UpdateMotors() {
         self.ExecuteCommand(COMMAND_MOTORS, self.motors)
     }
-    
-    
     
     private func ExecuteCommand(commands: Int...) {
         self.ExecuteCommand(commands)
