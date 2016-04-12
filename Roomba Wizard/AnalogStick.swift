@@ -20,8 +20,7 @@ class AnalogStick: SKScene {
     var rightAngle:CGFloat = 0
     var leftAngle:CGFloat = 0
     
-    var leftStickActive = false
-    var rightStickActive = false
+    var touchTracker : [UITouch : SKNode] = [:]
     
     convenience init(size: CGSize, inout rooWifi: RooWifi) {
         self.init(size: size)
@@ -51,14 +50,10 @@ class AnalogStick: SKScene {
         for touch in touches {
             let location = touch.locationInNode(self)
             if (CGRectContainsPoint(leftBase.frame, location)) {
-                self.leftStickActive = true
-            } else {
-                self.leftStickActive = false
+                touchTracker[touch] = leftBall
             }
-            if (CGRectContainsPoint(rightBase.frame, location)) {
-                self.rightStickActive = true
-            } else {
-                self.rightStickActive = false
+            else if (CGRectContainsPoint(rightBase.frame, location)) {
+                touchTracker[touch] = rightBall
             }
         }
     }
@@ -66,7 +61,7 @@ class AnalogStick: SKScene {
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch in touches {
             let location = touch.locationInNode(self)
-            if (self.leftStickActive) {
+            if (touchTracker[touch] == leftBall) {
                 let v = CGVector(dx: location.x - leftBase.position.x, dy: location.y - leftBase.position.y)
                 self.leftAngle = atan2(v.dy, v.dx)
             
@@ -81,7 +76,7 @@ class AnalogStick: SKScene {
                     leftBall.position = CGPointMake(leftBase.position.x - xDist, leftBase.position.y + yDist)
                 }
             }
-            if (self.rightStickActive) {
+            else if (touchTracker[touch] == rightBall) {
                 let v = CGVector(dx: location.x - rightBase.position.x, dy: location.y - rightBase.position.y)
                 self.rightAngle = atan2(v.dy, v.dx)
                 
@@ -102,17 +97,18 @@ class AnalogStick: SKScene {
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if (self.leftStickActive) {
-            let move:SKAction = SKAction.moveTo(leftBase.position, duration: 0.2)
-            move.timingMode = .EaseOut
-            leftBall.runAction(move)
-            self.leftStickActive = false
-        }
-        if (self.rightStickActive) {
-            let move:SKAction = SKAction.moveTo(rightBase.position, duration: 0.2)
-            move.timingMode = .EaseOut
-            rightBall.runAction(move)
-            self.rightStickActive = false
+        for touch in touches {
+            if (touchTracker[touch] == leftBall) {
+                let move:SKAction = SKAction.moveTo(leftBase.position, duration: 0.2)
+                move.timingMode = .EaseOut
+                leftBall.runAction(move)
+            }
+            else if (touchTracker[touch] == rightBall) {
+                let move:SKAction = SKAction.moveTo(rightBase.position, duration: 0.2)
+                move.timingMode = .EaseOut
+                rightBall.runAction(move)
+            }
+        touchTracker.removeValueForKey(touch as UITouch)
         }
         self.StopDriving()
     }
@@ -129,7 +125,7 @@ class AnalogStick: SKScene {
         let rightSpeed = Int(Distance(rightBall.position, p2: rightBase.position) / 100 * 500 * rightDirection)
         
         let leftDirection:CGFloat = (((self.leftAngle * CGFloat(180 / M_PI)) + 2.5) % 4 / 4) > 0 ? 1 : -1
-        let leftSpeed = Int(Distance(leftBall.position, p2: leftBase.position) / 100 * 500 * leftDirection)
+        let leftSpeed:Int = Int(Distance(leftBall.position, p2: leftBase.position) / 100 * 500 * leftDirection)
 
         self.rooWifi!.Drive(rightSpeed, left: leftSpeed)
         }

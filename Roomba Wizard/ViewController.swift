@@ -100,6 +100,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         let scene = AnalogStick(size: view.bounds.size, rooWifi: &self.rooWifi)
         let skView = self.AnalogView as! SKView
+        skView.multipleTouchEnabled = true
         skView.showsFPS = true
         skView.showsNodeCount = true
         skView.ignoresSiblingOrder = true
