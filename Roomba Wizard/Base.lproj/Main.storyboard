@@ -56,6 +56,13 @@
                                     <action selector="Connect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bve-av-HjD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Yo-Jf-ct9">
+                                <rect key="frame" x="189" y="393" width="41" height="26"/>
+                                <state key="normal" title="Music"/>
+                                <connections>
+                                    <segue destination="bvX-wC-AeW" kind="show" identifier="segueTest" id="8VD-eh-l6K"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -71,6 +78,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-77" y="24"/>
+        </scene>
+        <!--Music View Controller-->
+        <scene sceneID="JvS-c4-0LS">
+            <objects>
+                <viewController id="bvX-wC-AeW" customClass="MusicViewController" customModule="Roomba_Wizard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="i4M-Bk-OLe"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xqc-Mg-SUR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pdG-BF-ffY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1f-Xs-CQT">
+                                <rect key="frame" x="193" y="217" width="43" height="30"/>
+                                <state key="normal" title="Song1"/>
+                                <connections>
+                                    <action selector="Song1:" destination="bvX-wC-AeW" eventType="touchUpInside" id="fRc-2U-w0b"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qY-SK-U5T">
+                                <rect key="frame" x="314" y="217" width="45" height="30"/>
+                                <state key="normal" title="Song2"/>
+                                <connections>
+                                    <action selector="Song2:" destination="bvX-wC-AeW" eventType="touchUpInside" id="5Tn-iD-qJC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sE6-rc-5Gx">
+                                <rect key="frame" x="456" y="217" width="45" height="30"/>
+                                <state key="normal" title="Song3"/>
+                                <connections>
+                                    <action selector="Song3:" destination="bvX-wC-AeW" eventType="touchUpInside" id="zPQ-yw-c66"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5RL-Sw-mZC">
+                                <rect key="frame" x="215" y="292" width="45" height="30"/>
+                                <state key="normal" title="Song5"/>
+                                <connections>
+                                    <action selector="Song4:" destination="bvX-wC-AeW" eventType="touchUpInside" id="Nou-IG-8tp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJ8-Lk-Ihq">
+                                <rect key="frame" x="302" y="135" width="68" height="30"/>
+                                <state key="normal" title="Controller"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="Plh-Yq-Ap4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfc-ib-BvV">
+                                <rect key="frame" x="392" y="285" width="45" height="30"/>
+                                <state key="normal" title="Song6"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YRb-v9-QMh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-104" y="814"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="Suv-Hz-TWV">

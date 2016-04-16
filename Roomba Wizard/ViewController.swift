@@ -8,13 +8,14 @@
 
 import UIKit
 import SpriteKit
+var rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
 
 class ViewController: UIViewController {
     
 
     @IBOutlet weak var AnalogView: UIView!
     
-    var rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
+    //var rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
     var velocity = 0
     var radius = 0
     enum Automation {
@@ -68,37 +69,23 @@ class ViewController: UIViewController {
         rooWifi.Start()
         rooWifi.SafeMode()
         
-        // Zelda
-        let zelda:Song =
-            [(frequency: 53, duration:NOTE_DURATION_SIXTEENTH_NOTE),
+ //let start:Song =
+           /* [(frequency: 53, duration:NOTE_DURATION_SIXTEENTH_NOTE),
              (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE),
-             (frequency: 53, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE),
-             (frequency: 53, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 64, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 62, duration: NOTE_DURATION_EIGHTH_NOTE),
-             (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 60, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 55, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 52, duration: NOTE_DURATION_QUARTER_NOTE)]
+             (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE)]*/
+ //       [(frequency: 53, duration: 16),
+  //       (frequency: 57, duration: 16),
+   //      (frequency: 59, duration: 16
+     //       )]
         
-        let start:Song =
-            [(frequency: 53, duration:NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE)]
-        
-        rooWifi.StoreSong(0, notes: start)
-        rooWifi.PlaySong(0)
+       // rooWifi.StoreSong(0, notes: start)
+       // rooWifi.PlaySong(0)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scene = AnalogStick(size: view.bounds.size, rooWifi: &self.rooWifi)
+        //let scene = AnalogStick(size: view.bounds.size, rooWifi: &self.rooWifi)
+        let scene = AnalogStick(size: view.bounds.size, rooWifi: &rooWifi)
         let skView = self.AnalogView as! SKView
         skView.multipleTouchEnabled = true
         skView.showsFPS = true
