@@ -8,13 +8,15 @@
 
 import SpriteKit
 
-class AnalogStick: SKScene {
+class ControlScene: SKScene {
 
     let leftBase = SKSpriteNode(imageNamed: "Base")
-    let leftBall = SKSpriteNode(imageNamed: "Ball")
+    let leftSlider = SKSpriteNode(imageNamed: "Slider")
     
     let rightBase = SKSpriteNode(imageNamed: "Base")
-    let rightBall = SKSpriteNode(imageNamed: "Ball")
+    let rightSlider = SKSpriteNode(imageNamed: "Slider")
+    
+    let motors = SKSpriteNode(imageNamed: "Motor")
     
     var rooWifi = RooWifi?()
     var rightAngle:CGFloat = 0
@@ -34,14 +36,14 @@ class AnalogStick: SKScene {
         self.addChild(leftBase)
         leftBase.position = CGPointMake(-120, 50)
         
-        self.addChild(leftBall)
-        leftBall.position = leftBase.position
+        self.addChild(leftSlider)
+        leftSlider.position = leftBase.position
         
         self.addChild(rightBase)
         rightBase.position = CGPointMake(120, 50)
         
-        self.addChild(rightBall)
-        rightBall.position = rightBase.position
+        self.addChild(rightSlider)
+        rightSlider.position = rightBase.position
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -50,10 +52,10 @@ class AnalogStick: SKScene {
         for touch in touches {
             let location = touch.locationInNode(self)
             if (CGRectContainsPoint(leftBase.frame, location)) {
-                touchTracker[touch] = leftBall
+                touchTracker[touch] = leftSlider
             }
             else if (CGRectContainsPoint(rightBase.frame, location)) {
-                touchTracker[touch] = rightBall
+                touchTracker[touch] = rightSlider
             }
         }
     }
@@ -61,7 +63,7 @@ class AnalogStick: SKScene {
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch in touches {
             let location = touch.locationInNode(self)
-            if (touchTracker[touch] == leftBall) {
+            if (touchTracker[touch] == leftSlider) {
                 let v = CGVector(dx: location.x - leftBase.position.x, dy: location.y - leftBase.position.y)
                 self.leftAngle = atan2(v.dy, v.dx)
             
@@ -71,12 +73,12 @@ class AnalogStick: SKScene {
                 let yDist:CGFloat = cos(self.leftAngle - 1.57079633) * length
             
                 if (CGRectContainsPoint(leftBase.frame, location)) {
-                    leftBall.position = location
+                    leftSlider.position = location
                 } else {
-                    leftBall.position = CGPointMake(leftBase.position.x - xDist, leftBase.position.y + yDist)
+                    leftSlider.position = CGPointMake(leftBase.position.x - xDist, leftBase.position.y + yDist)
                 }
             }
-            else if (touchTracker[touch] == rightBall) {
+            else if (touchTracker[touch] == rightSlider) {
                 let v = CGVector(dx: location.x - rightBase.position.x, dy: location.y - rightBase.position.y)
                 self.rightAngle = atan2(v.dy, v.dx)
                 
@@ -86,9 +88,9 @@ class AnalogStick: SKScene {
                 let yDist:CGFloat = cos(self.rightAngle - 1.57079633) * length
                 
                 if (CGRectContainsPoint(rightBase.frame, location)) {
-                    rightBall.position = location
+                    rightSlider.position = location
                 } else {
-                    rightBall.position = CGPointMake(rightBase.position.x - xDist, rightBase.position.y + yDist)
+                    rightSlider.position = CGPointMake(rightBase.position.x - xDist, rightBase.position.y + yDist)
                 }
 
             }
@@ -98,15 +100,15 @@ class AnalogStick: SKScene {
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch in touches {
-            if (touchTracker[touch] == leftBall) {
+            if (touchTracker[touch] == leftSlider) {
                 let move:SKAction = SKAction.moveTo(leftBase.position, duration: 0.2)
                 move.timingMode = .EaseOut
-                leftBall.runAction(move)
+                leftSlider.runAction(move)
             }
-            else if (touchTracker[touch] == rightBall) {
+            else if (touchTracker[touch] == rightSlider) {
                 let move:SKAction = SKAction.moveTo(rightBase.position, duration: 0.2)
                 move.timingMode = .EaseOut
-                rightBall.runAction(move)
+                rightSlider.runAction(move)
             }
         touchTracker.removeValueForKey(touch as UITouch)
         }
@@ -122,10 +124,10 @@ class AnalogStick: SKScene {
     func Drive() {
         // Control the speed of the roowifi's wheels based on Analog stick input.
         let rightDirection:CGFloat = (((self.rightAngle * CGFloat(180 / M_PI)) + 2.5) % 4 / 4) > 0 ? 1 : -1
-        let rightSpeed = Int(Distance(rightBall.position, p2: rightBase.position) / 100 * 500 * rightDirection)
+        let rightSpeed = Int(Distance(rightSlider.position, p2: rightBase.position) / 100 * 500 * rightDirection)
         
         let leftDirection:CGFloat = (((self.leftAngle * CGFloat(180 / M_PI)) + 2.5) % 4 / 4) > 0 ? 1 : -1
-        let leftSpeed:Int = Int(Distance(leftBall.position, p2: leftBase.position) / 100 * 500 * leftDirection)
+        let leftSpeed:Int = Int(Distance(leftSlider.position, p2: leftBase.position) / 100 * 500 * leftDirection)
 
         self.rooWifi!.Drive(rightSpeed, left: leftSpeed)
         }

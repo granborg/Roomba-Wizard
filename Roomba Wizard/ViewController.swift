@@ -13,7 +13,7 @@ var rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
 class ViewController: UIViewController {
     
 
-    @IBOutlet weak var AnalogView: UIView!
+    @IBOutlet weak var ControlView: UIView!
     
     //var rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
     var velocity = 0
@@ -84,9 +84,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let scene = AnalogStick(size: view.bounds.size, rooWifi: &self.rooWifi)
-        let scene = AnalogStick(size: view.bounds.size, rooWifi: &rooWifi)
-        let skView = self.AnalogView as! SKView
+        //let scene = ControlScene(size: view.bounds.size, rooWifi: &self.rooWifi)
+        let scene = ControlScene(size: view.bounds.size, rooWifi: &rooWifi)
+        let skView = self.ControlView as! SKView
         skView.multipleTouchEnabled = true
         skView.showsFPS = true
         skView.showsNodeCount = true

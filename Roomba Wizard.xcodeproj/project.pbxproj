@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		013295121CB86ACA00DC14C7 /* PlayStation_Directional_button.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 013295111CB86ACA00DC14C7 /* PlayStation_Directional_button.svg.png */; };
-		DA4E010F1CBB1101004CB93A /* AnalogStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4E010E1CBB1101004CB93A /* AnalogStick.swift */; };
+		DA4E010F1CBB1101004CB93A /* ControlScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4E010E1CBB1101004CB93A /* ControlScene.swift */; };
+		DAB2D2B91CC2D81200FE0385 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAB2D2B81CC2D81200FE0385 /* Assets.xcassets */; };
 		DABC63371CAF1BDC00235750 /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = DABC63351CAF1BDC00235750 /* ytcpsocket.c */; };
 		DABC63381CAF1BDC00235750 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC63361CAF1BDC00235750 /* ytcpsocket.swift */; };
 		DABC633A1CAF1C1400235750 /* ysocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC63391CAF1C1400235750 /* ysocket.swift */; };
@@ -40,8 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		013295111CB86ACA00DC14C7 /* PlayStation_Directional_button.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayStation_Directional_button.svg.png; path = ../PlayStation_Directional_button.svg.png; sourceTree = "<group>"; };
-		DA4E010E1CBB1101004CB93A /* AnalogStick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogStick.swift; sourceTree = "<group>"; };
+		DA4E010E1CBB1101004CB93A /* ControlScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlScene.swift; sourceTree = "<group>"; };
+		DAB2D2B81CC2D81200FE0385 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Roomba Wizard/Assets.xcassets"; sourceTree = "<group>"; };
 		DABC632C1CAF1A6900235750 /* Roomba Wizard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Roomba Wizard-Bridging-Header.h"; sourceTree = "<group>"; };
 		DABC63351CAF1BDC00235750 /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ytcpsocket.c; path = ../ytcpsocket.c; sourceTree = "<group>"; };
 		DABC63361CAF1BDC00235750 /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ytcpsocket.swift; path = ../ytcpsocket.swift; sourceTree = "<group>"; };
@@ -90,6 +90,7 @@
 		DAE8609E1CAF10FB00408344 = {
 			isa = PBXGroup;
 			children = (
+				DAB2D2B81CC2D81200FE0385 /* Assets.xcassets */,
 				DAE860A91CAF10FB00408344 /* Roomba Wizard */,
 				DAE860BE1CAF10FB00408344 /* Roomba WizardTests */,
 				DAE860C91CAF10FB00408344 /* Roomba WizardUITests */,
@@ -111,8 +112,7 @@
 		DAE860A91CAF10FB00408344 /* Roomba Wizard */ = {
 			isa = PBXGroup;
 			children = (
-				013295111CB86ACA00DC14C7 /* PlayStation_Directional_button.svg.png */,
-				DA4E010E1CBB1101004CB93A /* AnalogStick.swift */,
+				DA4E010E1CBB1101004CB93A /* ControlScene.swift */,
 				DABC633F1CAF1F9D00235750 /* RooWifi.swift */,
 				DABC63391CAF1C1400235750 /* ysocket.swift */,
 				DABC63351CAF1BDC00235750 /* ytcpsocket.c */,
@@ -254,8 +254,8 @@
 			files = (
 				DAE860B51CAF10FB00408344 /* LaunchScreen.storyboard in Resources */,
 				DAE860B21CAF10FB00408344 /* Assets.xcassets in Resources */,
+				DAB2D2B91CC2D81200FE0385 /* Assets.xcassets in Resources */,
 				DAE860B01CAF10FB00408344 /* Main.storyboard in Resources */,
-				013295121CB86ACA00DC14C7 /* PlayStation_Directional_button.svg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +285,7 @@
 				DABC63371CAF1BDC00235750 /* ytcpsocket.c in Sources */,
 				DABC633A1CAF1C1400235750 /* ysocket.swift in Sources */,
 				DABC63401CAF1F9D00235750 /* RooWifi.swift in Sources */,
-				DA4E010F1CBB1101004CB93A /* AnalogStick.swift in Sources */,
+				DA4E010F1CBB1101004CB93A /* ControlScene.swift in Sources */,
 				DAE860AB1CAF10FB00408344 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
