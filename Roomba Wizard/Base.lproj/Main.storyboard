@@ -18,63 +18,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcE-Ge-JPU">
-                                <rect key="frame" x="270" y="268" width="61" height="30"/>
-                                <state key="normal" title="Motors"/>
-                                <connections>
-                                    <action selector="Motors:" destination="BYZ-38-t0r" eventType="touchUpInside" id="opN-WC-RhP"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pP0-87-2uw">
-                                <rect key="frame" x="217" y="268" width="46" height="30"/>
-                                <state key="normal" title="Clean"/>
-                                <connections>
-                                    <action selector="Clean:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gVI-Ue-0on"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzf-fz-9oG">
-                                <rect key="frame" x="163" y="268" width="46" height="30"/>
-                                <state key="normal" title="Spot"/>
-                                <connections>
-                                    <action selector="Spot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kpm-ih-C8h"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUA-71-PnN">
-                                <rect key="frame" x="109" y="268" width="46" height="30"/>
-                                <state key="normal" title="Dock"/>
-                                <connections>
-                                    <action selector="Dock:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c7v-CV-Tqd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gx2-Ft-6Fg">
-                                <rect key="frame" x="109" y="391" width="72" height="30"/>
-                                <state key="normal" title="Connect"/>
-                                <connections>
-                                    <action selector="Connect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bve-av-HjD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Yo-Jf-ct9">
-                                <rect key="frame" x="189" y="393" width="41" height="26"/>
-                                <state key="normal" title="Music"/>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUL-sF-zua" userLabel="Control" customClass="SKView">
+                                <rect key="frame" x="176" y="188" width="248" height="224"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Yo-Jf-ct9" userLabel="Music">
+                                <rect key="frame" x="102" y="264" width="77" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="jS2-7F-Nr9"/>
+                                </constraints>
+                                <state key="normal" image="Note" backgroundImage="Note"/>
                                 <connections>
                                     <segue destination="bvX-wC-AeW" kind="show" identifier="segueTest" id="8VD-eh-l6K"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YUL-sF-zua" userLabel="Control" customClass="SKView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YUL-sF-zua" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="6B7-gn-2dL"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YUL-sF-zua" secondAttribute="bottom" id="AeH-0u-YX5"/>
-                            <constraint firstItem="YUL-sF-zua" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="RUD-m2-NNo"/>
-                            <constraint firstItem="YUL-sF-zua" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="V7g-3M-g9M"/>
-                            <constraint firstItem="gx2-Ft-6Fg" firstAttribute="top" secondItem="YUL-sF-zua" secondAttribute="bottom" id="fgP-Hc-PSi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="YUL-sF-zua" secondAttribute="trailing" id="g3G-VR-KII"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="YUL-sF-zua" secondAttribute="trailing" constant="-20" id="jrL-Ha-G6R"/>
-                            <constraint firstItem="YUL-sF-zua" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="80" id="wqG-2o-nS9"/>
+                            <constraint firstItem="6Yo-Jf-ct9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="8mD-NT-DAZ"/>
+                            <constraint firstItem="6Yo-Jf-ct9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="244" id="XVr-ps-KsY"/>
+                            <constraint firstItem="YUL-sF-zua" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bj5-Ax-KfW"/>
+                            <constraint firstItem="6Yo-Jf-ct9" firstAttribute="centerY" secondItem="YUL-sF-zua" secondAttribute="centerY" id="irm-2D-Jqq"/>
+                            <constraint firstItem="6Yo-Jf-ct9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="82" id="kI0-xP-uoC"/>
+                            <constraint firstItem="YUL-sF-zua" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="168" id="nJG-YI-iow"/>
+                            <constraint firstItem="YUL-sF-zua" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="176" id="qIo-Kh-bSK"/>
                         </constraints>
                     </view>
                     <connections>
@@ -142,15 +109,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YRb-v9-QMh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-104" y="814"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="Suv-Hz-TWV">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="JK6-GT-UDI" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ifl-qT-PPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="580" y="24"/>
+            <point key="canvasLocation" x="-77" y="710"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Note" width="256" height="256"/>
+    </resources>
 </document>

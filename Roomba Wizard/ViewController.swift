@@ -15,84 +15,12 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var ControlView: UIView!
     
-    //var rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
-    var velocity = 0
-    var radius = 0
-    enum Automation {
-        case None
-        case Clean
-        case Spot
-        case Dock
-    }
-    var auto = Automation.None
-    
-    @IBAction func Clean(sender: AnyObject) {
-        if (auto == .Clean) {
-            rooWifi.SafeMode()
-            auto = .None
-        }
-        else {
-            rooWifi.Clean()
-            auto = .Clean
-        }
-    }
-    @IBAction func Spot(sender: AnyObject) {
-        if (auto == .Spot) {
-            rooWifi.SafeMode()
-            auto = .None
-        }
-        else {
-            rooWifi.Spot()
-            auto = .Spot
-        }
-    }
-    @IBAction func Dock(sender: AnyObject) {
-        if (auto == .Dock) {
-            rooWifi.SafeMode()
-            auto = .None
-        }
-        else {
-            rooWifi.Dock()
-            auto = .Dock
-        }
-    }
-    @IBAction func Motors(sender: AnyObject) {
-        if (rooWifi.motors == 0) {
-            rooWifi.AllCleaningMotors_On()
-        }
-        else {
-            rooWifi.AllCleaningMotors_Off()
-        }
-    }
-    @IBAction func Connect(sender: AnyObject) {
-        
-        rooWifi.Start()
-        rooWifi.SafeMode()
-        
- //let start:Song =
-           /* [(frequency: 53, duration:NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE)]*/
- //       [(frequency: 53, duration: 16),
-  //       (frequency: 57, duration: 16),
-   //      (frequency: 59, duration: 16
-     //       )]
-        
-       // rooWifi.StoreSong(0, notes: start)
-       // rooWifi.PlaySong(0)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let scene = ControlScene(size: view.bounds.size, rooWifi: &self.rooWifi)
-        let scene = ControlScene(size: view.bounds.size, rooWifi: &rooWifi)
+        let scene = ControlScene(size: ControlView.bounds.size, rooWifi: &rooWifi)
         let skView = self.ControlView as! SKView
         skView.multipleTouchEnabled = true
-        skView.showsFPS = true
-        skView.showsNodeCount = true
         skView.ignoresSiblingOrder = true
-        scene.backgroundColor = UIColor(white: 255, alpha: 0.0)
-        scene.scaleMode = .AspectFill
         skView.presentScene(scene)
     }
 
