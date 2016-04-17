@@ -52,9 +52,6 @@ class ControlScene: SKScene {
     var compassSize = CGSize?()
     var arrowSize = CGSize?()
     
-    var velocity = 0
-    var radius = 0
-
     var auto = Automation.None
 
     // TODO 4-16: Get all icons on screen and functioning, change joysticks to sliders
@@ -109,6 +106,7 @@ class ControlScene: SKScene {
         arrow.anchorPoint = CGPointMake(0.5, 0.5)
         arrow.position = self.position
         arrow.size = arrowSize!
+        arrow.zRotation = CGFloat(M_PI_4)
         
         self.addChild(leftBase)
         leftBase.position = CGPointMake(-(self.size.width/sliderPosition), 0.0)
@@ -161,7 +159,6 @@ class ControlScene: SKScene {
                 } else {
                     leftSlider.position = CGPointMake(leftBase.position.x, -(leftBase.size.height)/2)
                 }
-                self.Drive()
             } else if (touchTracker[touch] == rightSlider) {
                 if (abs(location.y) < rightBase.size.height/2) {
                     rightSlider.position = CGPointMake(rightBase.position.x, location.y)
@@ -170,8 +167,8 @@ class ControlScene: SKScene {
                 } else {
                     rightSlider.position = CGPointMake(rightBase.position.x, -(rightBase.size.height)/2)
                 }
-                self.Drive()
             }
+            self.Drive()
         }
     }
     
@@ -198,13 +195,21 @@ class ControlScene: SKScene {
             }
         touchTracker.removeValueForKey(touch as UITouch)
         }
+        if (touchTracker.count == 0) {
+            arrow.zRotation = CGFloat(M_PI_4)
+        }
         self.StopDriving()
+    }
+    
+    func Rotate(sprite: SKSpriteNode, byAngle angle: CGFloat){
+        let rotate = SKAction.rotateByAngle(angle, duration: 0.1)
+        sprite.runAction(rotate, withKey: "rotate")
     }
     
     func Distance(p1: CGPoint, p2: CGPoint) -> CGFloat {
         let xDist:CGFloat = p2.x - p1.x
         let yDist:CGFloat = p2.y - p1.y
-        return sqrt((xDist * xDist) + (yDist * yDist));
+        return sqrt((xDist * xDist) + (yDist * yDist))
     }
     
     func Clean() {
@@ -266,16 +271,19 @@ class ControlScene: SKScene {
         }
     }
     
-    
     func Drive() {
         // Control the speed of the roowifi's wheels based on slider input.
         let rightDirection:CGFloat = rightSlider.position.y > rightBase.position.y ? 1.0 : -1.0
-        let rightSpeed = Int(Distance(rightSlider.position, p2: rightBase.position) / rightSlider.size.height / 2 * roombaMaxSpeed * rightDirection)
+        let rightSpeed:Int = Int(Distance(rightSlider.position, p2: rightBase.position) / rightSlider.size.height / 2 * roombaMaxSpeed * rightDirection)
         
         let leftDirection:CGFloat = leftSlider.position.y > leftBase.position.y ? 1.0 : -1.0
         let leftSpeed:Int = Int(Distance(leftSlider.position, p2: leftBase.position) / leftSlider.size.height  / 2 * roombaMaxSpeed * leftDirection)
 
         self.rooWifi!.Drive(rightSpeed, left: leftSpeed)
+        
+        let backwards = (CGFloat(rightSpeed) + CGFloat(leftSpeed)) < 0
+        let angle = (CGFloat(rightSpeed) - CGFloat(leftSpeed)) / roombaMaxSpeed
+        arrow.zRotation = CGFloat(M_PI_4) + (angle * CGFloat(M_2_PI)) - (backwards ? CGFloat(M_PI) : 0)
         }
     
     func StopDriving() {
