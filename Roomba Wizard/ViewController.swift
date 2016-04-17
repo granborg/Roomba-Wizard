@@ -8,7 +8,6 @@
 
 import UIKit
 import SpriteKit
-var rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
 
 class ViewController: UIViewController {
     
@@ -17,10 +16,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
         let scene = ControlScene(size: ControlView.bounds.size, rooWifi: &rooWifi)
         let skView = self.ControlView as! SKView
         skView.multipleTouchEnabled = true
-        skView.ignoresSiblingOrder = true
         skView.presentScene(scene)
     }
 

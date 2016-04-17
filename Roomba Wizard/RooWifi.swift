@@ -133,28 +133,30 @@ class RooWifi: NSObject {
         }
     }
     
-    func Start() {
+    func Start() -> Bool {
         client.close()
         let (success,errmsg) = client.connect(timeout: 2)
         if success {
             debug("Established connection with Roomba")
             self.ExecuteCommand(COMMAND_START)
+            return true
         }
         else {
             debug("Connect Error: \(errmsg)")
+            return false
         }
     }
     
-    func FullMode() {
-        self.ExecuteCommand(COMMAND_FULL)
+    func FullMode() -> Bool {
+        return self.ExecuteCommand(COMMAND_FULL)
     }
     
-    func SafeMode() {
-        self.ExecuteCommand(COMMAND_SAFE)
+    func SafeMode() -> Bool {
+        return self.ExecuteCommand(COMMAND_SAFE)
     }
 
-    func Drive(velocity: Int, radius: Int) {
-        self.ExecuteCommand(
+    func Drive(velocity: Int, radius: Int) -> Bool {
+        return self.ExecuteCommand(
             COMMAND_DRIVE,
             (velocity >> 8) & 0xFF,
             velocity & 0xFF,
@@ -162,8 +164,8 @@ class RooWifi: NSObject {
             radius & 0xFF)
     }
     
-    func Drive(right: Int, left: Int) {
-        self.ExecuteCommand(
+    func Drive(right: Int, left: Int) -> Bool {
+        return self.ExecuteCommand(
             COMMAND_WHEELS,
             (right >> 8) & 0xFF,
             right & 0xFF,
@@ -171,72 +173,76 @@ class RooWifi: NSObject {
             left & 0xFF)
     }
     
-    func Clean() {
-        self.ExecuteCommand(COMMAND_CLEAN)
+    func Clean() -> Bool {
+        return self.ExecuteCommand(COMMAND_CLEAN)
     }
     
-    func Spot() {
-        self.ExecuteCommand(COMMAND_SPOT)
+    func Spot() -> Bool {
+        return self.ExecuteCommand(COMMAND_SPOT)
     }
     
-    func Dock() {
-        self.ExecuteCommand(COMMAND_DOCK)
+    func Dock() -> Bool {
+        return self.ExecuteCommand(COMMAND_DOCK)
     }
 
     
-    func StoreSong(songNumber: Int, notes: Song) {
+    func StoreSong(songNumber: Int, notes: Song) -> Bool {
         self.ExecuteCommand(COMMAND_SONG, songNumber, notes.count)
-        
+        var sent = true
         for note in notes {
-            self.ExecuteCommand(note.frequency, note.duration)
+            if !self.ExecuteCommand(note.frequency, note.duration) {
+                sent = false
+            }
         }
         usleep(1000) // Allow time for storing song.
+        return sent
     }
     
-    func PlaySong(songNumber:Int) {
-        self.ExecuteCommand(COMMAND_PLAY, songNumber)
+    func PlaySong(songNumber:Int) -> Bool {
+        return self.ExecuteCommand(COMMAND_PLAY, songNumber)
     }
     
-    func Vacuum_On() {
+    func Vacuum_On() -> Bool {
         self.motors |= VACUUM_ON;
-        self.UpdateMotors();
+        return self.UpdateMotors();
     }
     
-    func Vacuum_Off() {
+    func Vacuum_Off() -> Bool{
         self.motors &= VACUUM_OFF;
-        self.UpdateMotors();
+        return self.UpdateMotors();
     }
     
-    func SideBrush_On() {
+    func SideBrush_On() -> Bool{
         self.motors |= SIDE_BRUSH_ON;
-        self.UpdateMotors();
+        return self.UpdateMotors();
     }
 
-    func SideBrush_Off() {
+    func SideBrush_Off() -> Bool {
         self.motors &= SIDE_BRUSH_OFF;
-        self.UpdateMotors();
+        return self.UpdateMotors();
     }
     
-    func AllCleaningMotors_On() {
+    func AllCleaningMotors_On() -> Bool {
         self.motors |= ALL_CLEANING_MOTORS_ON;
-        self.UpdateMotors();
+        return self.UpdateMotors();
     }
     
-    func AllCleaningMotors_Off() {
+    func AllCleaningMotors_Off() -> Bool {
         self.motors &= ALL_CLEANING_MOTORS_OFF;
-        self.UpdateMotors();
+        return self.UpdateMotors();
     }
     
-    func UpdateMotors() {
-        self.ExecuteCommand(COMMAND_MOTORS, self.motors)
+    func UpdateMotors() -> Bool {
+        return self.ExecuteCommand(COMMAND_MOTORS, self.motors)
     }
     
-    private func ExecuteCommand(commands: Int...) {
-        self.ExecuteCommand(commands)
+    private func ExecuteCommand(commands: Int...) -> Bool {
+        return self.ExecuteCommand(commands)
     }
     
-    private func ExecuteCommand(commands: [Int]) {
+    private func ExecuteCommand(commands: [Int]) ->Bool {
         
+        var sent = true
         for command in commands {
             // We only send the first 8 bytes of each command and parameter.
             var commandToSend = command & 0xFF
@@ -247,7 +253,9 @@ class RooWifi: NSObject {
             }
             else {
                 debug("Send Error: \(errmsg)")
+                sent = false
             }
         }
+        return sent
     }
 }

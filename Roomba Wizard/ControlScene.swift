@@ -17,7 +17,15 @@ class ControlScene: SKScene {
         case Dock
     }
 
+    struct Colors {
+        let Off = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0)
+        let On = UIColor(red: 0, green: 255, blue: 0, alpha: 1.0)
+    }
+    let ControlColors = Colors()
+    
+    let arrow = SKSpriteNode(imageNamed: "Arrow")
     let clean = SKSpriteNode(imageNamed: "Clean")
+    let compass = SKSpriteNode(imageNamed: "Compass")
     let connect = SKSpriteNode(imageNamed: "Connect")
     let dock = SKSpriteNode(imageNamed: "Dock")
     let motor = SKSpriteNode(imageNamed: "Motor")
@@ -27,13 +35,22 @@ class ControlScene: SKScene {
     let rightSlider = SKSpriteNode(imageNamed: "Slider")
     let spot = SKSpriteNode(imageNamed: "Spot")
     
+    let roombaMaxSpeed:CGFloat = 500.0
     let goldenRatio:CGFloat = 1.618
-    let sliderScale:CGFloat = 5.0
-    let iconScale:CGFloat = 5.0
+    let sliderScale:CGFloat = 12.0 // Smaller for bigger sliders
+    let iconScale:CGFloat = 6.0 // Size is view width / iconScale
+    let sliderPosition:CGFloat = 1.4 // Position is center += viewSize / sliderPosition.
+    let iconPosition:CGFloat = 2.5 // Same formula as sliderPosition. Higher is closer to center.
+    let iconSpacing:CGFloat = 4 // View height / iconSpacing = spacing. Higher is closer to each other.
+    let arrowScale:CGFloat = 3.0
+    let compassScale:CGFloat = 2.4 // Size is view width / compassScale
+    let baseMargins:CGFloat = 10.0 // Distance from slider to edges of screen
     
     var iconSize = CGSize?() // Related to iconScale
     var baseSize = CGSize?() // Related to sliderScale
     var sliderSize = CGSize?() // Related to sliderScale
+    var compassSize = CGSize?()
+    var arrowSize = CGSize?()
     
     var velocity = 0
     var radius = 0
@@ -44,8 +61,6 @@ class ControlScene: SKScene {
     // TODO 4-17: Formatting of layout.
     
     var rooWifi = RooWifi?()
-    var rightAngle:CGFloat = 0
-    var leftAngle:CGFloat = 0
     
     var touchTracker : [UITouch : SKNode] = [:]
     
@@ -53,9 +68,11 @@ class ControlScene: SKScene {
         self.init(size: size)
         self.rooWifi = rooWifi
         self.backgroundColor.colorWithAlphaComponent(0.0)
-        iconSize = CGSize(width: self.size.height/iconScale, height: self.size.width/iconScale)
-        baseSize = CGSize(width: self.size.height/sliderScale, height: self.size.width/sliderScale)
-        sliderSize = CGSize(width: self.size.height/sliderScale * goldenRatio, height: self.size.width/sliderScale)
+        iconSize = CGSize(width: self.size.width / iconScale, height: self.size.height/iconScale)
+        baseSize = CGSize(width: self.size.width / sliderScale, height: self.size.height - (baseMargins * 2))
+        sliderSize = CGSize(width: self.size.height / sliderScale * goldenRatio * goldenRatio, height: self.size.height / sliderScale * goldenRatio)
+        compassSize = CGSize(width: self.size.width / compassScale, height: self.size.width / compassScale)
+        arrowSize = CGSize(width: compassSize!.width - (compassSize!.width / arrowScale), height: compassSize!.height - (compassSize!.height / arrowScale))
     }
     
     override func didMoveToView(view: UIView) {
@@ -65,15 +82,36 @@ class ControlScene: SKScene {
         self.anchorPoint = CGPointMake(0.5, 0.5)
         
         self.addChild(clean)
-        clean.position = CGPointMake(self.size.width/4, self.size.height/4)
+        clean.position = CGPointMake(self.size.width/iconPosition, self.size.height/iconSpacing)
         clean.size = iconSize!
         
+        self.addChild(spot)
+        spot.position = CGPointMake(self.size.width/iconPosition, 0.0)
+        spot.size = iconSize!
+        
+        self.addChild(dock)
+        dock.position = CGPointMake(self.size.width/iconPosition, -(self.size.height/iconSpacing))
+        dock.size = iconSize!
+        
         self.addChild(connect)
-        connect.position = CGPointMake(self.size.width/4, 0.0)
+        connect.position = CGPointMake(-(self.size.width/iconPosition), self.size.height/iconSpacing)
         connect.size = iconSize!
         
+        self.addChild(motor)
+        motor.position = CGPointMake(-(self.size.width/iconPosition), 0.0)
+        motor.size = iconSize!
+        
+        self.addChild(compass)
+        compass.position = self.position
+        compass.size = compassSize!
+        
+        self.addChild(arrow)
+        arrow.anchorPoint = CGPointMake(0.5, 0.5)
+        arrow.position = self.position
+        arrow.size = arrowSize!
+        
         self.addChild(leftBase)
-        leftBase.position = CGPointMake(-(self.size.width/2), 0.0)
+        leftBase.position = CGPointMake(-(self.size.width/sliderPosition), 0.0)
         leftBase.size = baseSize!
 
         self.addChild(leftSlider)
@@ -81,7 +119,7 @@ class ControlScene: SKScene {
         leftSlider.size = sliderSize!
         
         self.addChild(rightBase)
-        rightBase.position = CGPointMake(self.size.width/2, 0.0)
+        rightBase.position = CGPointMake(self.size.width/sliderPosition, 0.0)
         rightBase.size = baseSize!
         
         self.addChild(rightSlider)
@@ -94,11 +132,20 @@ class ControlScene: SKScene {
     
         for touch in touches {
             let location = touch.locationInNode(self)
-            if (CGRectContainsPoint(leftBase.frame, location)) {
+            if (CGRectContainsPoint(leftBase.frame, location) || CGRectContainsPoint(leftSlider.frame, location)) {
                 touchTracker[touch] = leftSlider
-            }
-            else if (CGRectContainsPoint(rightBase.frame, location)) {
+            } else if (CGRectContainsPoint(rightBase.frame, location) || CGRectContainsPoint(rightSlider.frame, location)) {
                 touchTracker[touch] = rightSlider
+            } else if (CGRectContainsPoint(clean.frame, location)) {
+                touchTracker[touch] = clean
+            } else if (CGRectContainsPoint(spot.frame, location)) {
+                touchTracker[touch] = spot
+            } else if (CGRectContainsPoint(dock.frame, location)) {
+                touchTracker[touch] = dock
+            } else if (CGRectContainsPoint(connect.frame, location)) {
+                touchTracker[touch] = connect
+            } else if (CGRectContainsPoint(motor.frame, location)) {
+                touchTracker[touch] = motor
             }
         }
     }
@@ -107,25 +154,24 @@ class ControlScene: SKScene {
         for touch in touches {
             let location = touch.locationInNode(self)
             if (touchTracker[touch] == leftSlider) {
-                let v = CGVector(dx: location.x - leftBase.position.x, dy: location.y - leftBase.position.y)
-                self.leftAngle = atan2(v.dy, v.dx)
-            
-                let length:CGFloat = leftBase.frame.size.height / 2
-                
-                let yDist:CGFloat = cos(self.leftAngle - 1.57079633) * length
-                leftSlider.position = CGPointMake(leftBase.position.x, leftBase.position.y + yDist)
-
+                if (abs(location.y) < leftBase.size.height/2) {
+                    leftSlider.position = CGPointMake(leftBase.position.x, location.y)
+                } else if location.y > 0 {
+                    leftSlider.position = CGPointMake(leftBase.position.x, leftBase.size.height/2)
+                } else {
+                    leftSlider.position = CGPointMake(leftBase.position.x, -(leftBase.size.height)/2)
+                }
+                self.Drive()
+            } else if (touchTracker[touch] == rightSlider) {
+                if (abs(location.y) < rightBase.size.height/2) {
+                    rightSlider.position = CGPointMake(rightBase.position.x, location.y)
+                } else if location.y > 0 {
+                    rightSlider.position = CGPointMake(rightBase.position.x, rightBase.size.height/2)
+                } else {
+                    rightSlider.position = CGPointMake(rightBase.position.x, -(rightBase.size.height)/2)
+                }
+                self.Drive()
             }
-            else if (touchTracker[touch] == rightSlider) {
-                let v = CGVector(dx: location.x - rightBase.position.x, dy: location.y - rightBase.position.y)
-                self.rightAngle = atan2(v.dy, v.dx)
-                
-                let length:CGFloat = rightBase.frame.size.height / 2
-                
-                let yDist:CGFloat = cos(self.rightAngle - 1.57079633) * length
-                rightSlider.position = CGPointMake(rightBase.position.x, rightBase.position.y + yDist)
-            }
-            self.Drive()
         }
     }
     
@@ -135,11 +181,20 @@ class ControlScene: SKScene {
                 let move:SKAction = SKAction.moveTo(leftBase.position, duration: 0.2)
                 move.timingMode = .EaseOut
                 leftSlider.runAction(move)
-            }
-            else if (touchTracker[touch] == rightSlider) {
+            } else if (touchTracker[touch] == rightSlider) {
                 let move:SKAction = SKAction.moveTo(rightBase.position, duration: 0.2)
                 move.timingMode = .EaseOut
                 rightSlider.runAction(move)
+            } else if (touchTracker[touch] == clean) {
+                self.Clean()
+            } else if (touchTracker[touch] == spot) {
+                self.Spot()
+            } else if (touchTracker[touch] == dock) {
+                self.Dock()
+            } else if (touchTracker[touch] == connect) {
+                self.Connect()
+            } else if (touchTracker[touch] == motor) {
+                self.Motors()
             }
         touchTracker.removeValueForKey(touch as UITouch)
         }
@@ -154,12 +209,30 @@ class ControlScene: SKScene {
     
     func Clean() {
         if (auto == .Clean) {
-            rooWifi!.SafeMode()
+            if rooWifi!.SafeMode() {
+                clean.color = ControlColors.Off
+            }
             auto = .None
         }
         else {
-            rooWifi!.Clean()
+            if rooWifi!.Clean() {
+                clean.color = ControlColors.On
+            }
             auto = .Clean
+        }
+    }
+    
+    func Connect() {
+        rooWifi!.Start()
+        rooWifi!.SafeMode()
+        let start:Song =
+            [(frequency: 53, duration:NOTE_DURATION_SIXTYFOURTH_NOTE),
+             (frequency: 57, duration:NOTE_DURATION_SIXTYFOURTH_NOTE),
+             (frequency: 59, duration:NOTE_DURATION_SIXTYFOURTH_NOTE)]
+        
+        rooWifi!.StoreSong(0, notes: start)
+        if (rooWifi!.PlaySong(0)) {
+            connect.color = ControlColors.On
         }
     }
     
@@ -193,25 +266,14 @@ class ControlScene: SKScene {
         }
     }
     
-    func Connect() {
-        rooWifi!.Start()
-        rooWifi!.SafeMode()
-        let start:Song =
-            [(frequency: 53, duration:NOTE_DURATION_SIXTYFOURTH_NOTE),
-             (frequency: 57, duration:NOTE_DURATION_SIXTYFOURTH_NOTE),
-             (frequency: 59, duration:NOTE_DURATION_SIXTYFOURTH_NOTE)]
-        
-        rooWifi!.StoreSong(0, notes: start)
-        rooWifi!.PlaySong(0)
-    }
     
     func Drive() {
-        // Control the speed of the roowifi's wheels based on Analog stick input.
-        let rightDirection:CGFloat = (((self.rightAngle * CGFloat(180 / M_PI)) + 2.5) % 4 / 4) > 0 ? 1 : -1
-        let rightSpeed = Int(Distance(rightSlider.position, p2: rightBase.position) / 100 * 500 * rightDirection)
+        // Control the speed of the roowifi's wheels based on slider input.
+        let rightDirection:CGFloat = rightSlider.position.y > rightBase.position.y ? 1.0 : -1.0
+        let rightSpeed = Int(Distance(rightSlider.position, p2: rightBase.position) / rightSlider.size.height / 2 * roombaMaxSpeed * rightDirection)
         
-        let leftDirection:CGFloat = (((self.leftAngle * CGFloat(180 / M_PI)) + 2.5) % 4 / 4) > 0 ? 1 : -1
-        let leftSpeed:Int = Int(Distance(leftSlider.position, p2: leftBase.position) / 100 * 500 * leftDirection)
+        let leftDirection:CGFloat = leftSlider.position.y > leftBase.position.y ? 1.0 : -1.0
+        let leftSpeed:Int = Int(Distance(leftSlider.position, p2: leftBase.position) / leftSlider.size.height  / 2 * roombaMaxSpeed * leftDirection)
 
         self.rooWifi!.Drive(rightSpeed, left: leftSpeed)
         }
