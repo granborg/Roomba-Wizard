@@ -37,14 +37,14 @@ class ControlScene: SKScene {
     
     let roombaMaxSpeed:CGFloat = 500.0
     let goldenRatio:CGFloat = 1.618
-    let sliderScale:CGFloat = 12.0 // Smaller for bigger sliders
-    let iconScale:CGFloat = 6.0 // Size is view width / iconScale
-    let sliderPosition:CGFloat = 1.4 // Position is center += viewSize / sliderPosition.
-    let iconPosition:CGFloat = 2.5 // Same formula as sliderPosition. Higher is closer to center.
-    let iconSpacing:CGFloat = 4 // View height / iconSpacing = spacing. Higher is closer to each other.
-    let arrowScale:CGFloat = 3.0
-    let compassScale:CGFloat = 2.4 // Size is view width / compassScale
-    let baseMargins:CGFloat = 10.0 // Distance from slider to edges of screen
+    let baseScaleY:CGFloat = 0.90 // Proportion of screen height that the base of the sliders will take up.
+    let baseScaleX:CGFloat = 0.05 // Width:Height
+    let iconScale:CGFloat = 0.10
+    let sliderPosition:CGFloat = 0.80
+    let iconPosition:CGFloat = 0.50
+    let iconSpacing:CGFloat = 1.0 // Proportion of icon spacing to icon size.
+    let arrowScale:CGFloat = 0.75 // Proportion of the compass' size.
+    let compassScale:CGFloat = 0.25
     
     var iconSize = CGSize?() // Related to iconScale
     var baseSize = CGSize?() // Related to sliderScale
@@ -64,63 +64,66 @@ class ControlScene: SKScene {
     convenience init(size: CGSize, inout rooWifi: RooWifi) {
         self.init(size: size)
         self.rooWifi = rooWifi
-        self.backgroundColor.colorWithAlphaComponent(0.0)
-        iconSize = CGSize(width: self.size.width / iconScale, height: self.size.height/iconScale)
-        baseSize = CGSize(width: self.size.width / sliderScale, height: self.size.height - (baseMargins * 2))
-        sliderSize = CGSize(width: self.size.height / sliderScale * goldenRatio * goldenRatio, height: self.size.height / sliderScale * goldenRatio)
-        compassSize = CGSize(width: self.size.width / compassScale, height: self.size.width / compassScale)
-        arrowSize = CGSize(width: compassSize!.width - (compassSize!.width / arrowScale), height: compassSize!.height - (compassSize!.height / arrowScale))
     }
     
     override func didMoveToView(view: UIView) {
         /* Setup your scene here */
         self.scaleMode = .ResizeFill
-        self.backgroundColor = UIColor(red: 120, green: 120, blue: 120, alpha: 1.0)
+        self.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
         self.anchorPoint = CGPointMake(0.5, 0.5)
-        
+        self.AdjustOrientation()
         self.addChild(clean)
-        clean.position = CGPointMake(self.size.width/iconPosition, self.size.height/iconSpacing)
-        clean.size = iconSize!
+
         
         self.addChild(spot)
-        spot.position = CGPointMake(self.size.width/iconPosition, 0.0)
+        self.addChild(dock)
+        self.addChild(connect)
+        self.addChild(motor)
+        self.addChild(compass)
+        self.addChild(arrow)
+        self.addChild(leftBase)
+        self.addChild(leftSlider)
+        self.addChild(rightBase)
+        self.addChild(rightSlider)
+    }
+    
+    func AdjustOrientation() {
+        iconSize = CGSize(width: self.size.width * iconScale, height: self.size.width * iconScale)
+        baseSize = CGSize(width: self.size.width * baseScaleX, height: self.size.height * baseScaleY)
+        sliderSize = CGSize(width: baseSize!.width * goldenRatio, height: baseSize!.width)
+        compassSize = CGSize(width: self.size.width * compassScale, height: self.size.width * compassScale)
+        arrowSize = CGSize(width: compassSize!.width * arrowScale, height: compassSize!.width * arrowScale)
+        
+        clean.position = CGPointMake(self.size.width / 2 * iconPosition, self.size.width * iconScale * iconSpacing)
+        clean.size = iconSize!
+        
+        spot.position = CGPointMake(self.size.width / 2 * iconPosition, 0.0)
         spot.size = iconSize!
         
-        self.addChild(dock)
-        dock.position = CGPointMake(self.size.width/iconPosition, -(self.size.height/iconSpacing))
+        dock.position = CGPointMake(self.size.width / 2 * iconPosition, -self.size.width * iconScale * iconSpacing)
         dock.size = iconSize!
         
-        self.addChild(connect)
-        connect.position = CGPointMake(-(self.size.width/iconPosition), self.size.height/iconSpacing)
+        connect.position = CGPointMake(-self.size.width / 2 * iconPosition, self.size.width * iconScale * iconSpacing)
         connect.size = iconSize!
         
-        self.addChild(motor)
-        motor.position = CGPointMake(-(self.size.width/iconPosition), 0.0)
+        motor.position = CGPointMake(-self.size.width / 2 * iconPosition, 0.0)
         motor.size = iconSize!
         
-        self.addChild(compass)
         compass.position = self.position
         compass.size = compassSize!
         
-        self.addChild(arrow)
         arrow.anchorPoint = CGPointMake(0.5, 0.5)
         arrow.position = self.position
         arrow.size = arrowSize!
         arrow.zRotation = CGFloat(M_PI_4)
         
-        self.addChild(leftBase)
-        leftBase.position = CGPointMake(-(self.size.width/sliderPosition), 0.0)
+        leftBase.position = CGPointMake(-self.size.width / 2 * sliderPosition, 0.0)
         leftBase.size = baseSize!
-
-        self.addChild(leftSlider)
         leftSlider.position = leftBase.position
         leftSlider.size = sliderSize!
         
-        self.addChild(rightBase)
-        rightBase.position = CGPointMake(self.size.width/sliderPosition, 0.0)
+        rightBase.position = CGPointMake(self.size.width / 2 * sliderPosition, 0.0)
         rightBase.size = baseSize!
-        
-        self.addChild(rightSlider)
         rightSlider.position = rightBase.position
         rightSlider.size = sliderSize!
     }

@@ -18,34 +18,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUL-sF-zua" userLabel="Control" customClass="SKView">
-                                <rect key="frame" x="176" y="188" width="248" height="224"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Yo-Jf-ct9" userLabel="Music">
-                                <rect key="frame" x="102" y="264" width="77" height="72"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Yo-Jf-ct9" userLabel="Music">
+                                <rect key="frame" x="530" y="20" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="77" id="jS2-7F-Nr9"/>
+                                    <constraint firstAttribute="width" constant="50" id="jS2-7F-Nr9"/>
                                 </constraints>
-                                <state key="normal" image="Note" backgroundImage="Note"/>
+                                <state key="normal" image="Note"/>
                                 <connections>
                                     <segue destination="bvX-wC-AeW" kind="show" identifier="segueTest" id="8VD-eh-l6K"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YUL-sF-zua" userLabel="Control" customClass="SKView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6Yo-Jf-ct9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="8mD-NT-DAZ"/>
-                            <constraint firstItem="6Yo-Jf-ct9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="244" id="XVr-ps-KsY"/>
-                            <constraint firstItem="YUL-sF-zua" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bj5-Ax-KfW"/>
-                            <constraint firstItem="6Yo-Jf-ct9" firstAttribute="centerY" secondItem="YUL-sF-zua" secondAttribute="centerY" id="irm-2D-Jqq"/>
-                            <constraint firstItem="6Yo-Jf-ct9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="82" id="kI0-xP-uoC"/>
-                            <constraint firstItem="YUL-sF-zua" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="168" id="nJG-YI-iow"/>
-                            <constraint firstItem="YUL-sF-zua" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="176" id="qIo-Kh-bSK"/>
+                            <constraint firstItem="YUL-sF-zua" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="S8W-rx-9X6"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YUL-sF-zua" secondAttribute="bottom" id="Sh8-gc-tWR"/>
+                            <constraint firstItem="YUL-sF-zua" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="Wda-Gr-pVc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6Yo-Jf-ct9" secondAttribute="trailing" constant="8" id="a3p-Ie-XT6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YUL-sF-zua" secondAttribute="trailing" id="nej-j6-xJp"/>
+                            <constraint firstItem="YUL-sF-zua" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ocI-3i-lvJ"/>
+                            <constraint firstItem="6Yo-Jf-ct9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="qyY-Tl-0Yc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YUL-sF-zua" secondAttribute="trailing" constant="-20" id="xL7-xo-HsX"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ControlView" destination="YUL-sF-zua" id="VTH-uA-Rb7"/>
+                        <outlet property="controlView" destination="YUL-sF-zua" id="Q9Y-rs-nIK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

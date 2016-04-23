@@ -10,23 +10,40 @@ import UIKit
 import SpriteKit
 
 class ViewController: UIViewController {
-    
 
-    @IBOutlet weak var ControlView: UIView!
+    
+    @IBOutlet weak var controlView: SKView!
+    var scene:ControlScene?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         var rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
-        let scene = ControlScene(size: ControlView.bounds.size, rooWifi: &rooWifi)
-        let skView = self.ControlView as! SKView
-        skView.multipleTouchEnabled = true
-        skView.presentScene(scene)
+        scene = ControlScene(size: controlView.bounds.size, rooWifi: &rooWifi)
+        controlView.multipleTouchEnabled = true
+        controlView.presentScene(scene)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        var text=""
+        scene!.AdjustOrientation()
+        switch UIDevice.currentDevice().orientation{
+        case .Portrait:
+            text="Portrait"
+        case .PortraitUpsideDown:
+            text="PortraitUpsideDown"
+        case .LandscapeLeft:
+            text="LandscapeLeft"
+        case .LandscapeRight:
+            text="LandscapeRight"
+        default:
+            text="Another"
+        }
+        debug("You have moved: \(text)")
+    }
 }
 
