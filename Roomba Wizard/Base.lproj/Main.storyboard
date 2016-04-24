@@ -28,7 +28,7 @@
                                     <segue destination="bvX-wC-AeW" kind="show" identifier="segueTest" id="8VD-eh-l6K"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YUL-sF-zua" userLabel="Control" customClass="SKView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUL-sF-zua" userLabel="Control" customClass="SKView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -39,8 +39,6 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YUL-sF-zua" secondAttribute="bottom" id="Sh8-gc-tWR"/>
                             <constraint firstItem="YUL-sF-zua" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="Wda-Gr-pVc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6Yo-Jf-ct9" secondAttribute="trailing" constant="8" id="a3p-Ie-XT6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="YUL-sF-zua" secondAttribute="trailing" id="nej-j6-xJp"/>
-                            <constraint firstItem="YUL-sF-zua" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ocI-3i-lvJ"/>
                             <constraint firstItem="6Yo-Jf-ct9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="qyY-Tl-0Yc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YUL-sF-zua" secondAttribute="trailing" constant="-20" id="xL7-xo-HsX"/>
                         </constraints>

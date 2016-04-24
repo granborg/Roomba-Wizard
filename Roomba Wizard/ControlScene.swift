@@ -34,6 +34,8 @@ class ControlScene: SKScene {
     let rightBase = SKSpriteNode(imageNamed: "Base")
     let rightSlider = SKSpriteNode(imageNamed: "Slider")
     let spot = SKSpriteNode(imageNamed: "Spot")
+    let batteryLabel = SKLabelNode(text: "Charge: %")
+    let temperatureLabel = SKLabelNode(text: "Temp: ℃")
     
     let roombaMaxSpeed:CGFloat = 500.0
     let goldenRatio:CGFloat = 1.618
@@ -43,7 +45,7 @@ class ControlScene: SKScene {
     let sliderPosition:CGFloat = 0.80
     let iconPosition:CGFloat = 0.50
     let iconSpacing:CGFloat = 1.0 // Proportion of icon spacing to icon size.
-    let arrowScale:CGFloat = 0.75 // Proportion of the compass' size.
+    let arrowScale:CGFloat = 0.60 // Proportion of the compass' size.
     let compassScale:CGFloat = 0.25
     
     var iconSize = CGSize?() // Related to iconScale
@@ -73,7 +75,6 @@ class ControlScene: SKScene {
         self.anchorPoint = CGPointMake(0.5, 0.5)
         self.AdjustOrientation()
         self.addChild(clean)
-
         
         self.addChild(spot)
         self.addChild(dock)
@@ -85,6 +86,15 @@ class ControlScene: SKScene {
         self.addChild(leftSlider)
         self.addChild(rightBase)
         self.addChild(rightSlider)
+        self.addChild(batteryLabel)
+        self.addChild(temperatureLabel)
+        
+        backgroundThread(0.0, background: {
+            while (true) {
+                // Constantly refresh sprites
+                self.UpdateLabels()
+            }
+        })
     }
     
     func AdjustOrientation() {
@@ -126,6 +136,17 @@ class ControlScene: SKScene {
         rightBase.size = baseSize!
         rightSlider.position = rightBase.position
         rightSlider.size = sliderSize!
+        
+        batteryLabel.position = CGPointMake(-self.size.width / 2 * iconPosition, -self.size.width * iconScale * iconSpacing * 2)
+        batteryLabel.fontColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        
+        temperatureLabel.position = CGPointMake(self.size.width / 2 * iconPosition, -self.size.width * iconScale * iconSpacing * 2)
+        temperatureLabel.fontColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+    }
+    
+    func UpdateLabels() {
+        batteryLabel.text = "Charge:" + String(format:"%.2f", rooWifi!.batteryLevel) + "%"
+        temperatureLabel.text = "Temp: " + String(rooWifi!.sensors.Temperature) + " ℃"
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

@@ -132,6 +132,7 @@ class RooWifi: NSObject {
     var client:TCPClient = TCPClient(addr: "", port: 80)
     var motors:Int = 0
     var batteryLevel:Double = 0.0
+    var requestData:Bool = false
     
     class RoombaSensors {
         var BumpsWheeldrops:UInt8 = 0
@@ -164,6 +165,7 @@ class RooWifi: NSObject {
         }
     
     deinit {
+        self.requestData = false
         let (success,errmsg) = client.close()
         if success {
             debug("Closed connection with Roomba")
@@ -174,23 +176,22 @@ class RooWifi: NSObject {
     }
     
     func Start() -> Bool {
-        client.close()
         let (success,errmsg) = client.connect(timeout: 2)
         if success {
             debug("Established connection with Roomba")
-            self.ExecuteCommand(COMMAND_START)
-            backgroundThread(0.0, background: {
-                while (true) {
-                    // Constantly refresh sensors
-                    self.RequestAllSensors()
-                }
-            })
+            if (self.ExecuteCommand(COMMAND_START)) {
+                self.requestData = true
+                backgroundThread(0.0, background: {
+                    while (self.requestData) {
+                        // Constantly refresh sensors
+                        self.RequestAllSensors()
+                    }
+                })
+            }
             return true
         }
-        else {
-            debug("Connect Error: \(errmsg)")
-            return false
-        }
+        debug("Connect Error: \(errmsg)")
+        return false
     }
     
     func FullMode() -> Bool {
@@ -258,12 +259,17 @@ class RooWifi: NSObject {
     
     func RequestAllSensors() -> Bool {
         if self.ExecuteCommand(COMMAND_SENSORS, 0) {
-            sleep(3)
-            if let newValues:[UInt8] = client.read(SCI_NUMBER_OF_SENSORS * sizeof(Int8), timeout: 5) {
-                self.UpdateSensors(newValues)
-                print("Charge: \(self.batteryLevel)")
-                return true
+            self.requestData = true
+            if let newValues:[UInt8] = client.read(SCI_NUMBER_OF_SENSORS * sizeof(Int8), timeout: 2) {
+                if newValues.count == SCI_NUMBER_OF_SENSORS {
+                    self.UpdateSensors(newValues)
+                    print("Charge: \(self.batteryLevel)")
+                    return true
+                }
+                debug("error: Couldn't gather all the data for sensors.")
             }
+        } else {
+            self.requestData = false
         }
         return false
     }
