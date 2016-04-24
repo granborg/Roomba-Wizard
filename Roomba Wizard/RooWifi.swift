@@ -15,40 +15,40 @@ import Foundation
 let SCI_NUMBER_OF_SENSORS = 26
 
 //Byte postion for each sensor in response frame
-let BUMPWHEELDROPS_SENSOR       = 0
-let WALL_SENSOR                 = 1
-let CLIFFT_LEFT_SENSOR          = 2
-let CLIFFT_FRONT_LEFT_SENSOR    = 3
-let CLIFFT_FRONT_RIGHT_SENSOR   = 4
-let CLIFFT_RIGHT_SENSOR         = 5
-let VIRTUAL_WALL_SENSOR         = 6
-let MOTOR_OVERCURRENTS_SENSOR   = 7
-let DIRT_DETECTOR_LEFT_SENSOR   = 8
-let DIRT_DETECTOR_RIGHT_SENSOR  = 9
-let REMOTE_OPCODE_SENSOR        = 10
-let BUTTONS_SENSOR              = 11
-let DISTANCE_MSB_SENSOR         = 12
-let DISTANCE_LSB_SENSOR         = 13
-let ANGLE_MSB_SENSOR            = 14
-let ANGLE_LSB_SENSOR            = 15
-let StringGING_STATE_SENSOR     = 16
-let VOLTAGE_MSB_SENSOR          = 17
-let VOLTAGE_LSB_SENSOR          = 18
-let CURRENT_MSB_SENSOR          = 19
-let CURRENT_LSB_SENSOR          = 20
-let TEMPERATURE_SENSOR          = 21
-let StringGE_MSB_SENSOR         = 22
-let StringGE_LSB_SENSOR         = 23
-let CAPACITY_MSB_SENSOR         = 24
-let CAPACITY_LSB_SENSOR         = 25
+let BUMPWHEELDROPS_SENSOR         = 0
+let WALL_SENSOR                   = 1
+let CLIFFT_LEFT_SENSOR            = 2
+let CLIFFT_FRONT_LEFT_SENSOR      = 3
+let CLIFFT_FRONT_RIGHT_SENSOR     = 4
+let CLIFFT_RIGHT_SENSOR           = 5
+let VIRTUAL_WALL_SENSOR           = 6
+let MOTOR_OVERCURRENTS_SENSOR     = 7
+let DIRT_DETECTOR_LEFT_SENSOR     = 8
+let DIRT_DETECTOR_RIGHT_SENSOR    = 9
+let REMOTE_OPCODE_SENSOR          = 10
+let BUTTONS_SENSOR                = 11
+let DISTANCE_MSB_SENSOR           = 12
+let DISTANCE_LSB_SENSOR           = 13
+let ANGLE_MSB_SENSOR              = 14
+let ANGLE_LSB_SENSOR              = 15
+let CHARGING_STATE_SENSOR       = 16
+let VOLTAGE_MSB_SENSOR            = 17
+let VOLTAGE_LSB_SENSOR            = 18
+let CURRENT_MSB_SENSOR            = 19
+let CURRENT_LSB_SENSOR            = 20
+let TEMPERATURE_SENSOR            = 21
+let CHARGE_MSB_SENSOR             = 22
+let CHARGE_LSB_SENSOR             = 23
+let CAPACITY_MSB_SENSOR           = 24
+let CAPACITY_LSB_SENSOR           = 25
 
 //Battery Stringing States
-let StringGING_STATE_NO_StringGING          = 0
-let StringGING_STATE_StringGING_RECOVERY    = 1
-let StringGING_STATE_StringGING             = 2
-let StringGING_STATE_TRICKLE_CHAGING      = 3
-let StringGING_STATE_WAITING              = 4
-let StringGING_STATE_StringGING_ERROR       = 5
+let CHARGING_STATE_NO_CHARGING          = 0
+let CHARGING_STATE_CHARGING_RECOVERY    = 1
+let CHARGING_STATE_CHARGING             = 2
+let CHARGING_STATE_TRICKLE_CHARGING     = 3
+let CHARGING_STATE_WAITING              = 4
+let CHARGING_STATE_CHARGING_ERROR       = 5
 
 //Commands
 let COMMAND_START   = 128
@@ -105,6 +105,8 @@ let MAIN_BRUSH_OFF              = 0xFB
 let ALL_CLEANING_MOTORS_ON      = 0xFF
 let ALL_CLEANING_MOTORS_OFF     = 0x00
 
+
+
 typealias Song = [(frequency: Int, duration: Int)]
 
 func debug(s: String) -> Void {
@@ -114,10 +116,48 @@ func debug(s: String) -> Void {
     }
 }
 
+func backgroundThread(delay: Double = 0.0, background: (() -> Void)? = nil, completion: (() -> Void)? = nil) {
+    dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
+        if(background != nil){ background!(); }
+        
+        let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
+        dispatch_after(popTime, dispatch_get_main_queue()) {
+            if(completion != nil){ completion!(); }
+        }
+    }
+}
+
 class RooWifi: NSObject {
     
     var client:TCPClient = TCPClient(addr: "", port: 80)
     var motors:Int = 0
+    var batteryLevel:Double = 0.0
+    
+    class RoombaSensors {
+        var BumpsWheeldrops:UInt8 = 0
+        var Wall:UInt8 = 0
+        var CliffLeft:UInt8 = 0
+        var CliffFrontLeft:UInt8 = 0
+        var CliffFrontRight:UInt8 = 0
+        var CliffRight:UInt8 = 0
+        var VirtualWall:UInt8 = 0
+        var MotorOvercurrents:UInt8 = 0
+        var DirtDetectorLeft:UInt8 = 0
+        var DirtDetectorRight:UInt8 = 0
+        var RemoteOpcode:UInt8 = 0
+        var Buttons:UInt8 = 0
+        var Distance:UInt16 = 0
+        var Angle:UInt16 = 0
+        var ChargingState:UInt8 = 0
+        var Voltage:UInt16 = 0
+        var Current:UInt16 = 0
+        var Temperature:UInt8 = 0
+        var Charge:UInt16 = 0
+        var Capacity:UInt16 = 0
+        init() {}
+    }
+    var sensors:RoombaSensors = RoombaSensors()
+
 
     init(ip: String, port: Int) {
         client = TCPClient(addr: ip, port: port)
@@ -139,6 +179,12 @@ class RooWifi: NSObject {
         if success {
             debug("Established connection with Roomba")
             self.ExecuteCommand(COMMAND_START)
+            backgroundThread(0.0, background: {
+                while (true) {
+                    // Constantly refresh sensors
+                    self.RequestAllSensors()
+                }
+            })
             return true
         }
         else {
@@ -156,21 +202,29 @@ class RooWifi: NSObject {
     }
 
     func Drive(velocity: Int, radius: Int) -> Bool {
-        return self.ExecuteCommand(
-            COMMAND_DRIVE,
-            (velocity >> 8) & 0xFF,
-            velocity & 0xFF,
-            (radius >> 8) & 0xFF,
-            radius & 0xFF)
+        if (self.FullMode()) {
+            // Drive can only be executed in full mode.
+            return self.ExecuteCommand(
+                COMMAND_DRIVE,
+                (velocity >> 8) & 0xFF,
+                velocity & 0xFF,
+                (radius >> 8) & 0xFF,
+                radius & 0xFF)
+        }
+        return false
     }
     
     func Drive(right: Int, left: Int) -> Bool {
-        return self.ExecuteCommand(
-            COMMAND_WHEELS,
-            (right >> 8) & 0xFF,
-            right & 0xFF,
-            (left >> 8) & 0xFF,
-            left & 0xFF)
+        if (self.FullMode()) {
+            // Drive can only be executed in full mode.
+            return self.ExecuteCommand(
+                COMMAND_WHEELS,
+                (right >> 8) & 0xFF,
+                right & 0xFF,
+                (left >> 8) & 0xFF,
+                left & 0xFF)
+        }
+        return false
     }
     
     func Clean() -> Bool {
@@ -200,6 +254,53 @@ class RooWifi: NSObject {
     
     func PlaySong(songNumber:Int) -> Bool {
         return self.ExecuteCommand(COMMAND_PLAY, songNumber)
+    }
+    
+    func RequestAllSensors() -> Bool {
+        if self.ExecuteCommand(COMMAND_SENSORS, 0) {
+            sleep(3)
+            if let newValues:[UInt8] = client.read(SCI_NUMBER_OF_SENSORS * sizeof(Int8), timeout: 5) {
+                self.UpdateSensors(newValues)
+                print("Charge: \(self.batteryLevel)")
+                return true
+            }
+        }
+        return false
+    }
+    
+    func UpdateSensors(newValues: [UInt8]) {
+        //Update Sensor one by one
+        self.sensors.BumpsWheeldrops = newValues[BUMPWHEELDROPS_SENSOR]
+        self.sensors.Wall = newValues[WALL_SENSOR];
+        self.sensors.CliffLeft = newValues[CLIFFT_LEFT_SENSOR];
+        self.sensors.CliffFrontLeft = newValues[CLIFFT_FRONT_LEFT_SENSOR];
+        self.sensors.CliffFrontRight = newValues[CLIFFT_FRONT_RIGHT_SENSOR];
+        self.sensors.CliffRight = newValues[CLIFFT_RIGHT_SENSOR];
+        self.sensors.VirtualWall = newValues[VIRTUAL_WALL_SENSOR];
+        self.sensors.MotorOvercurrents = newValues[MOTOR_OVERCURRENTS_SENSOR];
+        self.sensors.DirtDetectorLeft = newValues[DIRT_DETECTOR_LEFT_SENSOR];
+        self.sensors.DirtDetectorRight = newValues[DIRT_DETECTOR_RIGHT_SENSOR];
+        self.sensors.RemoteOpcode = newValues[REMOTE_OPCODE_SENSOR];
+        self.sensors.Buttons = newValues[BUTTONS_SENSOR];
+        
+        self.sensors.Distance =  UInt16(newValues[DISTANCE_MSB_SENSOR]) << 8 | UInt16(newValues[DISTANCE_LSB_SENSOR])
+        
+        self.sensors.Angle = UInt16(newValues[ANGLE_MSB_SENSOR]) << 8 | UInt16(newValues[ANGLE_LSB_SENSOR])
+        
+        self.sensors.ChargingState = newValues[CHARGING_STATE_SENSOR]
+        
+        self.sensors.Voltage = UInt16(newValues[VOLTAGE_MSB_SENSOR]) << 8 | UInt16(newValues[VOLTAGE_LSB_SENSOR])
+        
+        self.sensors.Current = UInt16(newValues[CURRENT_MSB_SENSOR]) << 8 | UInt16(newValues[CURRENT_LSB_SENSOR])
+        
+        self.sensors.Temperature = newValues[TEMPERATURE_SENSOR]
+        
+        self.sensors.Charge = UInt16(newValues[CHARGE_MSB_SENSOR]) << 8 | UInt16(newValues[CHARGE_LSB_SENSOR])
+        
+        self.sensors.Capacity =  UInt16(newValues[CAPACITY_MSB_SENSOR]) << 8 |
+            UInt16(newValues[CAPACITY_LSB_SENSOR])
+        //Class values
+        self.batteryLevel =  Double(self.sensors.Charge) / Double(self.sensors.Capacity)
     }
     
     func Vacuum_On() -> Bool {
@@ -241,19 +342,21 @@ class RooWifi: NSObject {
     }
     
     private func ExecuteCommand(commands: [Int]) ->Bool {
-        
         var sent = true
-        for command in commands {
-            // We only send the first 8 bytes of each command and parameter.
-            var commandToSend = command & 0xFF
-            let (success,errmsg) =
-                client.send(data: NSData(bytes: &commandToSend, length:sizeof(Int8)))
-            if success {
-                debug("Successfully sent command: \(commandToSend)")
-            }
-            else {
-                debug("Send Error: \(errmsg)")
-                sent = false
+        dispatch_sync(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
+            //Do something else
+            for command in commands {
+                // We only send the first 8 bytes of each command and parameter.
+                var commandToSend = command & 0xFF
+                let (success,errmsg) =
+                    self.client.send(data: NSData(bytes: &commandToSend, length:sizeof(Int8)))
+                if success {
+                    debug("Successfully sent command: \(commandToSend)")
+                }
+                else {
+                    debug("Send Error: \(errmsg)")
+                    sent = false
+                }
             }
         }
         return sent
