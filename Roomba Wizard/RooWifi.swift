@@ -31,7 +31,7 @@ let DISTANCE_MSB_SENSOR           = 12
 let DISTANCE_LSB_SENSOR           = 13
 let ANGLE_MSB_SENSOR              = 14
 let ANGLE_LSB_SENSOR              = 15
-let CHARGING_STATE_SENSOR       = 16
+let CHARGING_STATE_SENSOR         = 16
 let VOLTAGE_MSB_SENSOR            = 17
 let VOLTAGE_LSB_SENSOR            = 18
 let CURRENT_MSB_SENSOR            = 19
@@ -65,6 +65,7 @@ let COMMAND_SONG    = 140
 let COMMAND_PLAY    = 141
 let COMMAND_SENSORS = 142
 let COMMAND_DOCK    = 143
+let COMMAND_MOTORS_PRECISE = 144
 let COMMAND_WHEELS  = 145
 
 //Number of parameters of Led commands
@@ -129,11 +130,15 @@ func backgroundThread(delay: Double = 0.0, background: (() -> Void)? = nil, comp
 
 class RooWifi: NSObject {
     
-    var client:TCPClient = TCPClient(addr: "", port: 80)
-    var motors:Int = 0
-    var batteryLevel:Double = 0.0
-    var requestData:Bool = false
+    private var client:TCPClient = TCPClient(addr: "", port: 80)
+    private var motors = 0
+    private var sideBrushPower = 0 // 0 - 128
+    private var vacuumPower = 0 // 0 - 128
+    private var mainBrushPower = 0 // 0 - 128
+    private var requestingData:Bool = false
     
+    var batteryLevel:Double = 0.0
+
     class RoombaSensors {
         var BumpsWheeldrops:UInt8 = 0
         var Wall:UInt8 = 0
@@ -165,7 +170,7 @@ class RooWifi: NSObject {
         }
     
     deinit {
-        self.requestData = false
+        self.requestingData = false
         let (success,errmsg) = client.close()
         if success {
             debug("Closed connection with Roomba")
@@ -176,14 +181,22 @@ class RooWifi: NSObject {
     }
     
     func Start() -> Bool {
-        let (success,errmsg) = client.connect(timeout: 2)
+        
+        let (success,errmsg) = client.connect(timeout:1)
         if success {
             debug("Established connection with Roomba")
             if (self.ExecuteCommand(COMMAND_START)) {
-                self.requestData = true
+                if (self.requestingData) {
+                    // There is already a thread requesting data, 
+                    // so there is no need to spawn a new thread.
+                    return true
+                }
                 backgroundThread(0.0, background: {
-                    while (self.requestData) {
-                        // Constantly refresh sensors
+                    self.requestingData = true
+                    while (self.requestingData) {
+                        // Constantly refresh sensors every 150 nanoseconds
+                        // This is how often data becomes available on the Roomba
+                        sleep(1)
                         self.RequestAllSensors()
                     }
                 })
@@ -203,8 +216,8 @@ class RooWifi: NSObject {
     }
 
     func Drive(velocity: Int, radius: Int) -> Bool {
-        if (self.FullMode()) {
-            // Drive can only be executed in full mode.
+        if self.SafeMode() {
+            // Drive can only be executed in safe or full mode.
             return self.ExecuteCommand(
                 COMMAND_DRIVE,
                 (velocity >> 8) & 0xFF,
@@ -216,8 +229,8 @@ class RooWifi: NSObject {
     }
     
     func Drive(right: Int, left: Int) -> Bool {
-        if (self.FullMode()) {
-            // Drive can only be executed in full mode.
+        if self.SafeMode() {
+            // Drive can only be executed in safe or full mode.
             return self.ExecuteCommand(
                 COMMAND_WHEELS,
                 (right >> 8) & 0xFF,
@@ -239,7 +252,6 @@ class RooWifi: NSObject {
     func Dock() -> Bool {
         return self.ExecuteCommand(COMMAND_DOCK)
     }
-
     
     func StoreSong(songNumber: Int, notes: Song) -> Bool {
         self.ExecuteCommand(COMMAND_SONG, songNumber, notes.count)
@@ -259,17 +271,18 @@ class RooWifi: NSObject {
     
     func RequestAllSensors() -> Bool {
         if self.ExecuteCommand(COMMAND_SENSORS, 0) {
-            self.requestData = true
-            if let newValues:[UInt8] = client.read(SCI_NUMBER_OF_SENSORS * sizeof(Int8), timeout: 2) {
+            self.requestingData = true
+            if let newValues:[UInt8] = client.read(SCI_NUMBER_OF_SENSORS, timeout: 1) {
+                //debug("Values to read: \(newValues.count), Expected: \(SCI_NUMBER_OF_SENSORS)")
                 if newValues.count == SCI_NUMBER_OF_SENSORS {
                     self.UpdateSensors(newValues)
-                    print("Charge: \(self.batteryLevel)")
+                    //print("Charge: \(self.batteryLevel)")
                     return true
                 }
                 debug("error: Couldn't gather all the data for sensors.")
             }
         } else {
-            self.requestData = false
+            self.requestingData = false
         }
         return false
     }
@@ -310,37 +323,59 @@ class RooWifi: NSObject {
     }
     
     func Vacuum_On() -> Bool {
-        self.motors |= VACUUM_ON;
-        return self.UpdateMotors();
+        self.motors |= VACUUM_ON
+        return self.UpdateMotors()
     }
     
     func Vacuum_Off() -> Bool{
-        self.motors &= VACUUM_OFF;
-        return self.UpdateMotors();
+        self.motors &= VACUUM_OFF
+        return self.UpdateMotors()
     }
     
     func SideBrush_On() -> Bool{
-        self.motors |= SIDE_BRUSH_ON;
+        self.motors |= SIDE_BRUSH_ON
         return self.UpdateMotors();
     }
 
     func SideBrush_Off() -> Bool {
-        self.motors &= SIDE_BRUSH_OFF;
+        self.motors &= SIDE_BRUSH_OFF
         return self.UpdateMotors();
     }
     
     func AllCleaningMotors_On() -> Bool {
-        self.motors |= ALL_CLEANING_MOTORS_ON;
-        return self.UpdateMotors();
+        self.motors |= ALL_CLEANING_MOTORS_ON
+        return self.UpdateMotors()
     }
     
     func AllCleaningMotors_Off() -> Bool {
-        self.motors &= ALL_CLEANING_MOTORS_OFF;
-        return self.UpdateMotors();
+        self.motors &= ALL_CLEANING_MOTORS_OFF
+        return self.UpdateMotors()
     }
     
     func UpdateMotors() -> Bool {
-        return self.ExecuteCommand(COMMAND_MOTORS, self.motors)
+        if self.SafeMode() {
+            return self.ExecuteCommand(COMMAND_MOTORS, self.motors)
+        }
+        return false
+    }
+    
+    func sideBrushPercent (percent: Double) {
+        self.sideBrushPower = Int(percent * 128)
+    }
+    
+    func vacuumPercent(percent: Double) {
+        self.vacuumPower = Int(percent * 128)
+    }
+    
+    func mainBrushPercent (percent: Double) {
+        self.mainBrushPower = Int(percent * 128)
+    }
+    
+    func UpdateMotorsPrecise() -> Bool {
+        if self.SafeMode() {
+            return self.ExecuteCommand(COMMAND_MOTORS_PRECISE, self.mainBrushPower, self.sideBrushPower, self.vacuumPower)
+        }
+        return false
     }
     
     private func ExecuteCommand(commands: Int...) -> Bool {
@@ -348,7 +383,7 @@ class RooWifi: NSObject {
     }
     
     private func ExecuteCommand(commands: [Int]) ->Bool {
-        var sent = true
+        var sent = false
         dispatch_sync(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
             //Do something else
             for command in commands {
@@ -358,10 +393,11 @@ class RooWifi: NSObject {
                     self.client.send(data: NSData(bytes: &commandToSend, length:sizeof(Int8)))
                 if success {
                     debug("Successfully sent command: \(commandToSend)")
+                    sent = true
                 }
                 else {
                     debug("Send Error: \(errmsg)")
-                    sent = false
+                    break;
                 }
             }
         }
