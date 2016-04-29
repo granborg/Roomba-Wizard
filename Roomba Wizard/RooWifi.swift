@@ -72,7 +72,6 @@ let COMMAND_WHEELS  = 145
 let LEDS_NUM_PARAMETERS         = 3
 
 //Song Notes
- 
 
 //Note duration
 let NOTE_DURATION_SIXTYFOURTH_NOTE  = 4
@@ -81,7 +80,6 @@ let NOTE_DURATION_SIXTEENTH_NOTE    = 16
 let NOTE_DURATION_EIGHTH_NOTE       = 32
 let NOTE_DURATION_QUARTER_NOTE      = 64
 
- 
 //Led Control MASKS
 let LED_CLEAN_ON                = 0x04
 let LED_CLEAN_OFF               = 0xFB
@@ -105,8 +103,6 @@ let MAIN_BRUSH_ON               = 0x04
 let MAIN_BRUSH_OFF              = 0xFB
 let ALL_CLEANING_MOTORS_ON      = 0xFF
 let ALL_CLEANING_MOTORS_OFF     = 0x00
-
-
 
 typealias Song = [(frequency: Int, duration: Int)]
 
@@ -164,7 +160,6 @@ class RooWifi: NSObject {
     }
     var sensors:RoombaSensors = RoombaSensors()
 
-
     init(ip: String, port: Int) {
         client = TCPClient(addr: ip, port: port)
         }
@@ -181,8 +176,14 @@ class RooWifi: NSObject {
     }
     
     func Start() -> Bool {
-        
-        let (success,errmsg) = client.connect(timeout:1)
+        var (success, errmsg) = client.close()
+        if success {
+            debug("Closed connection with Roomba")
+        }
+        else {
+            debug(errmsg)
+        }
+        (success,errmsg) = client.connect(timeout:1)
         if success {
             debug("Established connection with Roomba")
             if (self.ExecuteCommand(COMMAND_START)) {
@@ -194,8 +195,7 @@ class RooWifi: NSObject {
                 backgroundThread(0.0, background: {
                     self.requestingData = true
                     while (self.requestingData) {
-                        // Constantly refresh sensors every 150 nanoseconds
-                        // This is how often data becomes available on the Roomba
+                        // Constantly refresh sensors
                         sleep(1)
                         self.RequestAllSensors()
                     }
