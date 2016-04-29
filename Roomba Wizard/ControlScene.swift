@@ -27,7 +27,7 @@ class ControlScene: SKScene {
     let clean = SKSpriteNode(imageNamed: "Clean")
     let compass = SKSpriteNode(imageNamed: "Compass")
     let connect = SKSpriteNode(imageNamed: "Connect")
-    let dock = SKSpriteNode(imageNamed: "DockNew")
+    let dock = SKSpriteNode(imageNamed: "Dock")
     let spot = SKSpriteNode(imageNamed: "Spot")
     let leftBase = SKSpriteNode(imageNamed: "Base")
     let leftSlider = SKSpriteNode(imageNamed: "Slider")

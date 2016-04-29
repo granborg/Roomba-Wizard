@@ -68,13 +68,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SpotCleanNew" translatesAutoresizingMaskIntoConstraints="NO" id="vgL-rE-WUq">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Spot" translatesAutoresizingMaskIntoConstraints="NO" id="vgL-rE-WUq">
                                 <rect key="frame" x="30" y="44" width="48" height="43"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DockNew" translatesAutoresizingMaskIntoConstraints="NO" id="kkY-Wm-tRo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Dock" translatesAutoresizingMaskIntoConstraints="NO" id="kkY-Wm-tRo">
                                 <rect key="frame" x="30" y="146" width="48" height="43"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ConnectNew" translatesAutoresizingMaskIntoConstraints="NO" id="Now-t6-lV5">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Connect" translatesAutoresizingMaskIntoConstraints="NO" id="Now-t6-lV5">
                                 <rect key="frame" x="30" y="95" width="48" height="43"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="rEl-0k-lrL">
@@ -127,7 +127,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CleanNew" translatesAutoresizingMaskIntoConstraints="NO" id="Avy-xq-V2w">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Clean" translatesAutoresizingMaskIntoConstraints="NO" id="Avy-xq-V2w">
                                 <rect key="frame" x="25" y="299" width="48" height="43"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Clean : Start the cleaning cycle for the Roomba." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wZR-Ry-Uq2">
@@ -270,11 +270,11 @@
     </scenes>
     <resources>
         <image name="Arrow" width="512" height="512"/>
-        <image name="CleanNew" width="128" height="128"/>
-        <image name="ConnectNew" width="128" height="128"/>
-        <image name="DockNew" width="128" height="128"/>
+        <image name="Clean" width="128" height="128"/>
+        <image name="Connect" width="128" height="128"/>
+        <image name="Dock" width="128" height="128"/>
         <image name="Note" width="256" height="256"/>
-        <image name="SpotCleanNew" width="128" height="128"/>
+        <image name="Spot" width="128" height="128"/>
         <image name="pad" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
