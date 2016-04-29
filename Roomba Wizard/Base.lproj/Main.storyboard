@@ -78,16 +78,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Spot" translatesAutoresizingMaskIntoConstraints="NO" id="vgL-rE-WUq">
-                                <rect key="frame" x="30" y="44" width="48" height="43"/>
+                                <rect key="frame" x="25" y="90" width="48" height="43"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Dock" translatesAutoresizingMaskIntoConstraints="NO" id="kkY-Wm-tRo">
-                                <rect key="frame" x="30" y="146" width="48" height="43"/>
+                                <rect key="frame" x="25" y="192" width="48" height="43"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Connect" translatesAutoresizingMaskIntoConstraints="NO" id="Now-t6-lV5">
-                                <rect key="frame" x="30" y="95" width="48" height="43"/>
+                                <rect key="frame" x="25" y="141" width="48" height="43"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="rEl-0k-lrL">
-                                <rect key="frame" x="30" y="197" width="48" height="43"/>
+                                <rect key="frame" x="25" y="243" width="48" height="43"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Connect : Connect your roomba to the Roomba Wizard." borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d9b-al-7NH">
                                 <rect key="frame" x="79" y="102" width="269" height="30"/>
@@ -95,13 +95,50 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Spot Clean : Give a little extra attention to a dirty spot." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rs4-Y0-RkD">
-                                <rect key="frame" x="79" y="49" width="240" height="34"/>
+                                <rect key="frame" x="74" y="95" width="240" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Connect : Connect the Roomba to the Roomba Wizard" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bah-Qa-oww">
+                                <rect key="frame" x="74" y="137" width="240" height="43"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Dock : Dock the Roomba back to the docking station" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ScJ-wg-H9F">
+                                <rect key="frame" x="74" y="192" width="239" height="43"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Compass : Show the current direction of the Roomba" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xJT-La-syA">
+                                <rect key="frame" x="74" y="243" width="231" height="43"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Note" translatesAutoresizingMaskIntoConstraints="NO" id="NeF-Pw-4mP">
+                                <rect key="frame" x="25" y="294" width="48" height="43"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Music : Play music in middle C pads on the Roomba." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8op-Af-Icw">
+                                <rect key="frame" x="74" y="294" width="226" height="43"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Clean" translatesAutoresizingMaskIntoConstraints="NO" id="Avy-xq-V2w">
+                                <rect key="frame" x="20" y="345" width="48" height="43"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Clean : Start the cleaning cycle for the Roomba." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wZR-Ry-Uq2">
+                                <rect key="frame" x="69" y="345" width="215" height="43"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5v-br-ldq">
-                                <rect key="frame" x="39" y="11" width="30" height="30"/>
+                                <rect key="frame" x="12" y="0.0" width="74" height="67"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <state key="normal" title="x">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -109,42 +146,6 @@
                                     <segue destination="BYZ-38-t0r" kind="show" animates="NO" id="HOB-XT-3yl"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Connect : Connect the Roomba to the Roomba Wizard" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bah-Qa-oww">
-                                <rect key="frame" x="79" y="91" width="240" height="43"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Dock : Dock the Roomba back to the docking station" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ScJ-wg-H9F">
-                                <rect key="frame" x="79" y="146" width="239" height="43"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Compass : Show the current direction of the Roomba" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xJT-La-syA">
-                                <rect key="frame" x="79" y="197" width="231" height="43"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Note" translatesAutoresizingMaskIntoConstraints="NO" id="NeF-Pw-4mP">
-                                <rect key="frame" x="30" y="248" width="48" height="43"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Music : Play music in middle C pads on the Roomba." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8op-Af-Icw">
-                                <rect key="frame" x="79" y="248" width="226" height="43"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Clean" translatesAutoresizingMaskIntoConstraints="NO" id="Avy-xq-V2w">
-                                <rect key="frame" x="25" y="299" width="48" height="43"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Clean : Start the cleaning cycle for the Roomba." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wZR-Ry-Uq2">
-                                <rect key="frame" x="74" y="299" width="215" height="43"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -156,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0J-tf-YmE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="626" y="30"/>
+            <point key="canvasLocation" x="595" y="83"/>
         </scene>
         <!--Music View Controller-->
         <scene sceneID="JvS-c4-0LS">
