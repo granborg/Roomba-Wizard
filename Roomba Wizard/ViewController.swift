@@ -1,4 +1,4 @@
-//
+    //
 //  ViewController.swift
 //  Roomba Wizard
 //
@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+var rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
 
 class ViewController: UIViewController {
 
@@ -17,7 +18,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var rooWifi = RooWifi(ip:"10.0.0.1", port:9001)
         scene = ControlScene(size: controlView.bounds.size, rooWifi: &rooWifi)
         controlView.multipleTouchEnabled = true
         controlView.presentScene(scene)
