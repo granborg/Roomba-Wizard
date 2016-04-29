@@ -27,12 +27,13 @@ class ControlScene: SKScene {
     let clean = SKSpriteNode(imageNamed: "Clean")
     let compass = SKSpriteNode(imageNamed: "Compass")
     let connect = SKSpriteNode(imageNamed: "Connect")
-    let dock = SKSpriteNode(imageNamed: "Dock")
+    let dock = SKSpriteNode(imageNamed: "DockNew")
     let spot = SKSpriteNode(imageNamed: "Spot")
     let leftBase = SKSpriteNode(imageNamed: "Base")
     let leftSlider = SKSpriteNode(imageNamed: "Slider")
     let rightBase = SKSpriteNode(imageNamed: "Base")
     let rightSlider = SKSpriteNode(imageNamed: "Slider")
+    let tooltip = SKSpriteNode(imageNamed: "Tooltip")
     
     var sideBrushKnob = SKSpriteNode(imageNamed: "Knob")
     var vacuumKnob = SKSpriteNode(imageNamed: "Knob")
@@ -109,7 +110,7 @@ class ControlScene: SKScene {
         self.anchorPoint = CGPointMake(0.5, 0.5)
         self.AdjustOrientation()
         self.addChild(clean)
-        
+        self.addChild(tooltip)
         self.addChild(spot)
         self.addChild(dock)
         self.addChild(connect)
@@ -144,8 +145,11 @@ class ControlScene: SKScene {
         clean.position = CGPointMake(self.size.width / 2 * iconPosition, self.size.width * iconScale * iconSpacing * 2)
         clean.size = iconSize!
         
-        spot.position = CGPointMake(self.size.width / 2 * iconPosition, self.size.width * iconScale * iconSpacing)
+        spot.position = CGPointMake(self.size.width / 2 * iconPosition , self.size.width * iconScale * iconSpacing)
         spot.size = iconSize!
+        
+        tooltip.position = CGPointMake(self.size.width / 30 * iconPosition, self.size.width * iconScale * iconSpacing / 1.5 )
+        tooltip.size = CGSize(width: self.size.width * iconScale/3 , height: self.size.width * iconScale/3)
         
         dock.position = CGPointMake(-self.size.width / 2 * iconPosition, self.size.width * iconScale * iconSpacing)
         dock.size = iconSize!
@@ -286,12 +290,28 @@ class ControlScene: SKScene {
                 self.ChangeColor(rightSlider, color: UIColor.whiteColor())
                 self.StopDriving()
             } else if (touchTracker[touch] == clean) {
+                UIView.animateWithDuration(0.5, animations: {
+                    self.clean.alpha = 0
+                })
+                self.clean.alpha = 1
                 self.Clean()
             } else if (touchTracker[touch] == spot) {
+                UIView.animateWithDuration(0.5, animations: {
+                    self.spot.alpha = 0
+                    }, completion: {
+                        (_) in
+                        self.spot.alpha = 1
+                })
                 self.Spot()
             } else if (touchTracker[touch] == dock) {
+                UIView.animateWithDuration(0.5) {
+                    self.dock.alpha = 1
+                }
                 self.Dock()
             } else if (touchTracker[touch] == connect) {
+                UIView.animateWithDuration(0.5) {
+                    self.connect.alpha = 1
+                }
                 self.Connect()
             }
         touchTracker.removeValueForKey(touch as UITouch)

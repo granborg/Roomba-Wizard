@@ -17,6 +17,53 @@ class MusicViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    @IBAction func A_fourth(sender: AnyObject) {
+        let A_fourth:Song =
+            [(frequency: 69, duration : NOTE_DURATION_QUARTER_NOTE)]
+        rooWifi.StoreSong(1, notes:A_fourth)
+        rooWifi.PlaySong(1);
+    }
+    
+    @IBAction func B_fourth(sender: AnyObject) {
+        let B_fourth:Song = [(frequency: 71, duration: NOTE_DURATION_QUARTER_NOTE)]
+        rooWifi.StoreSong(2, notes:B_fourth)
+        rooWifi.PlaySong(2);
+    }
+    
+    
+    @IBAction func C_fourth(sender: AnyObject) {
+        let C_fourth:Song = [(frequency: 72, duration: NOTE_DURATION_QUARTER_NOTE)]
+        rooWifi.StoreSong(3, notes:C_fourth)
+        rooWifi.PlaySong(3);
+    }
+    
+    
+    
+    @IBAction func D_fourth(sender: AnyObject) {
+        let D_fourth:Song = [(frequency: 74, duration: NOTE_DURATION_QUARTER_NOTE)]
+        rooWifi.StoreSong(4, notes:D_fourth)
+        rooWifi.PlaySong(4);
+    }
+    
+    
+    @IBAction func E_fourth(sender: AnyObject) {
+        let E_fourth:Song = [(frequency: 76, duration: NOTE_DURATION_QUARTER_NOTE)]
+        rooWifi.StoreSong(5, notes:E_fourth)
+        rooWifi.PlaySong(5);
+    }
+    
+    @IBAction func F_fourth(sender: AnyObject) {
+        let F_fourth:Song = [(frequency: 77, duration: NOTE_DURATION_QUARTER_NOTE)]
+        rooWifi.StoreSong(6, notes:F_fourth)
+        rooWifi.PlaySong(6);
+    }
+    
+    @IBAction func G_fourth(sender: AnyObject) {
+        let G_fourth:Song = [(frequency: 72, duration: NOTE_DURATION_QUARTER_NOTE)]
+        rooWifi.StoreSong(7, notes:G_fourth)
+        rooWifi.PlaySong(7);
+    }
+    /*
     @IBAction func Song1(sender: AnyObject) {
         let zelda:Song =
             [(frequency: 53, duration:NOTE_DURATION_SIXTEENTH_NOTE),
@@ -101,6 +148,6 @@ class MusicViewController: UIViewController {
         ]
         rooWifi.StoreSong(4, notes: HarryPotter)
         rooWifi.PlaySong(4)
-    }
+    }*/
 
 }
