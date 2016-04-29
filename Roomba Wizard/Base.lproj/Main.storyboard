@@ -36,6 +36,15 @@
                                             <segue destination="bvX-wC-AeW" kind="show" id="goT-Fb-2KL"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNh-DU-Gl6">
+                                        <rect key="frame" x="367" y="154" width="23" height="24"/>
+                                        <state key="normal" title="Button" image="Tooltip"/>
+                                        <connections>
+                                            <segue destination="h5e-Ib-9Tk" kind="popoverPresentation" popoverAnchorView="gNh-DU-Gl6" id="Gbw-iP-PSR">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -275,9 +284,11 @@
         <image name="Dock" width="128" height="128"/>
         <image name="Note" width="256" height="256"/>
         <image name="Spot" width="128" height="128"/>
+        <image name="Tooltip" width="128" height="128"/>
         <image name="pad" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="HOB-XT-3yl"/>
+        <segue reference="t7C-F7-JpJ"/>
     </inferredMetricsTieBreakers>
 </document>

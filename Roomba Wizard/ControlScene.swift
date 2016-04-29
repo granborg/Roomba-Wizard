@@ -33,7 +33,7 @@ class ControlScene: SKScene {
     let leftSlider = SKSpriteNode(imageNamed: "Slider")
     let rightBase = SKSpriteNode(imageNamed: "Base")
     let rightSlider = SKSpriteNode(imageNamed: "Slider")
-    let tooltip = SKSpriteNode(imageNamed: "Tooltip")
+   // let tooltip = SKSpriteNode(imageNamed: "Tooltip")
     
     var sideBrushKnob = SKSpriteNode(imageNamed: "Knob")
     var vacuumKnob = SKSpriteNode(imageNamed: "Knob")
@@ -110,7 +110,7 @@ class ControlScene: SKScene {
         self.anchorPoint = CGPointMake(0.5, 0.5)
         self.AdjustOrientation()
         self.addChild(clean)
-        self.addChild(tooltip)
+    //    self.addChild(tooltip)
         self.addChild(spot)
         self.addChild(dock)
         self.addChild(connect)
@@ -148,8 +148,8 @@ class ControlScene: SKScene {
         spot.position = CGPointMake(self.size.width / 2 * iconPosition , self.size.width * iconScale * iconSpacing)
         spot.size = iconSize!
         
-        tooltip.position = CGPointMake(self.size.width / 30 * iconPosition, self.size.width * iconScale * iconSpacing / 1.5 )
-        tooltip.size = CGSize(width: self.size.width * iconScale/3 , height: self.size.width * iconScale/3)
+   //     tooltip.position = CGPointMake(self.size.width / 30 * iconPosition, self.size.width * iconScale * iconSpacing / 1.5 )
+    //    tooltip.size = CGSize(width: self.size.width * iconScale/3 , height: self.size.width * iconScale/3)
         
         dock.position = CGPointMake(-self.size.width / 2 * iconPosition, self.size.width * iconScale * iconSpacing)
         dock.size = iconSize!
