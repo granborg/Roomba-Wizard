@@ -199,7 +199,7 @@ class RooWifi: NSObject {
                     self.requestingData = true
                     while (self.requestingData) {
                         // Constantly refresh sensors
-                        sleep(1)
+                        sleep(5)
                         self.RequestAllSensors()
                     }
                 })
