@@ -27,7 +27,7 @@ class ControlScene: SKScene {
     let clean = SKSpriteNode(imageNamed: "Clean")
     let compass = SKSpriteNode(imageNamed: "Compass")
     let connect = SKSpriteNode(imageNamed: "Connect")
-    let dock = SKSpriteNode(imageNamed: "Dock")
+    let dock = SKSpriteNode(imageNamed: "Dock_Transparent")
     let spot = SKSpriteNode(imageNamed: "Spot")
     let leftBase = SKSpriteNode(imageNamed: "Base")
     let leftSlider = SKSpriteNode(imageNamed: "Slider")
@@ -290,18 +290,10 @@ class ControlScene: SKScene {
                 self.ChangeColor(rightSlider, color: UIColor.whiteColor())
                 self.StopDriving()
             } else if (touchTracker[touch] == clean) {
-                UIView.animateWithDuration(0.5, animations: {
-                    self.clean.alpha = 0
-                })
                 self.clean.alpha = 1
                 self.Clean()
             } else if (touchTracker[touch] == spot) {
-                UIView.animateWithDuration(0.5, animations: {
-                    self.spot.alpha = 0
-                    }, completion: {
-                        (_) in
-                        self.spot.alpha = 1
-                })
+                self.spot.alpha = 1
                 self.Spot()
             } else if (touchTracker[touch] == dock) {
                 UIView.animateWithDuration(0.5) {
@@ -371,11 +363,13 @@ class ControlScene: SKScene {
     
     func Dock() {
         if (auto == .Dock) {
+            self.ChangeColor(dock, color: UIColor.whiteColor())
             if rooWifi!.SafeMode() {
                 dock.color = ControlColors.Off
             }
             auto = .None
         } else if rooWifi!.Dock() {
+            self.ChangeColor(dock, color: UIColor.greenColor())
             dock.color = ControlColors.On
             auto = .Dock
         }
