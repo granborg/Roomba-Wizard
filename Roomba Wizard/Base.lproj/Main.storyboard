@@ -188,16 +188,10 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9R-cH-GIo">
                                 <rect key="frame" x="182" y="10" width="70" height="73"/>
                                 <state key="normal" title="Zelda" image="pad"/>
-                                <connections>
-                                    <action selector="A_fourth:" destination="bvX-wC-AeW" eventType="touchUpInside" id="umn-tO-nF0"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EL-qE-S3b">
                                 <rect key="frame" x="260" y="10" width="70" height="73"/>
                                 <state key="normal" title="Tune 2" image="pad"/>
-                                <connections>
-                                    <action selector="A_fourth:" destination="bvX-wC-AeW" eventType="touchUpInside" id="npY-qs-YAR"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgn-MW-2Un">
                                 <rect key="frame" x="140" y="114" width="70" height="73"/>

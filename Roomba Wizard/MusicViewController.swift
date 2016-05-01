@@ -12,58 +12,38 @@ import UIKit
 class MusicViewController: UIViewController {
    
     override func viewDidLoad() {
-        let A_fourth:Song =
-            [(frequency: 69, duration : NOTE_DURATION_QUARTER_NOTE)]
-        rooWifi.StoreSong(1, notes:A_fourth)
-        usleep(15000)
-        let B_fourth:Song = [(frequency: 71, duration: NOTE_DURATION_QUARTER_NOTE)]
-        rooWifi.StoreSong(2, notes:B_fourth)
-        usleep(15000)
-        let C_fourth:Song = [(frequency: 72, duration: NOTE_DURATION_QUARTER_NOTE)]
-        rooWifi.StoreSong(3, notes:C_fourth)
-        usleep(15000)
-        let D_fourth:Song = [(frequency: 74, duration: NOTE_DURATION_QUARTER_NOTE)]
-        rooWifi.StoreSong(4, notes:D_fourth)
-        usleep(15000)
-        let E_fourth:Song = [(frequency: 76, duration: NOTE_DURATION_QUARTER_NOTE)]
-        rooWifi.StoreSong(5, notes:E_fourth)
-        usleep(15000)
-        let F_fourth:Song = [(frequency: 77, duration: NOTE_DURATION_QUARTER_NOTE)]
-        rooWifi.StoreSong(6, notes:F_fourth)
-        usleep(15000)
-        let G_fourth:Song = [(frequency: 72, duration: NOTE_DURATION_QUARTER_NOTE)]
-        rooWifi.StoreSong(7, notes:G_fourth)
-        usleep(15000)
-        let zelda:Song =
-            [(frequency: 53, duration:NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE),
-             (frequency: 53, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE),
-             (frequency: 53, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 64, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 62, duration: NOTE_DURATION_EIGHTH_NOTE),
-             (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 60, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 55, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-             (frequency: 52, duration: NOTE_DURATION_QUARTER_NOTE)]
-        rooWifi.StoreSong(8, notes: zelda)
-        usleep(15000)
-        let newStartUp:Song =
-            [(frequency: 67, duration:8),
-             (frequency: 66, duration:8),
-             (frequency: 63, duration:8),
-             (frequency: 57, duration:8),
-             (frequency: 56, duration:8),
-             (frequency: 64, duration:8),
-             (frequency: 68, duration:8),
-             (frequency: 72, duration:8),
-             ]
-        rooWifi.StoreSong(9, notes: newStartUp)
+            rooWifi.requestingData = false;
+            sleep(1)
+        dispatch_sync(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
+            let A_fourth:Song =
+                [(frequency: 69, duration : NOTE_DURATION_QUARTER_NOTE)]
+            rooWifi.StoreSong(1, notes:A_fourth)
+            //print("Storing song 1")
+            sleep(1)
+            let B_fourth:Song = [(frequency: 71, duration: NOTE_DURATION_QUARTER_NOTE)]
+            rooWifi.StoreSong(2, notes:B_fourth)
+            //print("Storing song 2")
+            sleep(1)
+            let C_fourth:Song = [(frequency: 72, duration: NOTE_DURATION_QUARTER_NOTE)]
+            rooWifi.StoreSong(3, notes:C_fourth)
+            //print("Storing song 3")
+            sleep(1)
+            let D_fourth:Song = [(frequency: 74, duration: NOTE_DURATION_QUARTER_NOTE)]
+            rooWifi.StoreSong(4, notes:D_fourth)
+            //print("Storing song 4")
+            sleep(1)
+            let E_fourth:Song = [(frequency: 76, duration: NOTE_DURATION_QUARTER_NOTE)]
+            rooWifi.StoreSong(5, notes:E_fourth)
+            //print("Storing song 5")
+            sleep(1)
+            let F_fourth:Song = [(frequency: 77, duration: NOTE_DURATION_QUARTER_NOTE)]
+            rooWifi.StoreSong(6, notes:F_fourth)
+            //print("Storing song 6")
+            sleep(1)
+            let G_fourth:Song = [(frequency: 72, duration: NOTE_DURATION_QUARTER_NOTE)]
+            rooWifi.StoreSong(7, notes:G_fourth)
+            //print("Storing song 7")
+        }
         super.viewDidLoad()
     }
     
@@ -151,7 +131,38 @@ class MusicViewController: UIViewController {
     
     
     
-    
+    /*
+     sleep(1)
+     let zelda:Song =
+     [(frequency: 53, duration:NOTE_DURATION_SIXTEENTH_NOTE),
+     (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+     (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE),
+     (frequency: 53, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+     (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+     (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE),
+     (frequency: 53, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+     (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+     (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+     (frequency: 64, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+     (frequency: 62, duration: NOTE_DURATION_EIGHTH_NOTE),
+     (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+     (frequency: 60, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+     (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+     (frequency: 55, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+     (frequency: 52, duration: NOTE_DURATION_QUARTER_NOTE)]
+     rooWifi.StoreSong(8, notes: zelda)
+     sleep(1)
+     let newStartUp:Song =
+     [(frequency: 67, duration:8),
+     (frequency: 66, duration:8),
+     (frequency: 63, duration:8),
+     (frequency: 57, duration:8),
+     (frequency: 56, duration:8),
+     (frequency: 64, duration:8),
+     (frequency: 68, duration:8),
+     (frequency: 72, duration:8),
+     ]
+     rooWifi.StoreSong(9, notes: newStartUp)*/
     /*
     @IBAction func Song3(sender: AnyObject) {
         let Animals:Song =

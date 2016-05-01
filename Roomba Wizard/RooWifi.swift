@@ -131,7 +131,7 @@ class RooWifi: NSObject {
     private var sideBrushPower = 0 // 0 - 128
     private var vacuumPower = 0 // 0 - 128
     private var mainBrushPower = 0 // 0 - 128
-    private var requestingData:Bool = false
+    var requestingData:Bool = false
     
     var batteryLevel:Double = 0.0
 
@@ -183,6 +183,9 @@ class RooWifi: NSObject {
         else {
             debug(errmsg)
         }
+        print("start")
+       
+        
         (success,errmsg) = client.connect(timeout:1)
         if success {
             debug("Established connection with Roomba")
@@ -206,6 +209,8 @@ class RooWifi: NSObject {
         debug("Connect Error: \(errmsg)")
         return false
     }
+    
+    
     
     func FullMode() -> Bool {
         return self.ExecuteCommand(COMMAND_FULL)
@@ -370,6 +375,7 @@ class RooWifi: NSObject {
     func mainBrushPercent (percent: Double) {
         self.mainBrushPower = Int(percent * 128)
     }
+    
     
     func UpdateMotorsPrecise() -> Bool {
         if self.SafeMode() {
