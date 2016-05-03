@@ -12,188 +12,195 @@ import UIKit
 class MusicViewController: UIViewController {
    
     override func viewDidLoad() {
-            rooWifi.requestingData = false;
-            sleep(1)
-        dispatch_sync(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
-            let A_fourth:Song =
-                [(frequency: 69, duration : NOTE_DURATION_QUARTER_NOTE)]
-            rooWifi.StoreSong(1, notes:A_fourth)
-            //print("Storing song 1")
-            sleep(1)
-            let B_fourth:Song = [(frequency: 71, duration: NOTE_DURATION_QUARTER_NOTE)]
-            rooWifi.StoreSong(2, notes:B_fourth)
-            //print("Storing song 2")
-            sleep(1)
-            let C_fourth:Song = [(frequency: 72, duration: NOTE_DURATION_QUARTER_NOTE)]
-            rooWifi.StoreSong(3, notes:C_fourth)
-            //print("Storing song 3")
-            sleep(1)
-            let D_fourth:Song = [(frequency: 74, duration: NOTE_DURATION_QUARTER_NOTE)]
-            rooWifi.StoreSong(4, notes:D_fourth)
-            //print("Storing song 4")
-            sleep(1)
-            let E_fourth:Song = [(frequency: 76, duration: NOTE_DURATION_QUARTER_NOTE)]
-            rooWifi.StoreSong(5, notes:E_fourth)
-            //print("Storing song 5")
-            sleep(1)
-            let F_fourth:Song = [(frequency: 77, duration: NOTE_DURATION_QUARTER_NOTE)]
-            rooWifi.StoreSong(6, notes:F_fourth)
-            //print("Storing song 6")
-            sleep(1)
-            let G_fourth:Song = [(frequency: 72, duration: NOTE_DURATION_QUARTER_NOTE)]
-            rooWifi.StoreSong(7, notes:G_fourth)
-            //print("Storing song 7")
-        }
         super.viewDidLoad()
     }
-    
-    @IBAction func A_fourth(sender: AnyObject) {
-        rooWifi.PlaySong(1);
+    @IBAction func Db(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
     }
-    
-    @IBAction func B_fourth(sender: AnyObject) {
-        rooWifi.PlaySong(2);
+    @IBAction func Eb(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
     }
-    
-    @IBAction func C_fourth(sender: AnyObject) {
-        rooWifi.PlaySong(3);
+    @IBAction func Gb(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
     }
-    
-    @IBAction func D_fourth(sender: AnyObject) {
-        rooWifi.PlaySong(4);
+    @IBAction func Ab(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
     }
-    
-    @IBAction func E_fourth(sender: AnyObject) {
-        rooWifi.PlaySong(5);
+    @IBAction func Bb(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
     }
-    
-    @IBAction func F_fourth(sender: AnyObject) {
-        rooWifi.PlaySong(6);
+    @IBAction func C(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
     }
-    
-    @IBAction func G_fourth(sender: AnyObject) {
-        rooWifi.PlaySong(7);
+    @IBAction func D(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func E(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func F(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func G(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func A(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func B(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func Db2(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func Eb2(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func Gb2(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func Ab2(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func Bb2(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func C2(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func D2(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func E2(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func F2(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func G2(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func A2(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
+    }
+    @IBAction func B2(sender: AnyObject) {
+        if rooWifi.StoreSong(0, notes:[(frequency: 69, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {
+            rooWifi.PlaySong(0)
+        }
     }
     
     @IBAction func Song1(sender: AnyObject) {
-        rooWifi.PlaySong(8)
+        let zelda:Song =
+            [(frequency: 53, duration:NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE),
+             (frequency: 53, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE),
+             (frequency: 53, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 64, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 62, duration: NOTE_DURATION_EIGHTH_NOTE),
+             (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 60, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 55, duration: NOTE_DURATION_SIXTEENTH_NOTE),
+             (frequency: 52, duration: NOTE_DURATION_QUARTER_NOTE)]
+        rooWifi.StoreSong(1, notes: zelda)
+
+        rooWifi.PlaySong(1)
     }
+    
     @IBAction func Song2(sender: AnyObject) {
-        rooWifi.PlaySong(9)
+        
+        let newStartUp:Song =
+            [(frequency: 67, duration:8),
+             (frequency: 66, duration:8),
+             (frequency: 63, duration:8),
+             (frequency: 57, duration:8),
+             (frequency: 56, duration:8),
+             (frequency: 64, duration:8),
+             (frequency: 68, duration:8),
+             (frequency: 72, duration:8)]
+        rooWifi.StoreSong(2, notes: newStartUp)
     }
-    
-    
-    @IBAction func A_eighth(sender: AnyObject) {
-    }
-    
-    
-    @IBAction func b_eighth(sender: AnyObject) {
-    }
-    
-    
-    @IBAction func C_eighth(sender: AnyObject) {
-    }
-    
-    
-    @IBAction func D_eighth(sender: AnyObject) {
-    }
-    
-    @IBAction func E_eighth(sender: AnyObject) {
-    }
-    
-    @IBAction func F_eighth(sender: AnyObject) {
-    }
-    
-    @IBAction func G_eighth(sender: AnyObject) {
-    }
-    
-    @IBAction func A_sixteenth(sender: AnyObject) {
-    }
-    
-    @IBAction func B_sixteenth(sender: AnyObject) {
-    }
-    
-    @IBAction func C_sixteenth(sender: AnyObject) {
-    }
-    
-    @IBAction func D_Sixteenth(sender: AnyObject) {
-    }
-   
-    @IBAction func E_sixteenth(sender: AnyObject) {
-    }
-    
-    @IBAction func F_Sixteenth(sender: AnyObject) {
-    }
-    
-    @IBAction func G_sixteenth(sender: AnyObject) {
-    }
-    
-    
-    
-    
-    /*
-     sleep(1)
-     let zelda:Song =
-     [(frequency: 53, duration:NOTE_DURATION_SIXTEENTH_NOTE),
-     (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-     (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE),
-     (frequency: 53, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-     (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-     (frequency: 59, duration: NOTE_DURATION_EIGHTH_NOTE),
-     (frequency: 53, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-     (frequency: 57, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-     (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-     (frequency: 64, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-     (frequency: 62, duration: NOTE_DURATION_EIGHTH_NOTE),
-     (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-     (frequency: 60, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-     (frequency: 59, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-     (frequency: 55, duration: NOTE_DURATION_SIXTEENTH_NOTE),
-     (frequency: 52, duration: NOTE_DURATION_QUARTER_NOTE)]
-     rooWifi.StoreSong(8, notes: zelda)
-     sleep(1)
-     let newStartUp:Song =
-     [(frequency: 67, duration:8),
-     (frequency: 66, duration:8),
-     (frequency: 63, duration:8),
-     (frequency: 57, duration:8),
-     (frequency: 56, duration:8),
-     (frequency: 64, duration:8),
-     (frequency: 68, duration:8),
-     (frequency: 72, duration:8),
-     ]
-     rooWifi.StoreSong(9, notes: newStartUp)*/
-    /*
+
     @IBAction func Song3(sender: AnyObject) {
         let Animals:Song =
             [(frequency: 80, duration:16),
-            (frequency: 80, duration: 16),
-            (frequency: 82, duration: 16),
-            (frequency: 84, duration: 16),
-            (frequency: 87, duration: 16),
-            (frequency: 82, duration: 8),
-            (frequency: 82, duration: 8),
-            (frequency: 80, duration: 8),
-            (frequency: 79, duration: 8),
-            (frequency: 77, duration: 8),
-            (frequency: 79, duration: 8),
-            (frequency: 79, duration: 8),
-            (frequency: 80, duration: 16),
-            (frequency: 80, duration: 16),
-            (frequency: 77, duration:8),
-            (frequency: 79, duration:8),
-            (frequency: 79, duration:8),
-            (frequency: 79, duration:8),
-            (frequency: 79, duration:8),
-            (frequency: 80, duration:8),
-            (frequency: 80, duration:8),
-            (frequency: 77, duration:8),
-            ]
+             (frequency: 80, duration: 16),
+             (frequency: 82, duration: 16),
+             (frequency: 84, duration: 16),
+             (frequency: 87, duration: 16),
+             (frequency: 82, duration: 8),
+             (frequency: 82, duration: 8),
+             (frequency: 80, duration: 8),
+             (frequency: 79, duration: 8),
+             (frequency: 77, duration: 8),
+             (frequency: 79, duration: 8),
+             (frequency: 79, duration: 8),
+             (frequency: 80, duration: 16),
+             (frequency: 80, duration: 16),
+             (frequency: 77, duration:8),
+             (frequency: 79, duration:8),
+             (frequency: 79, duration:8),
+             (frequency: 79, duration:8),
+             (frequency: 79, duration:8),
+             (frequency: 80, duration:8),
+             (frequency: 80, duration:8),
+             (frequency: 77, duration:8),
+             ]
         rooWifi.StoreSong(3, notes: Animals)
         rooWifi.PlaySong(3)
-       
     }
-    
+
     @IBAction func Song4(sender: AnyObject) {
         let HarryPotter:Song =
             [(frequency: 83, duration:NOTE_DURATION_SIXTEENTH_NOTE),
@@ -213,6 +220,6 @@ class MusicViewController: UIViewController {
         ]
         rooWifi.StoreSong(4, notes: HarryPotter)
         rooWifi.PlaySong(4)
-    }*/
+    }
 
 }
