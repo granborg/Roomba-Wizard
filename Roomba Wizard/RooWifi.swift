@@ -7,6 +7,7 @@
 //
 //  Useful links:
 //        http://www.irobot.com/filelibrary/pdfs/hrd/create/Create%20Open%20Interface_v2.pdf
+//        http://irobot.lv/uploaded_files/File/iRobot_Roomba_500_Open_Interface_Spec.pdf
 
 import UIKit
 import Foundation
@@ -162,7 +163,8 @@ class RooWifi: NSObject {
 
     init(ip: String, port: Int) {
         client = TCPClient(addr: ip, port: port)
-        }
+
+    }
     
     deinit {
         self.requestingData = false
@@ -176,41 +178,26 @@ class RooWifi: NSObject {
     }
     
     func Start() -> Bool {
-        var (success, errmsg) = client.close()
-        if success {
-            debug("Closed connection with Roomba")
+        if !self.requestingData {
+            self.requestingData = true
+            backgroundThread(0.1, background: {
+                while(self.requestingData) {
+                    self.RequestAllSensors()
+                    sleep(1)
+                }
+            });
         }
-        else {
-            debug(errmsg)
-        }
-        print("start")
-       
-        
-        (success,errmsg) = client.connect(timeout:1)
+        let (success,errmsg) = client.connect(timeout:1)
         if success {
             debug("Established connection with Roomba")
             if (self.ExecuteCommand(COMMAND_START)) {
-                if (self.requestingData) {
-                    // There is already a thread requesting data, 
-                    // so there is no need to spawn a new thread.
-                    return true
-                }
-                backgroundThread(0.0, background: {
-                    self.requestingData = true
-                    while (self.requestingData) {
-                        // Constantly refresh sensors
-                        sleep(5)
-                        self.RequestAllSensors()
-                    }
-                })
+                self.RequestAllSensors()
+                return true
             }
-            return true
         }
         debug("Connect Error: \(errmsg)")
         return false
     }
-    
-    
     
     func FullMode() -> Bool {
         return self.ExecuteCommand(COMMAND_FULL)
@@ -276,7 +263,6 @@ class RooWifi: NSObject {
     
     func RequestAllSensors() -> Bool {
         if self.ExecuteCommand(COMMAND_SENSORS, 0) {
-            self.requestingData = true
             if let newValues:[UInt8] = client.read(SCI_NUMBER_OF_SENSORS, timeout: 1) {
                 //debug("Values to read: \(newValues.count), Expected: \(SCI_NUMBER_OF_SENSORS)")
                 if newValues.count == SCI_NUMBER_OF_SENSORS {
@@ -286,8 +272,6 @@ class RooWifi: NSObject {
                 }
                 debug("error: Couldn't gather all the data for sensors.")
             }
-        } else {
-            self.requestingData = false
         }
         return false
     }

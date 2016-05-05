@@ -33,7 +33,6 @@ class ControlScene: SKScene {
     let leftSlider = SKSpriteNode(imageNamed: "Slider")
     let rightBase = SKSpriteNode(imageNamed: "Base")
     let rightSlider = SKSpriteNode(imageNamed: "Slider")
-   // let tooltip = SKSpriteNode(imageNamed: "Tooltip")
     
     var sideBrushKnob = SKSpriteNode(imageNamed: "Knob")
     var vacuumKnob = SKSpriteNode(imageNamed: "Knob")
@@ -41,16 +40,18 @@ class ControlScene: SKScene {
 
     let batteryLabel = SKLabelNode(text: "Charge: %")
     let temperatureLabel = SKLabelNode(text: "Temp: ℃")
-    
-    
+    let sideBrushLabel = SKLabelNode(text: "Side Brush")
+    let vacuumLabel = SKLabelNode(text: "Vacuum")
+    let mainBrushLabel = SKLabelNode(text: "Main Brushes")
     
     let roombaMaxSpeed:CGFloat = 500.0
     let goldenRatio:CGFloat = 1.618
-    let baseScaleY:CGFloat = 0.90 // Proportion of screen height that the base of the sliders will take up.
+    let baseScaleY:CGFloat = 0.85// Proportion of screen height that the base of the sliders will take up.
     let baseScaleX:CGFloat = 0.05 // Width:Height
+    let basePositionY:CGFloat = 0.0
     let iconScale:CGFloat = 0.10
     let knobScale:CGFloat = 0.18
-    let sliderPosition:CGFloat = 0.80
+    let basePositionX:CGFloat = 0.90
     let iconPosition:CGFloat = 0.50
     let labelPosition:CGFloat = 0.40
     let iconSpacing:CGFloat = 1.0 // Proportion of icon spacing to icon size.
@@ -58,16 +59,15 @@ class ControlScene: SKScene {
     let compassScale:CGFloat = 0.20
     
     var iconSize = CGSize?() // Related to iconScale
+    var fontSize = CGFloat?() // Related to iconSize
     var knobSize = CGSize?()
-    var baseSize = CGSize?() // Related to sliderScale
-    var sliderSize = CGSize?() // Related to sliderScale
+    var baseSize = CGSize?() // Related to baseScale
+    var sliderSize = CGSize?() // Related to baseScale
     var compassSize = CGSize?()
     var arrowSize = CGSize?()
     
     var auto = Automation.None
-
-    // TODO 4-16: Get all icons on screen and functioning, change joysticks to sliders
-    // TODO 4-17: Formatting of layout.
+    var drive = 0 // Modulo this to keep from sending too many drive commands.
     
     var rooWifi = RooWifi?()
     
@@ -110,7 +110,6 @@ class ControlScene: SKScene {
         self.anchorPoint = CGPointMake(0.5, 0.5)
         self.AdjustOrientation()
         self.addChild(clean)
-    //    self.addChild(tooltip)
         self.addChild(spot)
         self.addChild(dock)
         self.addChild(connect)
@@ -125,11 +124,15 @@ class ControlScene: SKScene {
         self.addChild(mainBrushKnob)
         self.addChild(batteryLabel)
         self.addChild(temperatureLabel)
+        self.addChild(sideBrushLabel)
+        self.addChild(vacuumLabel)
+        self.addChild(mainBrushLabel)
         
         backgroundThread(0.0, background: {
             while (true) {
                 // Constantly refresh sprites
                 self.UpdateNodes()
+                sleep(1)
             }
         })
     }
@@ -141,21 +144,23 @@ class ControlScene: SKScene {
         sliderSize = CGSize(width: baseSize!.width * goldenRatio, height: baseSize!.width)
         compassSize = CGSize(width: self.size.width * compassScale, height: self.size.width * compassScale)
         arrowSize = CGSize(width: compassSize!.width * arrowScale, height: compassSize!.width * arrowScale)
+        fontSize = iconSize!.height / 3
         
         clean.position = CGPointMake(self.size.width / 2 * iconPosition, self.size.width * iconScale * iconSpacing * 2)
         clean.size = iconSize!
+        self.ChangeColor(clean, color: ControlColors.Off)
         
         spot.position = CGPointMake(self.size.width / 2 * iconPosition , self.size.width * iconScale * iconSpacing)
         spot.size = iconSize!
-        
-   //     tooltip.position = CGPointMake(self.size.width / 30 * iconPosition, self.size.width * iconScale * iconSpacing / 1.5 )
-    //    tooltip.size = CGSize(width: self.size.width * iconScale/3 , height: self.size.width * iconScale/3)
+        self.ChangeColor(spot, color: ControlColors.Off)
         
         dock.position = CGPointMake(-self.size.width / 2 * iconPosition, self.size.width * iconScale * iconSpacing)
         dock.size = iconSize!
+        self.ChangeColor(dock, color: ControlColors.Off)
         
         connect.position = CGPointMake(-self.size.width / 2 * iconPosition, self.size.width * iconScale * iconSpacing * 2)
         connect.size = iconSize!
+        self.ChangeColor(connect, color: ControlColors.Off)
         
         compass.position = CGPointMake(0.0, self.size.width * iconScale * iconSpacing * 2)
         compass.size = compassSize!
@@ -164,45 +169,53 @@ class ControlScene: SKScene {
         arrow.size = arrowSize!
         arrow.zRotation = CGFloat(M_PI_4)
         
-        leftBase.position = CGPointMake(-self.size.width / 2 * sliderPosition, 0.0)
+        leftBase.position = CGPointMake(-self.size.width / 2 * basePositionX, self.size.height / 2 * basePositionY)
         leftBase.size = baseSize!
         leftSlider.position = leftBase.position
         leftSlider.size = sliderSize!
         
-        rightBase.position = CGPointMake(self.size.width / 2 * sliderPosition, 0.0)
+        rightBase.position = CGPointMake(self.size.width / 2 * basePositionX, self.size.height / 2 * basePositionY)
         rightBase.size = baseSize!
         rightSlider.position = rightBase.position
         rightSlider.size = sliderSize!
         
-        sideBrushKnob.position = CGPointMake(-self.size.width / 2 * iconPosition, -self.size.width * knobScale * iconSpacing)
+        sideBrushKnob.position = CGPointMake(-self.size.width / 2 * iconPosition, -self.size.height * knobScale * iconSpacing)
         sideBrushKnob.size = knobSize!
         sideBrushKnob.zRotation = CGFloat(M_PI)
         
-        vacuumKnob.position = CGPointMake(0.0, -self.size.width * knobScale * iconSpacing)
+        vacuumKnob.position = CGPointMake(0.0, -self.size.height * knobScale * iconSpacing)
         vacuumKnob.size = knobSize!
         vacuumKnob.zRotation = CGFloat(M_PI)
         
-        mainBrushKnob.position = CGPointMake(self.size.width / 2 * iconPosition, -self.size.width * knobScale * iconSpacing)
+        mainBrushKnob.position = CGPointMake(self.size.width / 2 * iconPosition, -self.size.height * knobScale * iconSpacing)
         mainBrushKnob.size = knobSize!
         mainBrushKnob.zRotation = CGFloat(M_PI)
         
         batteryLabel.position = CGPointMake(-self.size.width / 2 * labelPosition, 0.0)
-        batteryLabel.fontColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        batteryLabel.fontColor = UIColor.blackColor()
+        batteryLabel.fontSize = fontSize!
         
         temperatureLabel.position = CGPointMake(self.size.width / 2 * labelPosition, 0.0)
-        temperatureLabel.fontColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        temperatureLabel.fontColor = UIColor.blackColor()
+        temperatureLabel.fontSize = fontSize!
+        
+        sideBrushLabel.position = CGPointMake(sideBrushKnob.position.x, sideBrushKnob.position.y - knobSize!.height / goldenRatio)
+        sideBrushLabel.fontColor = UIColor.blackColor()
+        sideBrushLabel.fontSize = fontSize!
+        
+        vacuumLabel.position = CGPointMake(vacuumKnob.position.x, vacuumKnob.position.y - knobSize!.height / goldenRatio)
+        vacuumLabel.fontColor = UIColor.blackColor()
+        vacuumLabel.fontSize = fontSize!
+        
+        mainBrushLabel.position = CGPointMake(mainBrushKnob.position.x, mainBrushKnob.position.y - knobSize!.height / goldenRatio)
+        mainBrushLabel.fontColor = UIColor.blackColor()
+        mainBrushLabel.fontSize = fontSize!
     }
+    
     
     func UpdateNodes() {
         batteryLabel.text = "Charge:" + String(format:"%.2f", rooWifi!.batteryLevel * 100) + "%"
         temperatureLabel.text = "Temp: " + String(rooWifi!.sensors.Temperature) + " ℃"
-        if !compass.hasActions() {
-            if rooWifi!.sensors.Wall == 1 {
-                self.ChangeColor(compass, color: UIColor.redColor())
-            } else {
-                self.ChangeColor(compass, color: UIColor.whiteColor())
-            }
-        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -238,22 +251,23 @@ class ControlScene: SKScene {
         for touch in touches {
             let location = touch.locationInNode(self)
             if (touchTracker[touch] == leftSlider) {
-                if (abs(location.y) < leftBase.size.height/2) {
+                if abs(location.y) < leftBase.size.height / 2 + leftBase.position.y {
                     leftSlider.position = CGPointMake(leftBase.position.x, location.y)
                 } else if location.y > 0 {
-                    leftSlider.position = CGPointMake(leftBase.position.x, leftBase.size.height/2)
+                    leftSlider.position = CGPointMake(leftBase.position.x, leftBase.size.height / 2 + leftBase.position.y)
                 } else {
-                    leftSlider.position = CGPointMake(leftBase.position.x, -(leftBase.size.height)/2)
+                    leftSlider.position = CGPointMake(leftBase.position.x, -(leftBase.size.height / 2) + leftBase.position.y)
                 }
                 self.Drive()
             } else if (touchTracker[touch] == rightSlider) {
-                if (abs(location.y) < rightBase.size.height/2) {
+                if abs(location.y) < rightBase.size.height / 2 + rightBase.position.y {
                     rightSlider.position = CGPointMake(rightBase.position.x, location.y)
                 } else if location.y > 0 {
-                    rightSlider.position = CGPointMake(rightBase.position.x, rightBase.size.height/2)
+                    rightSlider.position = CGPointMake(rightBase.position.x, rightBase.size.height / 2 + rightBase.position.y)
                 } else {
-                    rightSlider.position = CGPointMake(rightBase.position.x, -(rightBase.size.height)/2)
+                    rightSlider.position = CGPointMake(rightBase.position.x, -(rightBase.size.height / 2) + rightBase.position.y)
                 }
+
                 self.Drive()
             } else if (touchTracker[touch] == sideBrushKnob) {
                 let (valid, percent) = UpdateKnob(&sideBrushKnob, toLocation: location)
@@ -327,11 +341,11 @@ class ControlScene: SKScene {
     func Clean() {
         if (auto == .Clean) {
             if rooWifi!.SafeMode() {
-                self.ChangeColor(clean, color: ControlColors.Off)
+                //self.ChangeColor(clean, color: ControlColors.Off)
             }
             auto = .None
         } else if rooWifi!.Clean() {
-            self.ChangeColor(clean, color: ControlColors.On)
+            //self.ChangeColor(clean, color: ControlColors.On)
             auto = .Clean
         }
     }
@@ -345,25 +359,25 @@ class ControlScene: SKScene {
         
         rooWifi!.StoreSong(0, notes: start)
         if (rooWifi!.PlaySong(0)) {
-            self.ChangeColor(connect, color: UIColor.greenColor())
+            //self.ChangeColor(connect, color: ControlColors.On)
         }
     }
     
     func Spot() {
         if (auto == .Spot) {
             if rooWifi!.SafeMode() {
-                spot.color = ControlColors.Off
+                //self.ChangeColor(spot, color: ControlColors.Off)
             }
             auto = .None
         } else if rooWifi!.Spot() {
-            spot.color = ControlColors.On
+            self.ChangeColor(spot, color: ControlColors.On)
             auto = .Spot
         }
     }
     
     func Dock() {
         if (auto == .Dock) {
-            self.ChangeColor(dock, color: UIColor.whiteColor())
+            //self.ChangeColor(dock, color: UIColor.whiteColor())
             if rooWifi!.SafeMode() {
                 dock.color = ControlColors.Off
             }
@@ -385,8 +399,11 @@ class ControlScene: SKScene {
         
         let leftDirection:CGFloat = leftSlider.position.y > leftBase.position.y ? 1.0 : -1.0
         let leftSpeed:Int = Int(Distance(leftSlider.position, p2: leftBase.position) / leftSlider.size.height  / 2 * roombaMaxSpeed * leftDirection)
-
-        self.rooWifi!.Drive(rightSpeed, left: leftSpeed)
+        
+        self.drive += 1
+        if (drive % 5 == 0) {
+            self.rooWifi!.Drive(rightSpeed, left: leftSpeed)
+        }
         
         let backwards = (CGFloat(rightSpeed) + CGFloat(leftSpeed)) < 0
         let angle = (CGFloat(rightSpeed) - CGFloat(leftSpeed)) / roombaMaxSpeed
