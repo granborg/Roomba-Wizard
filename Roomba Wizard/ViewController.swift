@@ -18,9 +18,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scene = ControlScene(size: controlView.bounds.size, rooWifi: &rooWifi)
+        scene = ControlScene(size: view.bounds.size, rooWifi: &rooWifi)
         controlView.multipleTouchEnabled = true
         controlView.presentScene(scene)
+        scene!.AdjustOrientation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,21 +30,7 @@ class ViewController: UIViewController {
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
-        var text=""
         scene!.AdjustOrientation()
-        switch UIDevice.currentDevice().orientation{
-        case .Portrait:
-            text="Portrait"
-        case .PortraitUpsideDown:
-            text="PortraitUpsideDown"
-        case .LandscapeLeft:
-            text="LandscapeLeft"
-        case .LandscapeRight:
-            text="LandscapeRight"
-        default:
-            text="Another"
-        }
-        debug("You have moved: \(text)")
     }
 }
 

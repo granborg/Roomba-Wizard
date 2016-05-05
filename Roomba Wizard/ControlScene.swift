@@ -212,7 +212,6 @@ class ControlScene: SKScene {
         mainBrushLabel.fontSize = fontSize!
     }
     
-    
     func UpdateNodes() {
         batteryLabel.text = "Charge:" + String(format:"%.2f", rooWifi!.batteryLevel * 100) + "%"
         temperatureLabel.text = "Temp: " + String(rooWifi!.sensors.Temperature) + " ℃"
@@ -304,15 +303,10 @@ class ControlScene: SKScene {
                 self.ChangeColor(rightSlider, color: UIColor.whiteColor())
                 self.StopDriving()
             } else if (touchTracker[touch] == clean) {
-                self.clean.alpha = 1
                 self.Clean()
             } else if (touchTracker[touch] == spot) {
-                self.spot.alpha = 1
                 self.Spot()
             } else if (touchTracker[touch] == dock) {
-                UIView.animateWithDuration(0.5) {
-                    self.dock.alpha = 1
-                }
                 self.Dock()
             } else if (touchTracker[touch] == connect) {
                 UIView.animateWithDuration(0.5) {
