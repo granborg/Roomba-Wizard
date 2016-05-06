@@ -27,7 +27,7 @@ class ControlScene: SKScene {
     let clean = SKSpriteNode(imageNamed: "Clean")
     let compass = SKSpriteNode(imageNamed: "Compass")
     let connect = SKSpriteNode(imageNamed: "Connect")
-    let dock = SKSpriteNode(imageNamed: "Dock_Transparent")
+    let dock = SKSpriteNode(imageNamed: "dockk")
     let spot = SKSpriteNode(imageNamed: "Spot")
     let leftBase = SKSpriteNode(imageNamed: "Base")
     let leftSlider = SKSpriteNode(imageNamed: "Slider")
@@ -104,7 +104,10 @@ class ControlScene: SKScene {
     }
     
     override func didMoveToView(view: UIView) {
-        /* Setup your scene here */
+        let background = SKSpriteNode(imageNamed: "background.jpg")
+        background.zPosition = 0;
+        background.position = CGPoint(x: frame.size.width/2 , y: frame.size.height/2 )
+        self.addChild(background)
         self.scaleMode = .ResizeFill
         self.backgroundColor = UIColor.whiteColor()
         self.anchorPoint = CGPointMake(0.5, 0.5)
@@ -230,12 +233,16 @@ class ControlScene: SKScene {
                 self.ChangeColor(rightSlider, color: UIColor.redColor())
             } else if (CGRectContainsPoint(clean.frame, location)) {
                 touchTracker[touch] = clean
+                self.ChangeColor(clean, color:UIColor.greenColor())
             } else if (CGRectContainsPoint(spot.frame, location)) {
                 touchTracker[touch] = spot
+                self.ChangeColor(spot, color:UIColor.greenColor())
             } else if (CGRectContainsPoint(dock.frame, location)) {
                 touchTracker[touch] = dock
+                self.ChangeColor(dock, color:UIColor.greenColor())
             } else if (CGRectContainsPoint(connect.frame, location)) {
                 touchTracker[touch] = connect
+                self.ChangeColor(connect, color:UIColor.greenColor())
             } else if (CGRectContainsPoint(sideBrushKnob.frame, location)) {
                 touchTracker[touch] = sideBrushKnob
             } else if (CGRectContainsPoint(vacuumKnob.frame, location)) {

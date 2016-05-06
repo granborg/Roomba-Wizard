@@ -46,7 +46,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -172,6 +172,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="8ok-5V-5f5">
+                                <rect key="frame" x="-107" y="54" width="847" height="628"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRu-t5-KUa" userLabel="Db">
                                 <rect key="frame" x="102" y="215" width="70" height="73"/>
                                 <state key="normal" title="B" image="pad"/>
@@ -375,6 +378,7 @@
         <image name="Note" width="256" height="256"/>
         <image name="Spot" width="128" height="128"/>
         <image name="Tooltip" width="128" height="128"/>
+        <image name="background" width="1920" height="900"/>
         <image name="pad" width="256" height="256"/>
     </resources>
 </document>
