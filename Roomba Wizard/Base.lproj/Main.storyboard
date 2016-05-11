@@ -378,7 +378,7 @@
         <image name="Note" width="256" height="256"/>
         <image name="Spot" width="128" height="128"/>
         <image name="Tooltip" width="128" height="128"/>
-        <image name="background" width="1920" height="900"/>
+        <image name="background" width="2560" height="1440"/>
         <image name="pad" width="256" height="256"/>
     </resources>
 </document>

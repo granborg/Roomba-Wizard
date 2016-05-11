@@ -25,7 +25,7 @@ class ControlScene: SKScene {
     
     let arrow = SKSpriteNode(imageNamed: "Arrow")
     let clean = SKSpriteNode(imageNamed: "Clean")
-    let compass = SKSpriteNode(imageNamed: "Compass")
+    let compass = SKSpriteNode(imageNamed: "circle1")
     let connect = SKSpriteNode(imageNamed: "Connect")
     let dock = SKSpriteNode(imageNamed: "dockk")
     let spot = SKSpriteNode(imageNamed: "Spot")
@@ -57,6 +57,9 @@ class ControlScene: SKScene {
     let iconSpacing:CGFloat = 1.0 // Proportion of icon spacing to icon size.
     let arrowScale:CGFloat = 0.60 // Proportion of the compass' size.
     let compassScale:CGFloat = 0.20
+    
+    let widthBG = UIScreen.mainScreen().bounds.size.width
+    let heightBG = UIScreen.mainScreen().bounds.size.height
     
     var iconSize = CGSize?() // Related to iconScale
     var fontSize = CGFloat?() // Related to iconSize
@@ -105,8 +108,10 @@ class ControlScene: SKScene {
     
     override func didMoveToView(view: UIView) {
         let background = SKSpriteNode(imageNamed: "background.jpg")
-        background.zPosition = 0;
-        background.position = CGPoint(x: frame.size.width/2 , y: frame.size.height/2 )
+        background.zPosition = 0
+        //background.size = self.frame.size
+        //background.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         self.addChild(background)
         self.scaleMode = .ResizeFill
         self.backgroundColor = UIColor.whiteColor()
