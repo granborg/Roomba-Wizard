@@ -258,6 +258,7 @@ class ControlScene: SKScene {
                     leftSlider.position = CGPointMake(leftBase.position.x, -(leftBase.size.height / 2) + leftBase.position.y)
                 }
                 self.Drive()
+                break
             } else if (touchTracker[touch] == rightSlider) {
                 if abs(location.y) < rightBase.size.height / 2 + rightBase.position.y {
                     rightSlider.position = CGPointMake(rightBase.position.x, location.y)
@@ -268,6 +269,7 @@ class ControlScene: SKScene {
                 }
 
                 self.Drive()
+                break
             } else if (touchTracker[touch] == sideBrushKnob) {
                 let (valid, percent) = UpdateKnob(&sideBrushKnob, toLocation: location)
                 if valid {
@@ -395,9 +397,9 @@ class ControlScene: SKScene {
         let leftSpeed:Int = Int(Distance(leftSlider.position, p2: leftBase.position) / leftSlider.size.height  / 2 * roombaMaxSpeed * leftDirection)
         
         self.drive += 1
-        if (drive % 5 == 0) {
+        //if (drive % 6 == 0) {
             self.rooWifi!.Drive(rightSpeed, left: leftSpeed)
-        }
+        //}
         
         let backwards = (CGFloat(rightSpeed) + CGFloat(leftSpeed)) < 0
         let angle = (CGFloat(rightSpeed) - CGFloat(leftSpeed)) / roombaMaxSpeed
