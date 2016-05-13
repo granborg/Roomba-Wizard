@@ -21,6 +21,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.jpg")!)
         scene = ControlScene(size: view.bounds.size, rooWifi: &rooWifi)
+        scene!.backgroundColor = UIColor.clearColor()
+        controlView.backgroundColor = UIColor.clearColor()
         controlView.multipleTouchEnabled = true
         controlView.presentScene(scene)
         scene!.AdjustOrientation()

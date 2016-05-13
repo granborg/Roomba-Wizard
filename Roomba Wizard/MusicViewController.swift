@@ -13,6 +13,8 @@ class MusicViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.jpg")!)
+        self.view.multipleTouchEnabled = true
     }
     @IBAction func Db(sender: AnyObject) {
         if rooWifi.StoreSong(0, notes:[(frequency: 49, duration : NOTE_DURATION_THIRTYSECOND_NOTE)]) {

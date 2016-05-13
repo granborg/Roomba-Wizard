@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Roomba Wizard/ControlScene.swift"
-            timestampString = "484165981.016859"
+            timestampString = "484804991.826733"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
-            landmarkName = "UpdateNodes()"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "AdjustOrientation()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Roomba Wizard/ControlScene.swift"
-            timestampString = "484156810.237867"
+            timestampString = "484802853.549377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "UpdateKnob(_:toLocation:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,13 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Roomba Wizard/ViewController.swift"
-            timestampString = "484108237.290965"
+            timestampString = "484805115.865325"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "ViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Roomba Wizard/ControlScene.swift"
-            timestampString = "484157733.003304"
+            timestampString = "484804991.826733"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "AdjustOrientation()"
             landmarkType = "5">
          </BreakpointContent>

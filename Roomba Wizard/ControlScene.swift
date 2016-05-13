@@ -79,6 +79,10 @@ class ControlScene: SKScene {
     convenience init(size: CGSize, inout rooWifi: RooWifi) {
         self.init(size: size)
         self.rooWifi = rooWifi
+        self.ChangeColor(connect, color: ControlColors.Off)
+        self.ChangeColor(spot, color: ControlColors.Off)
+        self.ChangeColor(dock, color: ControlColors.Off)
+        self.ChangeColor(clean, color: ControlColors.Off)
     }
     
     func ChangeColor(image: SKSpriteNode, color: UIColor) {
@@ -107,14 +111,7 @@ class ControlScene: SKScene {
     }
     
     override func didMoveToView(view: UIView) {
-        let background = SKSpriteNode(imageNamed: "background.jpg")
-        background.zPosition = 0
-        //background.size = self.frame.size
-        //background.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
-        background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-        self.addChild(background)
         self.scaleMode = .ResizeFill
-        self.backgroundColor = UIColor.whiteColor()
         self.anchorPoint = CGPointMake(0.5, 0.5)
         self.AdjustOrientation()
         self.addChild(clean)
@@ -156,19 +153,15 @@ class ControlScene: SKScene {
         
         clean.position = CGPointMake(self.size.width / 2 * iconPosition, self.size.width * iconScale * iconSpacing * 2)
         clean.size = iconSize!
-        self.ChangeColor(clean, color: ControlColors.Off)
         
         spot.position = CGPointMake(self.size.width / 2 * iconPosition , self.size.width * iconScale * iconSpacing)
         spot.size = iconSize!
-        self.ChangeColor(spot, color: ControlColors.Off)
         
         dock.position = CGPointMake(-self.size.width / 2 * iconPosition, self.size.width * iconScale * iconSpacing)
         dock.size = iconSize!
-        self.ChangeColor(dock, color: ControlColors.Off)
         
         connect.position = CGPointMake(-self.size.width / 2 * iconPosition, self.size.width * iconScale * iconSpacing * 2)
         connect.size = iconSize!
-        self.ChangeColor(connect, color: ControlColors.Off)
         
         compass.position = CGPointMake(0.0, self.size.width * iconScale * iconSpacing * 2)
         compass.size = compassSize!
@@ -238,16 +231,12 @@ class ControlScene: SKScene {
                 self.ChangeColor(rightSlider, color: UIColor.redColor())
             } else if (CGRectContainsPoint(clean.frame, location)) {
                 touchTracker[touch] = clean
-                self.ChangeColor(clean, color:UIColor.greenColor())
             } else if (CGRectContainsPoint(spot.frame, location)) {
                 touchTracker[touch] = spot
-                self.ChangeColor(spot, color:UIColor.greenColor())
             } else if (CGRectContainsPoint(dock.frame, location)) {
                 touchTracker[touch] = dock
-                self.ChangeColor(dock, color:UIColor.greenColor())
             } else if (CGRectContainsPoint(connect.frame, location)) {
                 touchTracker[touch] = connect
-                self.ChangeColor(connect, color:UIColor.greenColor())
             } else if (CGRectContainsPoint(sideBrushKnob.frame, location)) {
                 touchTracker[touch] = sideBrushKnob
             } else if (CGRectContainsPoint(vacuumKnob.frame, location)) {
@@ -323,9 +312,6 @@ class ControlScene: SKScene {
             } else if (touchTracker[touch] == dock) {
                 self.Dock()
             } else if (touchTracker[touch] == connect) {
-                UIView.animateWithDuration(0.5) {
-                    self.connect.alpha = 1
-                }
                 self.Connect()
             }
         touchTracker.removeValueForKey(touch as UITouch)
@@ -349,11 +335,11 @@ class ControlScene: SKScene {
     func Clean() {
         if (auto == .Clean) {
             if rooWifi!.SafeMode() {
-                //self.ChangeColor(clean, color: ControlColors.Off)
+                self.ChangeColor(clean, color: ControlColors.Off)
             }
             auto = .None
         } else if rooWifi!.Clean() {
-            //self.ChangeColor(clean, color: ControlColors.On)
+            self.ChangeColor(clean, color: ControlColors.On)
             auto = .Clean
         }
     }
@@ -367,14 +353,16 @@ class ControlScene: SKScene {
         
         rooWifi!.StoreSong(0, notes: start)
         if (rooWifi!.PlaySong(0)) {
-            //self.ChangeColor(connect, color: ControlColors.On)
+            self.ChangeColor(connect, color: ControlColors.On)
+        } else {
+            self.ChangeColor(connect, color: ControlColors.Off)
         }
     }
     
     func Spot() {
         if (auto == .Spot) {
             if rooWifi!.SafeMode() {
-                //self.ChangeColor(spot, color: ControlColors.Off)
+                self.ChangeColor(spot, color: ControlColors.Off)
             }
             auto = .None
         } else if rooWifi!.Spot() {
@@ -385,13 +373,12 @@ class ControlScene: SKScene {
     
     func Dock() {
         if (auto == .Dock) {
-            //self.ChangeColor(dock, color: UIColor.whiteColor())
             if rooWifi!.SafeMode() {
                 dock.color = ControlColors.Off
             }
             auto = .None
         } else if rooWifi!.Dock() {
-            self.ChangeColor(dock, color: UIColor.greenColor())
+            self.ChangeColor(dock, color: ControlColors.On)
             dock.color = ControlColors.On
             auto = .Dock
         }
