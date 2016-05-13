@@ -25,9 +25,9 @@ class ControlScene: SKScene {
     
     let arrow = SKSpriteNode(imageNamed: "Arrow")
     let clean = SKSpriteNode(imageNamed: "Clean")
-    let compass = SKSpriteNode(imageNamed: "Compass")
+    let compass = SKSpriteNode(imageNamed: "circle1")
     let connect = SKSpriteNode(imageNamed: "Connect")
-    let dock = SKSpriteNode(imageNamed: "Dock_Transparent")
+    let dock = SKSpriteNode(imageNamed: "dockk")
     let spot = SKSpriteNode(imageNamed: "Spot")
     let leftBase = SKSpriteNode(imageNamed: "Base")
     let leftSlider = SKSpriteNode(imageNamed: "Slider")
@@ -57,6 +57,9 @@ class ControlScene: SKScene {
     let iconSpacing:CGFloat = 1.0 // Proportion of icon spacing to icon size.
     let arrowScale:CGFloat = 0.60 // Proportion of the compass' size.
     let compassScale:CGFloat = 0.20
+    
+    let widthBG = UIScreen.mainScreen().bounds.size.width
+    let heightBG = UIScreen.mainScreen().bounds.size.height
     
     var iconSize = CGSize?() // Related to iconScale
     var fontSize = CGFloat?() // Related to iconSize
@@ -104,7 +107,12 @@ class ControlScene: SKScene {
     }
     
     override func didMoveToView(view: UIView) {
-        /* Setup your scene here */
+        let background = SKSpriteNode(imageNamed: "background.jpg")
+        background.zPosition = 0
+        //background.size = self.frame.size
+        //background.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        self.addChild(background)
         self.scaleMode = .ResizeFill
         self.backgroundColor = UIColor.whiteColor()
         self.anchorPoint = CGPointMake(0.5, 0.5)
@@ -230,12 +238,16 @@ class ControlScene: SKScene {
                 self.ChangeColor(rightSlider, color: UIColor.redColor())
             } else if (CGRectContainsPoint(clean.frame, location)) {
                 touchTracker[touch] = clean
+                self.ChangeColor(clean, color:UIColor.greenColor())
             } else if (CGRectContainsPoint(spot.frame, location)) {
                 touchTracker[touch] = spot
+                self.ChangeColor(spot, color:UIColor.greenColor())
             } else if (CGRectContainsPoint(dock.frame, location)) {
                 touchTracker[touch] = dock
+                self.ChangeColor(dock, color:UIColor.greenColor())
             } else if (CGRectContainsPoint(connect.frame, location)) {
                 touchTracker[touch] = connect
+                self.ChangeColor(connect, color:UIColor.greenColor())
             } else if (CGRectContainsPoint(sideBrushKnob.frame, location)) {
                 touchTracker[touch] = sideBrushKnob
             } else if (CGRectContainsPoint(vacuumKnob.frame, location)) {

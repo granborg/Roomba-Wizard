@@ -17,7 +17,9 @@ class ViewController: UIViewController {
     var scene:ControlScene?
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.jpg")!)
         scene = ControlScene(size: view.bounds.size, rooWifi: &rooWifi)
         controlView.multipleTouchEnabled = true
         controlView.presentScene(scene)
