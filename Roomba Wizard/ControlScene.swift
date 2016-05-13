@@ -333,6 +333,9 @@ class ControlScene: SKScene {
     }
     
     func Clean() {
+         self.ChangeColor(connect, color: ControlColors.Off)
+         self.ChangeColor(dock, color: ControlColors.Off)
+         self.ChangeColor(spot, color: ControlColors.Off)
         if (auto == .Clean) {
             if rooWifi!.SafeMode() {
                 self.ChangeColor(clean, color: ControlColors.Off)
@@ -345,6 +348,9 @@ class ControlScene: SKScene {
     }
     
     func Connect() {
+        self.ChangeColor(clean, color: ControlColors.Off)
+        self.ChangeColor(dock, color: ControlColors.Off)
+        self.ChangeColor(spot, color: ControlColors.Off)
         rooWifi!.Start()
         let start:Song =
             [(frequency: 53, duration:NOTE_DURATION_SIXTYFOURTH_NOTE),
@@ -360,6 +366,9 @@ class ControlScene: SKScene {
     }
     
     func Spot() {
+        self.ChangeColor(connect, color: ControlColors.Off)
+        self.ChangeColor(dock, color: ControlColors.Off)
+        self.ChangeColor(clean, color: ControlColors.Off)
         if (auto == .Spot) {
             if rooWifi!.SafeMode() {
                 self.ChangeColor(spot, color: ControlColors.Off)
@@ -372,6 +381,9 @@ class ControlScene: SKScene {
     }
     
     func Dock() {
+        self.ChangeColor(connect, color: ControlColors.Off)
+        self.ChangeColor(clean, color: ControlColors.Off)
+        self.ChangeColor(spot, color: ControlColors.Off)
         if (auto == .Dock) {
             if rooWifi!.SafeMode() {
                 dock.color = ControlColors.Off
